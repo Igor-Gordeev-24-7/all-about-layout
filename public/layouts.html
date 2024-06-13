@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Макеты</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="icon" type="image/png" href="./accets/icons/favicon.png" />
+  </head>
+  <body>
+    <!-- PAGE -->
+    <div class="page">
+      <!-- content-container -->
+      <div class="content-container">
+        <!-- HEADER -->
+        <header class="header">
+          <div class="header__wrapper wrapper">
+            <div class="logo">
+              <span class="logo__text">все о верстке</span>
+            </div>
+
+            <nav class="header__menu">
+              <a href="" class="header__item">Макеты</a>
+              <a href="#" class="header__item">Задачи</a>
+              <a href="#" class="header__item">Блог</a>
+              <a href="#" class="header__item">Участники</a>
+              <a href="#" class="header__item">FAQ</a>
+              <a href="#" class="header__item">Контакты</a>
+            </nav>
+
+            <button class="header__burger-btn">
+              <span class="header__burger-span"></span>
+              <span class="header__burger-span"></span>
+              <span class="header__burger-span"></span>
+            </button>
+          </div>
+        </header>
+
+        <!-- MAIN -->
+        <main class="main">
+          <!-- TITLE -->
+          <section class="title">
+            <div class="title__wrapper wrapper">
+              <h1 class="title__heading">Библиотека макетов</h1>
+
+              <span class="counter"
+                >(<span class="counter__number">0</span>)</span
+              >
+            </div>
+          </section>
+
+          <!-- FILTER -->
+          <section class="filter">
+            <div class="filter__wrapper wrapper">
+              <!-- filter__top -->
+              <div class="filter__top">
+                <div class="filter__top-btns">
+                  <button class="filter__btn filter__btn--active">
+                    Показать все
+                  </button>
+                  <button class="filter__btn filter__btn--hover">Легкий</button>
+                  <button class="filter__btn filter__btn--hover">
+                    Средний
+                  </button>
+                  <button class="filter__btn filter__btn--hover">
+                    Сложный
+                  </button>
+                </div>
+              </div>
+
+              <!-- filter__bottom -->
+              <div class="filter__bottom">
+                <button class="filter__bottom-open-btn">Фильтр</button>
+
+                <div class="filter__bottom-items">
+                  <!-- filter__item -->
+                  <div class="filter__bottom-item">
+                    <span class="filter__bottom-item-heading">Страницы</span>
+                    <button class="filter__bottom-item-btn">
+                      <span class="filter__bottom-item-text">Не выбрано</span>
+                      <img
+                        class="filter__bottom-item-btn-img"
+                        src="./accets/icons/arrow-down-white.svg"
+                        alt="arrow-down-white"
+                      />
+                    </button>
+
+                    <div class="filter__menu">
+                      <button
+                        class="filter__menu-item filter__menu-item--active"
+                      >
+                        Не выбрано
+                      </button>
+                      <button class="filter__menu-item">Одностраничный</button>
+                      <button class="filter__menu-item">Многостраничный</button>
+                    </div>
+                  </div>
+
+                  <!-- filter__item -->
+                  <div class="filter__bottom-item">
+                    <span class="filter__bottom-item-heading"
+                      >Наличие адаптива:</span
+                    >
+                    <button class="filter__bottom-item-btn">
+                      <span class="filter__bottom-item-text">Не выбрано</span>
+                      <img
+                        class="filter__bottom-item-btn-img"
+                        src="./accets/icons/arrow-down-white.svg"
+                        alt="arrow-down-white"
+                      />
+                    </button>
+
+                    <div class="filter__menu">
+                      <button
+                        class="filter__menu-item filter__menu-item--active"
+                      >
+                        Не выбрано
+                      </button>
+                      <button class="filter__menu-item">С адаптивом</button>
+                      <button class="filter__menu-item">Без адаптива</button>
+                    </div>
+                  </div>
+
+                  <!-- filter__item -->
+                  <div class="filter__bottom-item">
+                    <span class="filter__bottom-item-heading">Язык:</span>
+                    <button class="filter__bottom-item-btn">
+                      <span class="filter__bottom-item-text">Не выбрано</span>
+
+                      <img
+                        class="filter__bottom-item-btn-img"
+                        src="./accets/icons/arrow-down-white.svg"
+                        alt="arrow-down-white"
+                      />
+                    </button>
+
+                    <div class="filter__menu">
+                      <button
+                        class="filter__menu-item filter__menu-item--active"
+                      >
+                        Не выбрано
+                      </button>
+                      <button class="filter__menu-item">Русский</button>
+                      <button class="filter__menu-item">Английский</button>
+                    </div>
+                  </div>
+
+                  <!-- filter__item -->
+                  <div class="filter__bottom-item">
+                    <span class="filter__bottom-item-heading"
+                      >Наличие превью:</span
+                    >
+                    <button class="filter__bottom-item-btn">
+                      <span class="filter__bottom-item-text">Не выбрано</span>
+
+                      <img
+                        class="filter__bottom-item-btn-img"
+                        src="./accets/icons/arrow-down-white.svg"
+                        alt="arrow-down-white"
+                      />
+                    </button>
+
+                    <div class="filter__menu">
+                      <button
+                        class="filter__menu-item filter__menu-item--active"
+                      >
+                        Не выбрано
+                      </button>
+                      <button class="filter__menu-item">Есть</button>
+                      <button class="filter__menu-item">Нет</button>
+                    </div>
+                  </div>
+
+                  <!-- filter__item -->
+                  <div class="filter__bottom-item">
+                    <span class="filter__bottom-item-heading">Тип макета:</span>
+                    <button class="filter__bottom-item-btn">
+                      <span class="filter__bottom-item-text">Не выбрано</span>
+
+                      <img
+                        class="filter__bottom-item-btn-img"
+                        src="./accets/icons/arrow-down-white.svg"
+                        alt="arrow-down-white"
+                      />
+                    </button>
+
+                    <div class="filter__menu">
+                      <button
+                        class="filter__menu-item filter__menu-item--active"
+                      >
+                        Не выбрано
+                      </button>
+                      <button class="filter__menu-item">Макет сайта</button>
+                      <button class="filter__menu-item">Макет письма</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter__items-btn">Сбросить</div>
+              </div>
+              <div class="filter__separator"></div>
+            </div>
+          </section>
+
+          <!-- GALLERY -->
+          <section class="gallery">
+            <div class="gallery__wrapper wrapper">
+              <div class="gallery__cards">
+                <!-- gallery__card -->
+                <div class="gallery__card">
+                  <div class="gallery__card-top">
+                    <div class="gallery__tags">
+                      <div class="gallery__tag gallery__tag--active">
+                        Легкий
+                      </div>
+                      <div class="gallery__tag">Одностраничный</div>
+                      <div class="gallery__tag">С адаптивом</div>
+                      <div class="gallery__tag">ru</div>
+                      <div class="gallery__tag">
+                        <img
+                          class="gallery__tag-img"
+                          src="./accets/icons/eye.svg"
+                          alt="eye"
+                        />
+                      </div>
+                      <div class="gallery__tag">Сайт</div>
+                    </div>
+                  </div>
+
+                  <div class="gallery__card-bottom">
+                    <h4 class="gallery__card-name">Название</h4>
+
+                    <span class="gallery__card-description">Описание</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+          <div class="footer__wrapper wrapper">
+            <div class="footer__separator"></div>
+
+            <div class="footer__content">
+              <div class="logo">
+                <span class="logo__text footer__logo-text">все о верстке</span>
+              </div>
+              <div class="footer__menu">
+                <a href="#" class="footer__menu-item">Макеты</a>
+                <a href="#" class="footer__menu-item">Блог</a>
+                <a href="#" class="footer__menu-item">Задачи</a>
+                <a href="#" class="footer__menu-item">FAQ</a>
+                <a href="#" class="footer__menu-item">Участники</a>
+                <a href="#" class="footer__menu-item">Контакты</a>
+              </div>
+              <div class="footer__copyrigth">© 2024 Все права защищены</div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script type="module" src="./scripts/script.js"></script>
+  </body>
+</html>
