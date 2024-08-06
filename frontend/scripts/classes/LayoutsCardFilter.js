@@ -1,27 +1,19 @@
-import Card from "./Card.js";
-import Cards from "./Cards.js";
+import LayoutsCardCreation from "./LayoutsCardCreation.js";
+import LayoutsCardRender from "./LayoutsCardRender.js";
 
-const cards = new Cards(".gallery__cards");
+const layoutsCardRender = new LayoutsCardRender(".gallery__cards");
 
-// Получение массива карточек с бэка
-fetch(`http://localhost:5001`)
-  .then((res) => res.json())
-  .then((cardsArray) => {
-    // Проходимся по полученному массиву
-    cardsArray.forEach((el) => {
-      // У cards, вызываем метод,
-      // Добавляет все карточки в массив this.cards в (классе Cards)
-      cards.addCard(new Card(el));
-    });
-    cards.render(); // Рендеринг всех карточек при загрузке страницы
-  });
-
-class Filter {
+class LayoutsCardFilter {
   constructor(selector) {
     this.filter = document.querySelector(selector);
+    this.layoutCardsArray = [];
     this.filterTags = ["", "", "", "", "", ""];
 
     // Вызов методов
+    this.getLayoutsCards().then(() => {
+      this.renderLatoutsCards(this.layoutCardsArray);
+    });
+
     this.makeElActive(".filter__bottom-item", "active");
     this.activationFilterBtn(".filter__btn", "filter__btn--active");
     this.stylingItemsOnHover(".filter__menu", ".filter__menu-item");
@@ -29,11 +21,24 @@ class Filter {
     this.resetSearchParameters(".filter__items-btn");
   }
 
-  // filteringOnBtnСlick(clickEl) {
-  //   this.filterTags[0] = "";
-  //   this.filterTags[0] = clickEl.textContent.trim();
-  //   console.log(this.filterTags);
-  // }
+  // Метод получения карточек с бэка
+  async getLayoutsCards() {
+    try {
+      const response = await fetch(`http://localhost:5001/layouts`);
+      const layoutCardsArray = await response.json();
+      this.layoutCardsArray = layoutCardsArray;
+    } catch (error) {
+      console.log("Не удалось получить карточки:", error);
+    }
+  }
+
+  // Метод рендера карточек
+  renderLatoutsCards(arrayForRendering) {
+    arrayForRendering.forEach((el) => {
+      layoutsCardRender.addCard(new LayoutsCardCreation(el));
+      layoutsCardRender.render();
+    });
+  }
 
   //   Метод активации элемента
   makeElActive(els, elClass) {
@@ -66,8 +71,7 @@ class Filter {
         } else {
           this.filterTags[0] = clickEl.textContent.trim();
         }
-        console.log(this.filterTags);
-        cards.filterCards(this.filterTags);
+        layoutsCardRender.filterCards(this.filterTags);
 
         // Итерируем по всем элементам и удаляем класс у других элементов
         clickEls.forEach((otherEl) => {
@@ -131,7 +135,7 @@ class Filter {
             this.filterTags[parentIndex + 1] = filterMenuItemEl.textContent;
           }
           // Вызов метода рендера по фильтру
-          cards.filterCards(this.filterTags);
+          layoutsCardRender.filterCards(this.filterTags);
         });
       });
     });
@@ -165,7 +169,7 @@ class Filter {
         this.filterTags[0] = "";
       }
 
-      cards.filterCards(this.filterTags);
+      layoutsCardRender.filterCards(this.filterTags);
 
       // Итерируем по всем элементам и удаляем класс у других элементов
       filterEls.forEach((otherEl) => {
@@ -197,9 +201,9 @@ class Filter {
       this.resetDifficultyFilter(".filter__btn", "filter__btn--active");
 
       // Вызов метода рендера по фильтру
-      cards.filterCards(this.filterTags);
+      layoutsCardRender.filterCards(this.filterTags);
     });
   }
 }
 
-export default Filter;
+export default LayoutsCardFilter;

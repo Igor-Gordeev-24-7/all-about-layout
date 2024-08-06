@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
-const connectDB = async () => {
+const connectDBMembers = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/layouts", {
+    await mongoose.createConnection("mongodb://localhost:27017/members", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log("mongoDB layouts connected");
+    console.log("mongoDB members connected");
   } catch (error) {
     console.error(error.message);
     process.exit(1);
   }
 };
 
-export default connectDB;
+export default connectDBMembers;

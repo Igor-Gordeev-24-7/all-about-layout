@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Статья",
+    "description": "Описание",
+    "imgLink": "https://img.freepik.com/free-photo/view-of-3d-car_23-2150796894.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1721606400&semt=ais_user",
+    "tags": ["Тэг", "Тэг"],
+    "skills": ["Скилл", "Скилл"]
+  }
+]

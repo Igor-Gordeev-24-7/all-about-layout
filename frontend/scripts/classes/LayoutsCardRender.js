@@ -1,17 +1,17 @@
-import cardsArray from "../cardsArray.js";
-
-class Cards {
+class LayoutsCardRender {
   // Класс принимает селектор, по которому получаем элемент
   constructor(selector) {
     this.galleryCards = document.querySelector(selector);
-
-    // Создаем пустой массив карточке
-    this.cards = [];
 
     // Проверка на наличие элемента this.galleryCards
     if (!this.galleryCards) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
     }
+
+    // Создаем пустой массив карточек
+    this.cards = [];
+
+    this.makeFilterMove();
   }
 
   // Счетчик количества карточек
@@ -25,7 +25,7 @@ class Cards {
   render() {
     // Проверка на наличие элемента this.galleryCards
     if (!this.galleryCards) {
-      console.warn("galleryCards элемент не найден, рендеринг невозможен.");
+      console.warn("Элемент с селектором this.galleryCards не найден.");
       return;
     }
 
@@ -98,5 +98,30 @@ class Cards {
       this.cardCounter(".counter__number", filteredCards.length); // Обновление счетчика после фильтрации
     }
   }
+
+  // Переключение фильтра на мобильной версии
+  makeFilterMove() {
+    const filterEl = document.querySelector(".filter");
+    const filterBottomOpenBtnEl = document.querySelector(
+      ".filter__bottom-open-btn"
+    );
+
+    if (filterBottomOpenBtnEl) {
+      filterBottomOpenBtnEl.addEventListener("click", () => {
+        filterEl.classList.toggle("open");
+      });
+    } else {
+      console.warn(
+        `Элемент с селектором ".filter__bottom-open-btn" не найден.`
+      );
+    }
+
+    const galleryCardEls = document.querySelectorAll(".gallery__card");
+    galleryCardEls.forEach((galleryCard, index) => {
+      galleryCard.addEventListener("click", () => {
+        console.log(index);
+      });
+    });
+  }
 }
-export default Cards;
+export default LayoutsCardRender;

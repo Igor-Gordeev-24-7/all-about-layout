@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const LayoutSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -17,16 +16,16 @@ const LayoutSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tags: [
-    {
-      type: String,
-    },
-  ],
-  skills: [
-    {
-      type: String,
-    },
-  ],
+  tags: [String], // Массив строк
+  skills: [String], // Массив строк
+  linkToLive: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: String,
+    required: true,
+  },
 });
 
 export default mongoose.model("Layout", LayoutSchema);

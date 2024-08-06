@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Добавление Layout</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="icon" type="image/png" href="./accets/icons/favicon.png" />
+  </head>
+  <body>
+    <!-- MAIN -->
+    <main class="main">
+      <div class="admin-layout-add">
+        <div class="admin-layout-add__popup active">
+          <div class="admin-layout-add__popup-content">
+            <span class="admin-layout-add__popup-span"
+              >Данные не передались</span
+            >
+          </div>
+        </div>
+        <div class="admin-layout-add__wrapper wrapper">
+          <h1 class="admin-layout-add__heading">Заголовок</h1>
+          <a
+            href="http://127.0.0.1:5500/frontend/layouts.html"
+            class="admin-layout-add__link"
+            >Перейти к Layouts</a
+          >
+          <label for="field-name" class="admin-layout-add__lable">
+            <input
+              class="admin-layout-add__input"
+              id="field-name"
+              type="text"
+            />
+          </label>
+          <label for="field-description" class="admin-layout-add__lable">
+            <input
+              class="admin-layout-add__input"
+              id="field-description"
+              type="text"
+            />
+          </label>
+          <label for="field-layout-link" class="admin-layout-add__lable">
+            <input
+              class="admin-layout-add__input"
+              id="field-layout-link"
+              type="text"
+            />
+          </label>
+          <label for="field-link-to-img" class="admin-layout-add__lable">
+            <input
+              class="admin-layout-add__input"
+              id="field-link-to-img"
+              type="text"
+            />
+          </label>
+
+          <div class="admin-layout-add__filters">
+            <span class="admin-layout-add__filters-heading">Поле тегов</span>
+            <div class="admin-layout-add__containers">
+              <!-- container -->
+              <div class="admin-layout-add__container">
+                <span class="admin-layout-add__description">Описание</span>
+                <div class="admin-layout-add__box">
+                  <span class="admin-layout-add__span">Не выбрано</span>
+                  <div class="admin-layout-add__items">
+                    <span class="admin-layout-add__item">Пункт</span>
+                    <span class="admin-layout-add__item">Пункт</span>
+                    <span class="admin-layout-add__item">Пункт</span>
+                  </div>
+                </div>
+              </div>
+              <!-- container -->
+              <div class="admin-layout-add__container">
+                <span class="admin-layout-add__description">Описание</span>
+                <div class="admin-layout-add__box">
+                  <span class="admin-layout-add__span">Не выбрано</span>
+                  <div class="admin-layout-add__items">
+                    <span class="admin-layout-add__item">Пункт</span>
+                    <span class="admin-layout-add__item">Пункт</span>
+                    <span class="admin-layout-add__item">Пункт</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <input
+              class="admin-layout-add__filters-input"
+              id="field-tags"
+              type="text"
+            />
+          </div>
+
+          <label for="field-skills" class="admin-layout-add__lable">
+            <input
+              class="admin-layout-add__input"
+              id="field-skills"
+              type="text"
+            />
+          </label>
+          <label for="field-link-to-live" class="admin-layout-add__lable">
+            <input
+              class="admin-layout-add__input"
+              id="field-link-to-live"
+              type="text"
+            />
+          </label>
+          <button class="admin-layout-add__btn">Загрузить Layout</button>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="./scripts/checkAuth.js"></script>
+    <script type="module" src="./scripts/script.js"></script>
+  </body>
+</html>
