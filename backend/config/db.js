@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/layouts", {
+    await mongoose.connect("mongodb+srv://igorgordeev247:qwe156834QWE@cluster0.525zc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/layouts", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

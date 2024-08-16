@@ -1,25 +1,51 @@
 // ИМПОРТЫ
+
+// Layout
 import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
 import LayoutContentRender from "./classes/LayoutContentRender.js";
-import ArticlesItemFilter from "./classes/ArticlesItemFilter.js";
-import AdminLayouts from "./classes/AdminLayouts.js";
-import AdminLayout from "./classes/AdminLayout.js";
-import AdminLayoutAdd from "./classes/AdminLayoutAdd.js";
+// Admin-Layout
+import AdminLayouts from "./classes/admin/admin-layout/AdminLayouts.js";
+import AdminLayout from "./classes/admin/admin-layout/AdminLayout.js";
+import AdminLayoutAdd from "./classes/admin/admin-layout/AdminLayoutAdd.js";
+
+// Article
 import ArticleContentRender from "./classes/ArticleContentRender.js";
+import ArticlesItemFilter from "./classes/ArticlesItemFilter.js";
+
+// Member
 import MembersCardRender from "./classes/MembersCardRender.js";
 import MembersContentRender from "./classes/MembersContentRender.js";
+// Admin-Member
+import AdminMembers from "./classes/admin/admin-members/AdminMembers.js";
 
-// Объявление классов
+export const fileRoutesPath = "http://localhost:5001/";
+
+// --------------------
+
+// ОБЪЯВЛЕНИЕ КЛАССОВ
+// Layout
 const layoutsCardFilter = new LayoutsCardFilter(".filter");
 const layoutContentRender = new LayoutContentRender(".info__bottom");
-const articlesItemFilter = new ArticlesItemFilter(".blog__filter");
-const adminLayouts = new AdminLayouts(".admin-layouts__list");
+// Admin-Layout
+const adminLayouts = new AdminLayouts(".admin-layouts__list", "members");
 const adminLayoutAdd = new AdminLayoutAdd("admin-layout-add");
 const adminLayout = new AdminLayout("layout-item");
+
+// Article
+const articlesItemFilter = new ArticlesItemFilter(".blog__filter");
 const articleContentRender = new ArticleContentRender(".article__wrapper");
+
+// Member
 const membersCardRender = new MembersCardRender(".members__cards");
 const membersContentRender = new MembersContentRender(".member");
+// Admin-Member
+const adminMembers = new AdminMembers(
+  ".members-item",
+  "members",
+  fileRoutesPath
+);
 
+// Путь к файлу
 export const linkToLayouts = "http://127.0.0.1:5500/frontend/articles.html";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -62,7 +88,7 @@ if (entranceFormEl) {
     if (loginValue == login && passValue == pass) {
       localStorage.setItem("isAuth", true);
       window.location.assign(
-        "http://127.0.0.1:5500/frontend/admin-content.html"
+        "http://127.0.0.1:5501/frontend/admin-content.html"
       );
     } else {
       entranceErrorSpanEl.classList.add("active");

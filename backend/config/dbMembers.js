@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDBMembers = async () => {
   try {
-    await mongoose.createConnection("mongodb://localhost:27017/members", {
+    await mongoose.createConnection("mongodb+srv://igorgordeev247:<password>@cluster0.525zc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/members", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

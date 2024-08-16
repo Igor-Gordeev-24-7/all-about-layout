@@ -58,17 +58,17 @@ class AdminLayoutAdd {
     this.initMainElLink(
       this.selector,
       "Перейти к Layouts",
-      "http://127.0.0.1:5500/frontend/layouts.html"
+      "http://127.0.0.1:5501/frontend/layouts.html"
     );
     this.initMainElLink(
       this.selector,
       "Перейти к admin-layouts",
-      "http://127.0.0.1:5500/frontend/admin-layouts.html"
+      "http://127.0.0.1:5501/frontend/admin-layouts.html"
     );
     this.initMainElLink(
       this.selector,
       "Перейти к admin-content",
-      "http://127.0.0.1:5500/frontend/admin-content.html"
+      "http://127.0.0.1:5501/frontend/admin-content.html"
     );
     // Поле Имя
     this.initMainElLabel(this.selector, "Имя", "tags-field-name");
@@ -243,11 +243,11 @@ class AdminLayoutAdd {
   }
   //   Метод добавления ссылки с переадными парамеитрами textContent - Текст ссылки, linkToPage ссылка на страницу
   initMainElLink(selector, textContent, link) {
-    this.adminLayoutAddLink = document.createElement("a");
-    this.adminLayoutAddLink.className = `${selector}__link`;
-    this.adminLayoutAddLink.href = link;
-    this.adminLayoutAddLink.textContent = textContent;
-    this.mainElLinkBox.append(this.adminLayoutAddLink);
+    this.mainElLink = document.createElement("a");
+    this.mainElLink.className = `${selector}__link`;
+    this.mainElLink.href = link;
+    this.mainElLink.textContent = textContent;
+    this.mainElLinkBox.append(this.mainElLink);
   }
   //   Метод добавления Label, textContent - текст label, htmlFor - for для связи с id input
   initMainElLabel(selector, textContent, htmlFor) {

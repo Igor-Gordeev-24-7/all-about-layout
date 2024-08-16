@@ -13,4 +13,84 @@ membersRouter.get("/members", async (req, res) => {
   }
 });
 
+// Маршрут для удаления записи по ID
+membersRouter.delete("/members/:id", async (req, res) => {
+  try {
+    const membersId = req.params.id;
+    const deletedMembers = await Members.findByIdAndDelete(membersId);
+    if (!deletedMembers) {
+      return res.status(404).json({ msg: "Запись не найдена" });
+    }
+    res.json({ msg: "Запись удалена" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server error");
+  }
+});
+
+// Маршрут для добавления новой записи
+membersRouter.post("/members", async (req, res) => {
+  try {
+    const { name, description, imgLink, tags, skills } = req.body;
+
+    // Проверка на обязательные поля
+    if (!name || !description || !imgLink || !tags || !skills) {
+      return res
+        .status(400)
+        .json({ error: "Некоторые обязательные поля не заполнены" });
+    }
+
+    // Создание нового макета
+    const newMember = new Member({
+      name,
+      description,
+      imgLink,
+      tags,
+      skills,
+    });
+
+    const member = await newMember.save();
+    res.status(201).json(member);
+  } catch (error) {
+    console.error("Ошибка сервера:", error.message);
+    res.status(500).json({ error: "Server error", details: error.message });
+  }
+});
+
+// Маршрут для обновления записи по ID
+membersRouter.put("/members/:id", async (req, res) => {
+  try {
+    const { name, description, imgLink, tags, skills } = req.body;
+
+    // Проверка на обязательные поля
+    if (!name || !description || !imgLink || !tags || !skills) {
+      return res
+        .status(400)
+        .json({ error: "Некоторые обязательные поля не заполнены" });
+    }
+
+    const memberId = req.params.id;
+    const updatedMember = await Member.findByIdAndUpdate(
+      memberId,
+      {
+        name,
+        description,
+        imgLink,
+        tags,
+        skills,
+      },
+      { new: true } // Возвращает обновленный документ
+    );
+
+    if (!updatedMember) {
+      return res.status(404).json({ msg: "Запись не найдена" });
+    }
+
+    res.json(updatedMember);
+  } catch (error) {
+    console.error("Ошибка сервера:", error.message);
+    res.status(500).json({ error: "Server error", details: error.message });
+  }
+});
+
 export default membersRouter;
