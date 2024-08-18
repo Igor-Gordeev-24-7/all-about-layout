@@ -1,5 +1,8 @@
 import express from "express";
 import Layout from "../models/Layout.js";
+import cors from "cors";
+
+app.use(cors());
 
 const layoutsRouter = express.Router();
 
