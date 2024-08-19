@@ -16,11 +16,8 @@ connectDB();
 connectDBArticles();
 connectDBMembers();
 
-app.use(cors({
-  origin: 'http://xn-----dlccmda3b6axehn.online', // Разрешите запросы с этого домена
-  methods: ['GET', 'POST'], // Разрешите только нужные методы
-  credentials: true // Если ваш запрос требует передачи cookies или авторизации
-}));
+app.use(cors());
+
 app.use(express.json());
 
 app.use("/", layoutsRouter);
