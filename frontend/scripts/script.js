@@ -18,7 +18,7 @@ import MembersContentRender from "./classes/MembersContentRender.js";
 // Admin-Member
 import AdminMembers from "./classes/admin/admin-members/AdminMembers.js";
 
-export const fileRoutesPath = "http://localhost:5001/";
+export const fileRoutesPath = "http://79.174.86.232:27017/";
 
 // --------------------
 

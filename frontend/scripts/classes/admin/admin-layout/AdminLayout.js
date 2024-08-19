@@ -46,7 +46,7 @@ class AdminLayout {
   // Метод получения карточки по id
   async getLayouts() {
     try {
-      const response = await fetch(`http://localhost:5001/layouts`);
+      const response = await fetch(`http://79.174.86.232:27017/layouts`);
       const layoutArray = await response.json();
       this.layoutArray = layoutArray;
     } catch (error) {

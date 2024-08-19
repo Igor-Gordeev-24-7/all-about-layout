@@ -17,7 +17,7 @@ class MembersCardRender {
 
   async getMembersCards() {
     try {
-      const response = await fetch(`http://localhost:5001/members`);
+      const response = await fetch(`http://79.174.86.232:27017/members`);
       const membersCardsArray = await response.json();
       this.membersCardsArray = membersCardsArray;
     } catch (error) {

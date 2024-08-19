@@ -15,7 +15,7 @@ class AdminLayouts {
 
   async getLayouts() {
     try {
-      const response = await fetch(`http://localhost:5001/layouts`);
+      const response = await fetch(`http://79.174.86.232:27017/layouts`);
       const layoutArray = await response.json();
       this.layoutArray = layoutArray;
     } catch (error) {
@@ -25,7 +25,7 @@ class AdminLayouts {
 
   async deleteLayout(id, element) {
     try {
-      const response = await fetch(`http://localhost:5001/layouts/${id}`, {
+      const response = await fetch(`http://79.174.86.232:27017/layouts/${id}`, {
         method: "DELETE",
       });
 
