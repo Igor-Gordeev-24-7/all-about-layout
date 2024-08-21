@@ -33,7 +33,7 @@ class LayoutContentRender {
   async getCardById() {
     try {
       const id = this.getId();
-      const response = await fetch(`http://79.174.86.232:27017/layouts`);
+      const response = await fetch(`http://79.174.86.232:5001/layouts`);
       const cardContents = await response.json();
 
       if (cardContents && cardContents.length > 0) {

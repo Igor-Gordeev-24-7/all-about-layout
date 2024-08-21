@@ -479,7 +479,7 @@ class AdminLayoutAdd {
 
     console.log(data); // Проверка формата данных
 
-    fetch("http://localhost:5001/layouts", {
+    fetch("http://79.174.86.232:5001/layouts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

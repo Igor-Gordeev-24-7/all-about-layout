@@ -1,5 +1,5 @@
 class AdminLayouts {
-  constructor(selector) {
+  constructor(selector, ) {
     this.adminLayoutList = document.querySelector(selector);
 
     if (!this.adminLayoutList) {
@@ -15,8 +15,9 @@ class AdminLayouts {
 
   async getLayouts() {
     try {
-      const response = await fetch(`http://79.174.86.232:27017/layouts`);
+      const response = await fetch(`http://79.174.86.232:5001/layouts`);
       const layoutArray = await response.json();
+      console.log(layoutArray);
       this.layoutArray = layoutArray;
     } catch (error) {
       console.log("Не удалось получить layout:", error);
@@ -25,7 +26,7 @@ class AdminLayouts {
 
   async deleteLayout(id, element) {
     try {
-      const response = await fetch(`http://79.174.86.232:27017/layouts/${id}`, {
+      const response = await fetch(`http://79.174.86.232:5001/layouts/${id}`, {
         method: "DELETE",
       });
 

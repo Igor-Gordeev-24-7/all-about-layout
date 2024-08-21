@@ -36,7 +36,7 @@ class MembersContentRender {
   async getMemberById() {
     try {
       const id = this.getId();
-      const response = await fetch(`http://localhost:5001/members`);
+      const response = await fetch(`http://79.174.86.232:5001/members`);
       const memberContent = await response.json();
 
       if (memberContent && memberContent.length > 0) {

@@ -107,7 +107,7 @@ class MembersContentCreation {
   }
   async getAllArticles() {
     try {
-      const response = await fetch(`http://localhost:5001/articles`);
+      const response = await fetch(`http://79.174.86.232:5001/articles`);
       const articlesArray = await response.json();
       this.articlesArray = articlesArray;
     } catch (error) {

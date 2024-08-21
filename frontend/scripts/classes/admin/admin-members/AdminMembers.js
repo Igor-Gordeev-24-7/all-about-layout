@@ -1,9 +1,10 @@
-import { fileRoutesPath } from "../../../script.js";
 class AdminMembers {
-  constructor(selector, nameDB) {
+  constructor(selector, dbRoutes, port, dbName) {
     this.selector = selector;
     this.mainEl = document.querySelector(selector);
-    this.nameDB = nameDB;
+    this.dbRoutes = dbRoutes;
+    this.port = port;
+    this.dbName = dbName;
 
     if (!this.mainEl) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
@@ -13,14 +14,18 @@ class AdminMembers {
 
     this.getItems().then(() => {
       // this.renderItems();
-      this.initElements();
+      if (this.mainEl) {
+        this.initElements();
+      } else {
+        console.warn("Элемент не найден");
+      }
     });
   }
 
   // Получение с сервера
   async getItems() {
     try {
-      const response = await fetch(`${fileRoutesPath}${this.nameDB}`);
+      const response = await fetch(`http://79.174.86.232:5001/members`);
       const elementArray = await response.json();
       this.elementArray = elementArray;
     } catch (error) {
@@ -81,9 +86,13 @@ class AdminMembers {
 
   // Метод cоздание mainElWrapper
   initMainElWrapper(selector) {
-    this.mainElWrapper = document.createElement("div");
-    this.mainElWrapper.classList.add(`${selector}__wrapper`, "wrapper");
-    this.mainEl.append(this.mainElWrapper);
+    if (this.mainEl) {
+      this.mainElWrapper = document.createElement("div");
+      this.mainElWrapper.classList.add(`${selector}__wrapper`, "wrapper");
+      this.mainEl.append(this.mainElWrapper);
+    } else {
+      console.warn("Элемент не найден");
+    }
   }
   // Метод cоздание mainElHeading
   initMainElHeading(selector, textContent) {

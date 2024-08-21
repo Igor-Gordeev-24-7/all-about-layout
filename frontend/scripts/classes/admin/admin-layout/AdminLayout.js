@@ -1,7 +1,10 @@
 class AdminLayout {
-  constructor(selector) {
+  constructor(selector, dbRoutes, port, dbName) {
     this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
+    this.dbRoutes = dbRoutes;
+    this.port = port;
+    this.dbName = dbName;
     if (!this.selector) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
     }
@@ -46,9 +49,12 @@ class AdminLayout {
   // Метод получения карточки по id
   async getLayouts() {
     try {
-      const response = await fetch(`http://79.174.86.232:27017/layouts`);
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}`
+      );
       const layoutArray = await response.json();
       this.layoutArray = layoutArray;
+      console.log(layoutArray);
     } catch (error) {
       console.log("Не удалось получить layout:", error);
     }

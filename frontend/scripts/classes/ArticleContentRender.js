@@ -33,7 +33,7 @@ class ArticleContentRender {
   async getArticleById() {
     try {
       const id = this.getId();
-      const response = await fetch(`http://79.174.86.232:27017/articles`);
+      const response = await fetch(`http://79.174.86.232:5001/articles`);
       const articleContent = await response.json();
 
       if (articleContent && articleContent.length > 0) {

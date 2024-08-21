@@ -18,7 +18,10 @@ import MembersContentRender from "./classes/MembersContentRender.js";
 // Admin-Member
 import AdminMembers from "./classes/admin/admin-members/AdminMembers.js";
 
-export const fileRoutesPath = "http://79.174.86.232:27017/";
+const dbRoutes = "http://79.174.86.232:";
+const port = "5001/";
+const dbNameLayouts = "layouts";
+const dbNameMembers = "members";
 
 // --------------------
 
@@ -27,9 +30,14 @@ export const fileRoutesPath = "http://79.174.86.232:27017/";
 const layoutsCardFilter = new LayoutsCardFilter(".filter");
 const layoutContentRender = new LayoutContentRender(".info__bottom");
 // Admin-Layout
+const adminLayout = new AdminLayout(
+  "layout-item",
+  dbRoutes,
+  port,
+  dbNameLayouts
+);
 const adminLayouts = new AdminLayouts(".admin-layouts__list", "members");
 const adminLayoutAdd = new AdminLayoutAdd("admin-layout-add");
-const adminLayout = new AdminLayout("layout-item");
 
 // Article
 const articlesItemFilter = new ArticlesItemFilter(".blog__filter");
@@ -41,8 +49,9 @@ const membersContentRender = new MembersContentRender(".member");
 // Admin-Member
 const adminMembers = new AdminMembers(
   ".members-item",
-  "members",
-  fileRoutesPath
+  dbRoutes,
+  port,
+  dbNameMembers
 );
 
 // Путь к файлу
