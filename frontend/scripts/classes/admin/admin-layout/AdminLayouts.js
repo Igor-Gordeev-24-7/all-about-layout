@@ -20,7 +20,7 @@ class AdminLayouts {
 
   async getLayouts() {
     try {
-      const response = await fetch(`http://79.174.86.232:5001/layouts`);
+      const response = await fetch(`https://79.174.86.232:8443/layouts`);
       const layoutArray = await response.json();
       console.log(layoutArray);
       this.layoutArray = layoutArray;
