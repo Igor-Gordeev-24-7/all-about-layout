@@ -22,6 +22,7 @@ const dbRoutes = "http://79.174.86.232:";
 const port = "5001/";
 const dbNameLayouts = "layouts";
 const dbNameMembers = "members";
+const dbNameArticle = "articles";
 
 // --------------------
 
@@ -31,12 +32,17 @@ const layoutsCardFilter = new LayoutsCardFilter(".filter");
 const layoutContentRender = new LayoutContentRender(".info__bottom");
 // Admin-Layout
 const adminLayout = new AdminLayout(
-  "layout-item",
+  "admin-layout",
   dbRoutes,
   port,
   dbNameLayouts
 );
-const adminLayouts = new AdminLayouts(".admin-layouts__list", "members");
+const adminLayouts = new AdminLayouts(
+  ".admin-layouts__list",
+  dbRoutes,
+  port,
+  dbNameLayouts
+);
 const adminLayoutAdd = new AdminLayoutAdd("admin-layout-add");
 
 // Article

@@ -1,8 +1,13 @@
 class AdminLayouts {
-  constructor(selector, ) {
-    this.adminLayoutList = document.querySelector(selector);
+  constructor(selector, dbRoutes, port, dbName) {
+    this.mainEl = document.querySelector(selector);
+    this.dbRoutes = dbRoutes;
+    this.port = port;
+    this.dbName = dbName;
+    this.selector = selector;
 
-    if (!this.adminLayoutList) {
+    // Проверка на наличие селектора
+    if (!this.mainEl) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
     }
 
@@ -48,11 +53,11 @@ class AdminLayouts {
   }
 
   renderLayout() {
-    if (this.adminLayoutList) {
+    if (this.mainEl) {
       this.layoutArray.forEach((el) => {
         this.adminLayoutsItem = document.createElement("li");
         this.adminLayoutsItem.className = "admin-layouts__item";
-        this.adminLayoutList.append(this.adminLayoutsItem);
+        this.mainEl.append(this.adminLayoutsItem);
 
         this.adminLayoutsSpan = document.createElement("span");
         this.adminLayoutsSpan.className = "admin-layouts__span";
@@ -70,7 +75,7 @@ class AdminLayouts {
 
         this.adminLayoutsLink = document.createElement("a");
         this.adminLayoutsLink.className = "admin-layouts__btn";
-        this.adminLayoutsLink.href = `http://127.0.0.1:5500/frontend/admin-layout.html?id=${el._id}`;
+        this.adminLayoutsLink.href = `http://127.0.0.1:1/frontend/admin-layout.html?id=${el._id}`;
         this.adminLayoutsLink.textContent = "Редактировать";
         this.adminLayoutsBox.append(this.adminLayoutsLink);
 
@@ -83,7 +88,7 @@ class AdminLayouts {
         });
       });
     } else {
-      console.warn(`Элемент с селектором this.adminLayoutList не найден.`);
+      console.warn(`Элемент с селектором ${this.mainEl} не найден.`);
     }
   }
 }

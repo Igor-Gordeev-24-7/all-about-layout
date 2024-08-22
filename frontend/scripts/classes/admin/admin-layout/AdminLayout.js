@@ -1,13 +1,17 @@
 class AdminLayout {
   constructor(selector, dbRoutes, port, dbName) {
     this.mainEl = document.querySelector(`.${selector}`);
-    this.selector = selector;
     this.dbRoutes = dbRoutes;
     this.port = port;
     this.dbName = dbName;
+    this.selector = selector;
+
+    // Проверка на наличие селектора
+
     if (!this.selector) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
     }
+
     this.foundCard = null;
     this.tagsArray = ["", "", "", "", "", ""];
     this.skillsArray = [];
@@ -114,196 +118,202 @@ class AdminLayout {
       //   Метод добавления Wrapper
       this.initMainElWrapper(this.selector);
 
-      //   Метод добавления Heading
-      this.initMainElHeading(this.selector, this.foundCard.name);
+      if (this.foundCard) {
+        //   Метод добавления Heading
+        this.initMainElHeading(this.selector, this.foundCard.name);
 
-      // Добавление блока для ссылок
-      this.initMainElLinkBox(this.selector);
+        // Добавление блока для ссылок
+        this.initMainElLinkBox(this.selector);
 
-      //  Добавление ссылок
-      this.initMainElLink(
-        this.selector,
-        "Перейти к Layouts",
-        "http://127.0.0.1:5500/frontend/layouts.html"
-      );
-      this.initMainElLink(
-        this.selector,
-        "Перейти к admin-layouts",
-        "http://127.0.0.1:5500/frontend/admin-layouts.html"
-      );
-      this.initMainElLink(
-        this.selector,
-        "Перейти к admin-content",
-        "http://127.0.0.1:5500/frontend/admin-content.html"
-      );
+        //  Добавление ссылок
+        this.initMainElLink(
+          this.selector,
+          "Перейти к Layouts",
+          "http://127.0.0.1:5501/frontend/layouts.html"
+        );
+        this.initMainElLink(
+          this.selector,
+          "Перейти к admin-layouts",
+          "http://127.0.0.1:5501/frontend/admin-layouts.html"
+        );
+        this.initMainElLink(
+          this.selector,
+          "Перейти к admin-content",
+          "http://127.0.0.1:5501/frontend/admin-content.html"
+        );
 
-      // Поле Имя
-      this.initMainElLabel(this.selector, "Имя", "tags-field-name");
-      this.initMainElInput(
-        this.selector,
-        "tags-field-name",
-        this.foundCard.name
-      );
+        // Поле Имя
+        this.initMainElLabel(this.selector, "Имя", "tags-field-name");
+        this.initMainElInput(
+          this.selector,
+          "tags-field-name",
+          this.foundCard.name
+        );
 
-      // Поле Описание
-      this.initMainElLabel(this.selector, "Описание", "tags-field-description");
-      this.initMainElInput(
-        this.selector,
-        "tags-field-description",
-        this.foundCard.description
-      );
+        // Поле Описание
+        this.initMainElLabel(
+          this.selector,
+          "Описание",
+          "tags-field-description"
+        );
+        this.initMainElInput(
+          this.selector,
+          "tags-field-description",
+          this.foundCard.description
+        );
 
-      // Поле Ссылка на макет
-      this.initMainElLabel(
-        this.selector,
-        "Ссылка на макет",
-        "tags-field-layout-link"
-      );
-      this.initMainElInput(
-        this.selector,
-        "tags-field-layout-link",
-        this.foundCard.layoutLink
-      );
+        // Поле Ссылка на макет
+        this.initMainElLabel(
+          this.selector,
+          "Ссылка на макет",
+          "tags-field-layout-link"
+        );
+        this.initMainElInput(
+          this.selector,
+          "tags-field-layout-link",
+          this.foundCard.layoutLink
+        );
 
-      // Поле Ссылка на изображение
-      this.initMainElLabel(
-        this.selector,
-        "Ссылка на изображение",
-        "tags-field-link-to-img"
-      );
-      this.initMainElInput(
-        this.selector,
-        "tags-field-link-to-img",
-        this.foundCard.imgLink
-      );
+        // Поле Ссылка на изображение
+        this.initMainElLabel(
+          this.selector,
+          "Ссылка на изображение",
+          "tags-field-link-to-img"
+        );
+        this.initMainElInput(
+          this.selector,
+          "tags-field-link-to-img",
+          this.foundCard.imgLink
+        );
 
-      // Поле Теги
-      this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
-      this.initMainElContainer(this.selector, "filters-tags", "Сложность:", [
-        "Не выбрано",
-        "Легкий",
-        "Средний",
-        "Сложный",
-      ]);
-      this.initMainElContainer(this.selector, "filters-tags", "Страницы:", [
-        "Не выбрано",
-        "Одностраничный",
-        "Многостраничный",
-      ]);
-      this.initMainElContainer(
-        this.selector,
-        "filters-tags",
-        "Наличие адаптива:",
-        ["Не выбрано", "С адаптивом", "Без адаптива"]
-      );
-      this.initMainElContainer(this.selector, "filters-tags", "Язык:", [
-        "Не выбрано",
-        "Русский",
-        "Английский",
-      ]);
-      this.initMainElContainer(
-        this.selector,
-        "filters-tags",
-        "Наличие превью:",
-        ["Не выбрано", "Есть", "Нет"]
-      );
-      this.initMainElContainer(this.selector, "filters-tags", "Тип макета:", [
-        "Не выбрано",
-        "Макет сайта",
-        "Макет письма",
-      ]);
-      // Добавление input в Filters
-      // selector, idParent, idInput, parameter, itemArray
-      this.initmainElFiltersInput(
-        this.selector,
-        "filters-tags",
-        "tags-field-tags",
-        this.foundCard.tags,
-        this.tagsArray
-      );
+        // Поле Теги
+        this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
+        this.initMainElContainer(this.selector, "filters-tags", "Сложность:", [
+          "Не выбрано",
+          "Легкий",
+          "Средний",
+          "Сложный",
+        ]);
+        this.initMainElContainer(this.selector, "filters-tags", "Страницы:", [
+          "Не выбрано",
+          "Одностраничный",
+          "Многостраничный",
+        ]);
+        this.initMainElContainer(
+          this.selector,
+          "filters-tags",
+          "Наличие адаптива:",
+          ["Не выбрано", "С адаптивом", "Без адаптива"]
+        );
+        this.initMainElContainer(this.selector, "filters-tags", "Язык:", [
+          "Не выбрано",
+          "Русский",
+          "Английский",
+        ]);
+        this.initMainElContainer(
+          this.selector,
+          "filters-tags",
+          "Наличие превью:",
+          ["Не выбрано", "Есть", "Нет"]
+        );
+        this.initMainElContainer(this.selector, "filters-tags", "Тип макета:", [
+          "Не выбрано",
+          "Макет сайта",
+          "Макет письма",
+        ]);
+        // Добавление input в Filters
+        // selector, idParent, idInput, parameter, itemArray
+        this.initmainElFiltersInput(
+          this.selector,
+          "filters-tags",
+          "tags-field-tags",
+          this.foundCard.tags,
+          this.tagsArray
+        );
 
-      // Поле применяемые навыки
-      this.initMainElFilters(
-        this.selector,
-        "filters-skills",
-        "Поле применяемые навыки"
-      );
-      this.initMainElContainer(
-        this.selector,
-        "filters-skills",
-        "Сетка (flex или grid):",
-        ["Не выбрано", "Сетка (flex или grid)"]
-      );
-      this.initMainElContainer(this.selector, "filters-skills", "Анимация:", [
-        "Не выбрано",
-        "Анимация",
-      ]);
-      this.initMainElContainer(
-        this.selector,
-        "filters-skills",
-        "Элементы формы:",
-        ["Не выбрано", "Элементы формы"]
-      );
-      this.initMainElContainer(
-        this.selector,
-        "filters-skills",
-        "Декоративные элементы:",
-        ["Не выбрано", "Декоративные элементы"]
-      );
-      this.initMainElContainer(
-        this.selector,
-        "filters-skills",
-        "Псевдоэлементы:",
-        ["Не выбрано", "Псевдоэлементы"]
-      );
-      this.initMainElContainer(
-        this.selector,
-        "filters-skills",
-        "Декоративный фон:",
-        ["Не выбрано", "Декоративный фон"]
-      );
-      this.initMainElContainer(this.selector, "filters-skills", "Слайдеры:", [
-        "Не выбрано",
-        "Слайдеры",
-      ]);
-      this.initMainElContainer(this.selector, "filters-skills", "Формы:", [
-        "Не выбрано",
-        "Формы",
-      ]);
-      // Добавление input в Filters
-      // selector, idParent, idInput, parameter, itemArray
-      this.initmainElFiltersInput(
-        this.selector,
-        "filters-skills",
-        "tags-field-skills",
-        this.foundCard.tags,
-        this.skillsArray
-      );
+        // Поле применяемые навыки
+        this.initMainElFilters(
+          this.selector,
+          "filters-skills",
+          "Поле применяемые навыки"
+        );
+        this.initMainElContainer(
+          this.selector,
+          "filters-skills",
+          "Сетка (flex или grid):",
+          ["Не выбрано", "Сетка (flex или grid)"]
+        );
+        this.initMainElContainer(this.selector, "filters-skills", "Анимация:", [
+          "Не выбрано",
+          "Анимация",
+        ]);
+        this.initMainElContainer(
+          this.selector,
+          "filters-skills",
+          "Элементы формы:",
+          ["Не выбрано", "Элементы формы"]
+        );
+        this.initMainElContainer(
+          this.selector,
+          "filters-skills",
+          "Декоративные элементы:",
+          ["Не выбрано", "Декоративные элементы"]
+        );
+        this.initMainElContainer(
+          this.selector,
+          "filters-skills",
+          "Псевдоэлементы:",
+          ["Не выбрано", "Псевдоэлементы"]
+        );
+        this.initMainElContainer(
+          this.selector,
+          "filters-skills",
+          "Декоративный фон:",
+          ["Не выбрано", "Декоративный фон"]
+        );
+        this.initMainElContainer(this.selector, "filters-skills", "Слайдеры:", [
+          "Не выбрано",
+          "Слайдеры",
+        ]);
+        this.initMainElContainer(this.selector, "filters-skills", "Формы:", [
+          "Не выбрано",
+          "Формы",
+        ]);
+        // Добавление input в Filters
+        // selector, idParent, idInput, parameter, itemArray
+        this.initmainElFiltersInput(
+          this.selector,
+          "filters-skills",
+          "tags-field-skills",
+          this.foundCard.tags,
+          this.skillsArray
+        );
 
-      // Поле Ссылка на живую версию
-      this.initMainElLabel(
-        this.selector,
-        "Ссылка на живую версию",
-        "tags-field-link-to-live"
-      );
-      this.initMainElInput(
-        this.selector,
-        "tags-field-link-to-live",
-        this.foundCard.linkToLive
-      );
+        // Поле Ссылка на живую версию
+        this.initMainElLabel(
+          this.selector,
+          "Ссылка на живую версию",
+          "tags-field-link-to-live"
+        );
+        this.initMainElInput(
+          this.selector,
+          "tags-field-link-to-live",
+          this.foundCard.linkToLive
+        );
 
-      // Поле Автор
-      this.initMainElLabel(this.selector, "Автор", "tags-field-author");
-      this.initMainElInput(
-        this.selector,
-        "tags-field-author",
-        this.foundCard.author
-      );
+        // Поле Автор
+        this.initMainElLabel(this.selector, "Автор", "tags-field-author");
+        this.initMainElInput(
+          this.selector,
+          "tags-field-author",
+          this.foundCard.author
+        );
 
-      // // Кнопка добавления записи
-      this.initMainElBtn(this.selector, "Загрузить Layout");
-    } else {
-      console.warn(`Элемент ${this.mainEl} не найден `);
+        // // Кнопка добавления записи
+        this.initMainElBtn(this.selector, "Загрузить Layout");
+      } else {
+        console.warn(`Элемент ${this.mainEl} не найден `);
+      }
     }
   }
   //   В параметры передается id Popup и текст выводимый в нем и selector
@@ -567,7 +577,7 @@ class AdminLayout {
   // Метод сбора и отправки Layout на сервер
   handleSubmit() {
     const id = this.getId(); // Получение id для обновления
-
+    console.log(id);
     const data = {
       name: document.getElementById("tags-field-name").value,
       description: document.getElementById("tags-field-description").value,
@@ -587,7 +597,7 @@ class AdminLayout {
 
     console.log(data); // Проверка формата данных
 
-    fetch(`http://localhost:5001/layouts/${id}`, {
+    fetch(`${this.dbRoutes}${this.port}${this.dbName}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
