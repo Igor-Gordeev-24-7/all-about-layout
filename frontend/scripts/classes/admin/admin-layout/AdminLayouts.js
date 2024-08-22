@@ -20,7 +20,7 @@ class AdminLayouts {
 
   async getLayouts() {
     try {
-      const response = await fetch(`https://79-174-86-232.cloudvps.regruhosting.ru:8443/layouts`);
+      const response = await fetch(`https://79.174.86.232:8443/layouts`);
       const layoutArray = await response.json();
       console.log(layoutArray);
       this.layoutArray = layoutArray;
@@ -31,7 +31,7 @@ class AdminLayouts {
 
   async deleteLayout(id, element) {
     try {
-      const response = await fetch(`https://79-174-86-232.cloudvps.regruhosting.ru:8443/layouts/${id}`, {
+      const response = await fetch(`https://79.174.86.232:8443/layouts/${id}`, {
         method: "DELETE",
       });
 

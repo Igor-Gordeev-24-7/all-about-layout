@@ -3,7 +3,7 @@ import path from "path";
 import https from "https";
 import express from "express";
 import cors from "cors";
-import helmet from "helmet";
+// import helmet from "helmet";
 
 import layoutsRouter from "./routes/layouts.js";
 import articlesRouter from "./routes/articles.js";
@@ -25,7 +25,7 @@ app.use(cors());
 app.use(express.json());
 
 // Использование Helmet для базовой защиты
-app.use(helmet());
+// app.use(helmet());
 
 // Определение маршрутов
 app.use("/", layoutsRouter);
@@ -34,10 +34,14 @@ app.use("/", membersRouter);
 
 // Путь к сертификатам, полученным через Certbot
 const sslOptions = {
-  key: fs.readFileSync("/etc/letsencrypt/live/79-174-86-232.cloudvps.regruhosting.ru/privkey.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/live/79-174-86-232.cloudvps.regruhosting.ru/fullchain.pem"),
+  key: fs.readFileSync(
+    "/etc/letsencrypt/live/79-174-86-232.cloudvps.regruhosting.ru/privkey.pem"
+  ),
+  cert: fs.readFileSync(
+    "/etc/letsencrypt/live/79-174-86-232.cloudvps.regruhosting.ru/fullchain.pem"
+  ),
 };
-
+console.log(sslOptions);
 // Запуск HTTPS сервера
 https.createServer(sslOptions, app).listen(8443, () => {
   console.log("HTTPS сервер запущен на порту 8443");
