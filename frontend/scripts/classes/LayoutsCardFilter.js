@@ -9,6 +9,8 @@ class LayoutsCardFilter {
     this.port = port;
     this.dbName = dbName;
 
+    console.log(this.port);
+
     this.filter = document.querySelector(selector);
     this.layoutCardsArray = [];
     this.filterTags = ["", "", "", "", "", ""];
@@ -28,7 +30,9 @@ class LayoutsCardFilter {
   // Метод получения карточек с бэка
   async getLayoutsCards() {
     try {
-      const response = await fetch(`${this.dbRoutes}${this.port}${this.dbName}`);
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}`
+      );
       const layoutCardsArray = await response.json();
       this.layoutCardsArray = layoutCardsArray;
     } catch (error) {

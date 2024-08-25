@@ -19,10 +19,10 @@ import MembersContentRender from "./classes/MembersContentRender.js";
 import AdminMembers from "./classes/admin/admin-members/AdminMembers.js";
 
 const dbRoutes = "https://79.174.86.232:";
-const port = "443/";
-const dbNameLayouts = "layouts";
-const dbNameMembers = "members";
-const dbNameArticle = "articles";
+const port = "443";
+const dbNameLayouts = "/layouts";
+const dbNameMembers = "/members";
+const dbNameArticle = "/articles";
 
 // --------------------
 
