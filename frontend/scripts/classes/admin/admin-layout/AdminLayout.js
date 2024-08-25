@@ -1,10 +1,10 @@
 class AdminLayout {
   constructor(selector, dbRoutes, port, dbName) {
     this.mainEl = document.querySelector(`.${selector}`);
+    this.selector = selector;
     this.dbRoutes = dbRoutes;
     this.port = port;
     this.dbName = dbName;
-    this.selector = selector;
 
     // Проверка на наличие селектора
 

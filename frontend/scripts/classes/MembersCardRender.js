@@ -1,7 +1,12 @@
 import MembersCardCreation from "./MembersCardCreation.js";
 class MembersCardRender {
-  constructor(selector) {
+  constructor(selector, dbRoutes, port, dbName) {
     this.membersCards = document.querySelector(selector);
+
+    this.selector = selector;
+    this.dbRoutes = dbRoutes;
+    this.port = port;
+    this.dbName = dbName;
 
     if (!this.membersCards) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
@@ -11,13 +16,14 @@ class MembersCardRender {
 
     this.getMembersCards().then(() => {
       this.render();
-      
     });
   }
 
   async getMembersCards() {
     try {
-      const response = await fetch(`http://79.174.86.232:5001/members`);
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}`
+      );
       const membersCardsArray = await response.json();
       this.membersCardsArray = membersCardsArray;
     } catch (error) {

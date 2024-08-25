@@ -1,11 +1,20 @@
 class MembersContentCreation {
-  constructor({ _id, name, description, imgLink, tags, skills }) {
+  constructor(
+    { _id, name, description, imgLink, tags, skills },
+    dbRoutes,
+    port,
+    dbName
+  ) {
     this.id = _id;
     this.name = name;
     this.description = description;
     this.imgLink = imgLink;
     this.tags = tags;
     this.skills = skills;
+
+    this.dbRoutes = dbRoutes;
+    this.port = port;
+    this.dbName = dbName;
 
     this.articlesArray = [];
     this.layoutCardsArray = [];
@@ -107,7 +116,9 @@ class MembersContentCreation {
   }
   async getAllArticles() {
     try {
-      const response = await fetch(`http://79.174.86.232:5001/articles`);
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}`
+      );
       const articlesArray = await response.json();
       this.articlesArray = articlesArray;
     } catch (error) {
@@ -155,7 +166,9 @@ class MembersContentCreation {
 
   async getLayoutsCards() {
     try {
-      const response = await fetch(`http://localhost:5001/layouts`);
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}`
+      );
       const layoutCardsArray = await response.json();
       this.layoutCardsArray = layoutCardsArray;
     } catch (error) {

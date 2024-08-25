@@ -1,12 +1,14 @@
 class AdminMembers {
   constructor(selector, dbRoutes, port, dbName) {
-    this.selector = selector;
     this.mainEl = document.querySelector(selector);
+    this.selector = selector;
     this.dbRoutes = dbRoutes;
     this.port = port;
     this.dbName = dbName;
 
-    if (!this.mainEl) {
+    // Проверка на наличие селектора
+
+    if (!this.selector) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
     }
 
@@ -25,7 +27,7 @@ class AdminMembers {
   // Получение с сервера
   async getItems() {
     try {
-      const response = await fetch(`http://79.174.86.232:5001/members`);
+      const response = await fetch(`${this.dbRoutes}${this.port}${this.dbName}`);
       const elementArray = await response.json();
       this.elementArray = elementArray;
     } catch (error) {

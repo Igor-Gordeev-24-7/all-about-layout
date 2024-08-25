@@ -1,8 +1,16 @@
 import LayoutContentCreation from "./LayoutContentCreation.js";
 
 class LayoutContentRender {
-  constructor(selector) {
+  constructor(selector, dbRoutes, port, dbName) {
     this.infoBottom = document.querySelector(selector);
+
+    this.selector = selector;
+    this.dbRoutes = dbRoutes;
+    this.port = port;
+    this.dbName = dbName;
+
+    // Проверка на наличие селектора
+
     if (!this.infoBottom) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
     }

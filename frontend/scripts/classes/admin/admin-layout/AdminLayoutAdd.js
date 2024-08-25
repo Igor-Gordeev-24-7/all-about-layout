@@ -1,10 +1,16 @@
 class AdminLayoutAdd {
-  constructor(selector) {
+  constructor(selector, dbRoutes, port, dbName) {
     this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
+    this.dbRoutes = dbRoutes;
+    this.port = port;
+    this.dbName = dbName;
+
+    // Проверка на наличие селектора
     if (!this.selector) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
     }
+
     // Необходимо создать переменню с масиовм в зависимости от содержимого
     this.tagsArray = ["", "", "", "", "", ""];
     this.skillsArray = [];
@@ -479,7 +485,7 @@ class AdminLayoutAdd {
 
     console.log(data); // Проверка формата данных
 
-    fetch("http://79.174.86.232:5001/layouts", {
+    fetch(`${this.dbRoutes}${this.port}${this.dbName}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

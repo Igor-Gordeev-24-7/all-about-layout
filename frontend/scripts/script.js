@@ -19,7 +19,7 @@ import MembersContentRender from "./classes/MembersContentRender.js";
 import AdminMembers from "./classes/admin/admin-members/AdminMembers.js";
 
 const dbRoutes = "http://79.174.86.232:";
-const port = "5001/";
+const port = "8443/";
 const dbNameLayouts = "layouts";
 const dbNameMembers = "members";
 const dbNameArticle = "articles";
@@ -27,9 +27,21 @@ const dbNameArticle = "articles";
 // --------------------
 
 // ОБЪЯВЛЕНИЕ КЛАССОВ
+
 // Layout
-const layoutsCardFilter = new LayoutsCardFilter(".filter");
-const layoutContentRender = new LayoutContentRender(".info__bottom");
+const layoutsCardFilter = new LayoutsCardFilter(
+  ".filter",
+  dbRoutes,
+  port,
+  dbNameLayouts
+);
+const layoutContentRender = new LayoutContentRender(
+  ".info__bottom",
+  dbRoutes,
+  port,
+  dbNameLayouts
+);
+
 // Admin-Layout
 const adminLayout = new AdminLayout(
   "admin-layout",
@@ -43,14 +55,34 @@ const adminLayouts = new AdminLayouts(
   port,
   dbNameLayouts
 );
-const adminLayoutAdd = new AdminLayoutAdd("admin-layout-add");
+const adminLayoutAdd = new AdminLayoutAdd(
+  "admin-layout-add",
+  dbRoutes,
+  port,
+  dbNameLayouts
+);
 
 // Article
-const articlesItemFilter = new ArticlesItemFilter(".blog__filter");
-const articleContentRender = new ArticleContentRender(".article__wrapper");
+const articlesItemFilter = new ArticlesItemFilter(
+  ".blog__filter",
+  dbRoutes,
+  port,
+  dbNameArticle
+);
+const articleContentRender = new ArticleContentRender(
+  ".article__wrapper",
+  dbRoutes,
+  port,
+  dbNameArticle
+);
 
 // Member
-const membersCardRender = new MembersCardRender(".members__cards");
+const membersCardRender = new MembersCardRender(
+  ".members__cards",
+  dbRoutes,
+  port,
+  dbNameMembers
+);
 const membersContentRender = new MembersContentRender(".member");
 // Admin-Member
 const adminMembers = new AdminMembers(

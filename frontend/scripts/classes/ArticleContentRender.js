@@ -1,8 +1,12 @@
 import ArticleContentCreation from "./ArticleContentCreation.js";
 
 class ArticleContentRender {
-  constructor(selector) {
+  constructor(selector, dbRoutes, port, dbName) {
     this.articleWrapper = document.querySelector(selector);
+    this.selector = selector;
+    this.dbRoutes = dbRoutes;
+    this.port = port;
+    this.dbName = dbName;
     if (!this.articleWrapper) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
     }
@@ -33,7 +37,7 @@ class ArticleContentRender {
   async getArticleById() {
     try {
       const id = this.getId();
-      const response = await fetch(`http://79.174.86.232:5001/articles`);
+      const response = await fetch(`${this.dbRoutes}${this.port}${this.dbName}`);
       const articleContent = await response.json();
 
       if (articleContent && articleContent.length > 0) {

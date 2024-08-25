@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "mz/fs.js";
 import path from "path";
 import https from "https";
 import express from "express";
@@ -11,6 +11,7 @@ import membersRouter from "./routes/members.js";
 import connectDB from "./config/db.js";
 import connectDBArticles from "./config/dbArticles.js";
 import connectDBMembers from "./config/dbMembers.js";
+import { fstat } from "fs";
 
 // Создание Express приложения
 const app = express();
@@ -33,19 +34,31 @@ app.use("/", articlesRouter);
 app.use("/", membersRouter);
 
 // Путь к сертификатам, полученным через Certbot
-const sslOptions = {
-  key: fs.readFileSync(
-    "/etc/letsencrypt/live/79-174-86-232.cloudvps.regruhosting.ru/privkey.pem"
-  ),
-  cert: fs.readFileSync(
-    "/etc/letsencrypt/live/79-174-86-232.cloudvps.regruhosting.ru/fullchain.pem"
-  ),
-};
-console.log(sslOptions);
-// Запуск HTTPS сервера
-https.createServer(sslOptions, app).listen(8443, () => {
-  console.log("HTTPS сервер запущен на порту 8443");
-});
+// const sslOptions = {
+//   key: fs.readFileSync(
+//     "/etc/letsencrypt/live/79-174-86-232.cloudvps.regruhosting.ru/privkey.pem"
+//   ),
+//   cert: fs.readFileSync(
+//     "/etc/letsencrypt/live/79-174-86-232.cloudvps.regruhosting.ru/fullchain.pem"
+//   ),
+// };
+// console.log(sslOptions);
+// // Запуск HTTPS сервера
+// https.createServer(sslOptions, app).listen(8443, () => {
+//   console.log("HTTPS сервер запущен на порту 8443");
+// });
+
+console.log(fs);
+
+const { key, cert } = await (async () => {
+  const certdir = (await fs.readdir("/etc/letsencrypt/live"))[0];
+
+  return {
+    key: await fs.readFile(`/etc/letsencrypt/live/${certdir}/privkey.pem`),
+    cert: await fs.readFile(`/etc/letsencrypt/live/${certdir}/fullchain.pem`),
+  };
+})();
+const httpsServer = https.createServer({ key, cert }, app).listen(8443);
 
 // Опционально: Запуск HTTP сервера на порту 5001
 // Вы можете оставить или закомментировать эту часть, если не хотите использовать HTTP

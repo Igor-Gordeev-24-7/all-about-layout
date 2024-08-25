@@ -3,9 +3,15 @@ import ArticlesItemRender from "./ArticlesItemRender.js";
 
 const articlesItemRender = new ArticlesItemRender(".blog__articles");
 
-class ArticlesFilter {
-  constructor(selector) {
+class ArticlesItemFilter {
+  constructor(selector, dbRoutes, port, dbName) {
     this.blogFilter = document.querySelector(selector);
+
+    this.selector = selector;
+    this.dbRoutes = dbRoutes;
+    this.port = port;
+    this.dbName = dbName;
+
     this.articlesArray = [];
     this.filterTag = "";
 
@@ -25,7 +31,7 @@ class ArticlesFilter {
   // Метод получения всех статей с бэка
   async getAllArticles() {
     try {
-      const response = await fetch(`http://79.174.86.232:5001/articles`);
+      const response = await fetch(`${this.dbRoutes}${this.port}${this.dbName}`);
       const articlesArray = await response.json();
       this.articlesArray = articlesArray;
     } catch (error) {
@@ -153,4 +159,4 @@ class ArticlesFilter {
   }
 }
 
-export default ArticlesFilter;
+export default ArticlesItemFilter;

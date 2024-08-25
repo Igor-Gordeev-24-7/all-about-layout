@@ -4,7 +4,11 @@ import LayoutsCardRender from "./LayoutsCardRender.js";
 const layoutsCardRender = new LayoutsCardRender(".gallery__cards");
 
 class LayoutsCardFilter {
-  constructor(selector) {
+  constructor(selector, dbRoutes, port, dbName) {
+    this.dbRoutes = dbRoutes;
+    this.port = port;
+    this.dbName = dbName;
+
     this.filter = document.querySelector(selector);
     this.layoutCardsArray = [];
     this.filterTags = ["", "", "", "", "", ""];
