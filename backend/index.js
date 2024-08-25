@@ -58,7 +58,7 @@ const { key, cert } = await (async () => {
     cert: await fs.readFile(`/etc/letsencrypt/live/${certdir}/fullchain.pem`),
   };
 })();
-const httpsServer = https.createServer({ key, cert }, app).listen(8443);
+const httpsServer = https.createServer({ key, cert }, app).listen(443);
 
 // Опционально: Запуск HTTP сервера на порту 5001
 // Вы можете оставить или закомментировать эту часть, если не хотите использовать HTTP
