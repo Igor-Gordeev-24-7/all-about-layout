@@ -41,7 +41,9 @@ class LayoutContentRender {
   async getCardById() {
     try {
       const id = this.getId();
-      const response = await fetch(`http://79.174.86.232:5001/layouts`);
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}`
+      );
       const cardContents = await response.json();
 
       if (cardContents && cardContents.length > 0) {
