@@ -29,9 +29,9 @@ class LayoutsCardFilter {
 
   // Метод получения карточек с бэка
   async getLayoutsCards() {
-    // const url = `${this.dbRoutes}${this.port}${this.dbName}`;
+    const url = `${this.dbRoutes}${this.port}${this.dbName}`;
     try {
-      const response = await fetch("https://79.174.86.232:443/layouts");
+      const response = await fetch(url);
       const layoutCardsArray = await response.json();
       this.layoutCardsArray = layoutCardsArray;
     } catch (error) {

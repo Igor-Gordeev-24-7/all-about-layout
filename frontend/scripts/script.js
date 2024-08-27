@@ -18,7 +18,8 @@ import MembersContentRender from "./classes/MembersContentRender.js";
 // Admin-Member
 import AdminMembers from "./classes/admin/admin-members/AdminMembers.js";
 
-const dbRoutes = "https://79.174.86.232:";
+// const dbRoutes = "https://79.174.86.232:";
+const dbRoutes = "https://79-174-86-232.cloudvps.regruhosting.ru:";
 const port = "443";
 const dbNameLayouts = "/layouts";
 const dbNameMembers = "/members";

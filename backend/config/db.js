@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://79.174.86.232:27017/layouts", {
+    await mongoose.connect("mongodb://79-174-86-232.cloudvps.regruhosting.ru:27017/layouts", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

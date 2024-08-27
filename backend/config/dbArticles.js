@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDBArticles = async () => {
   try {
-    await mongoose.createConnection("mongodb://79.174.86.232:27017/articles", {
+    await mongoose.createConnection("mongodb://79-174-86-232.cloudvps.regruhosting.ru:27017/articles", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
