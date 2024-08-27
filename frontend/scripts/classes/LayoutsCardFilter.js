@@ -9,7 +9,7 @@ class LayoutsCardFilter {
     this.port = port;
     this.dbName = dbName;
 
-    console.log(this.port);
+    console.log(`${this.dbRoutes}${this.port}${this.dbName}`);
 
     this.filter = document.querySelector(selector);
     this.layoutCardsArray = [];
@@ -29,10 +29,9 @@ class LayoutsCardFilter {
 
   // Метод получения карточек с бэка
   async getLayoutsCards() {
+    // const url = `${this.dbRoutes}${this.port}${this.dbName}`;
     try {
-      const response = await fetch(
-        `${this.dbRoutes}${this.port}${this.dbName}`
-      );
+      const response = await fetch("https://79.174.86.232:443/layouts");
       const layoutCardsArray = await response.json();
       this.layoutCardsArray = layoutCardsArray;
     } catch (error) {
