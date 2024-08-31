@@ -21,7 +21,7 @@ class AdminLayout {
       this.render();
     });
   }
-
+  // Метод рендера
   render() {
     if (!this.mainEl) {
       console.warn(`Элемент ${this.mainEl} не найден.`);
@@ -49,7 +49,6 @@ class AdminLayout {
       );
     }
   }
-
   // Метод получения карточки по id
   async getLayouts() {
     try {
@@ -100,7 +99,6 @@ class AdminLayout {
       console.warn(`Элемент ${this.mainEl} не найден `);
     }
   }
-
   //   Метод вызова методов добавления элементов
   initElements() {
     if (this.mainEl) {
@@ -129,17 +127,17 @@ class AdminLayout {
         this.initMainElLink(
           this.selector,
           "Перейти к Layouts",
-          "http://127.0.0.1:5501/frontend/layouts.html"
+          "https://www.all-about-layout.ru/layouts.html"
         );
         this.initMainElLink(
           this.selector,
           "Перейти к admin-layouts",
-          "http://127.0.0.1:5501/frontend/admin-layouts.html"
+          "https://www.all-about-layout.ru/admin-layouts.html"
         );
         this.initMainElLink(
           this.selector,
           "Перейти к admin-content",
-          "http://127.0.0.1:5501/frontend/admin-content.html"
+          "https://www.all-about-layout.ru/admin-content.html"
         );
 
         // Поле Имя

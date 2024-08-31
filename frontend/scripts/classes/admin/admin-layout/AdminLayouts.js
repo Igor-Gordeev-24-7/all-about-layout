@@ -43,11 +43,11 @@ class AdminLayouts {
       const result = await response.json();
       if (response.ok) {
         console.log(result.msg); // Запись удалена
-        // Удалите запись из layoutArray
+        // Удаление запись из layoutArray
         this.layoutArray = this.layoutArray.filter(
           (layout) => layout._id !== id
         );
-        // Удалите элемент из DOM
+        // Удаление элемент из DOM
         element.remove();
       } else {
         console.error(result.msg); // Обработка ошибок
@@ -80,7 +80,7 @@ class AdminLayouts {
 
         this.adminLayoutsLink = document.createElement("a");
         this.adminLayoutsLink.className = "admin-layouts__btn";
-        this.adminLayoutsLink.href = `http://127.0.0.1:1/frontend/admin-layout.html?id=${el._id}`;
+        this.adminLayoutsLink.href = `https://www.all-about-layout.ru/admin-layout.html?id=${el._id}`;
         this.adminLayoutsLink.textContent = "Редактировать";
         this.adminLayoutsBox.append(this.adminLayoutsLink);
 

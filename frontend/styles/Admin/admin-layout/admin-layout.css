@@ -1,0 +1,216 @@
+.admin-layout {
+  padding: 30px 0px;
+  position: relative;
+}
+.admin-layout__popup {
+  display: none;
+}
+.admin-layout__popup.active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+}
+.admin-layout__popup.active body {
+  overflow: hidden;
+}
+.admin-layout__popup-content {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-color);
+  border-radius: 30px;
+}
+.admin-layout__popup-span {
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.admin-layout__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 15px;
+}
+.admin-layout__heading {
+  margin-bottom: 15px;
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: clamp(1.25rem, 1rem + 1.25vw, 2.5rem);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.admin-layout__link-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.admin-layout__link {
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: var(--dark-color);
+  border-radius: 10px;
+  gap: 10px;
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.admin-layout__lable {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.admin-layout__input {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: var(--dull-green);
+  border-radius: 5px;
+  color: var(--white);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.admin-layout__input::-moz-placeholder {
+  width: 100%;
+  color: var(--white);
+}
+.admin-layout__input::placeholder {
+  width: 100%;
+  color: var(--white);
+}
+.admin-layout__input:focus {
+  outline: 2px dashed var(--white);
+}
+.admin-layout__filters {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+}
+.admin-layout__filters-heading {
+  display: block;
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.admin-layout__containers {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.admin-layout__container {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+}
+.admin-layout__description {
+  display: block;
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.admin-layout__box {
+  min-width: 200px;
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.admin-layout__span {
+  width: 100%;
+  padding: 10px 15px;
+  background: var(--grey-btns);
+  border-radius: 15px;
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transition: all 0.33s;
+  cursor: pointer;
+}
+.admin-layout__items {
+  width: 100%;
+  position: absolute;
+  top: 46px;
+  left: 0;
+  border-radius: 15px;
+  background: var(--grey-btns);
+  z-index: 3;
+  transform-origin: 0 0;
+  transform: rotateX(90deg);
+  opacity: 0;
+  transition: all 0.33s linear;
+}
+.admin-layout__box.active .admin-layout__items {
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+.admin-layout__item {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: block;
+  padding: 15px 20px;
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transition: all 0.33s;
+  cursor: pointer;
+}
+.admin-layout__btn {
+  display: block;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background: var(--grey-btns);
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transition: all 0.33s;
+}/*# sourceMappingURL=admin-layout.css.map */

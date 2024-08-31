@@ -1,0 +1,66 @@
+// ADMIN-LAYOUTS
+.admin-layouts {
+  padding: 30px 0px;
+  display: flex;
+  flex-direction: column;
+  &__heading {
+    margin-bottom: 15px;
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: clamp(1.25rem, 1rem + 1.25vw, 2.5rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &__list-add {
+    margin-bottom: 20px;
+    display: block;
+    width: fit-content;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: var(--grey-btns);
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  &__span {
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &__btn-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  &__btn {
+    display: block;
+    padding: 5px 10px;
+    background-color: var(--dull-yellow);
+    border-radius: 20px;
+    color: var(--black);
+    font-family: var(--inter);
+    font-size: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+  }
+}
