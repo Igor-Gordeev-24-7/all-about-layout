@@ -5,7 +5,6 @@ class AdminLayouts {
     this.dbRoutes = dbRoutes;
     this.port = port;
     this.dbName = dbName;
-    
 
     // Проверка на наличие селектора
     if (!this.mainEl) {
@@ -21,7 +20,9 @@ class AdminLayouts {
 
   async getLayouts() {
     try {
-      const response = await fetch(`${this.dbRoutes}${this.port}${this.dbName}`);
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}`
+      );
       const layoutArray = await response.json();
       console.log(layoutArray);
       this.layoutArray = layoutArray;
@@ -32,9 +33,12 @@ class AdminLayouts {
 
   async deleteLayout(id, element) {
     try {
-      const response = await fetch(`https://79.174.86.232:8443/layouts/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       const result = await response.json();
       if (response.ok) {

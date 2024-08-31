@@ -2,10 +2,9 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://79-174-86-232.cloudvps.regruhosting.ru:27017/layouts", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(
+      "mongodb://79-174-86-232.cloudvps.regruhosting.ru:27017/layouts"
+    );
     console.log("mongoDB layouts connected");
   } catch (error) {
     console.error(error.message);
