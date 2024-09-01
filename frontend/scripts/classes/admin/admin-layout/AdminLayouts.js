@@ -152,11 +152,12 @@ class AdminLayouts {
         mainElBtn.className = `${selector}__btn`;
         mainElBtn.textContent = "Удалить";
         mainElBtn.addEventListener("click", () => {
-          this.deleteItem(el._id, mainElItem); // Используем mainElItem вместо this.mainElItem
+          this.deleteItem(el._id, mainElItem);
         });
         mainElBtnBox.append(mainElBtn);
       });
     } else {
+      this.mainElList.innerHTML = "";
       this.mainElEmptyMessage = document.createElement("li");
       this.mainElEmptyMessage.className = `${selector}__empty-message`;
       this.mainElEmptyMessage.textContent = "Нет элементов для отображения";
@@ -211,7 +212,7 @@ class AdminLayouts {
     const filteredItems = this.itemArray.filter((item) =>
       item.name.toLowerCase().includes(searchText)
     );
-    console.log(filteredItems);
+    // console.log(filteredItems);
 
     // Обновляем список элементов на основе отфильтрованных данных
     this.initMainElItem(
