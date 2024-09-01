@@ -16,7 +16,7 @@ class AdminLayoutEdit {
     this.tagsArray = ["", "", "", "", "", ""];
     this.skillsArray = [];
 
-    this.getLayouts().then(() => {
+    this.getItems().then(() => {
       this.findItemById();
       this.render();
     });
@@ -49,17 +49,16 @@ class AdminLayoutEdit {
       );
     }
   }
-  // Метод получения карточки по id
-  async getLayouts() {
+  // Метод получения элементов
+  async getItems() {
     try {
       const response = await fetch(
         `${this.dbRoutes}${this.port}${this.dbName}`
       );
-      const layoutArray = await response.json();
-      this.layoutArray = layoutArray;
-      console.log(layoutArray);
+      const itemArray = await response.json();
+      this.itemArray = itemArray;
     } catch (error) {
-      console.log("Не удалось получить layout:", error);
+      console.log("Не удалось получить элементы:", error);
     }
   }
   // Метод получения id
@@ -79,13 +78,13 @@ class AdminLayoutEdit {
   async findItemById() {
     if (this.mainEl) {
       // Проверка на наличие массива layout
-      if (this.layoutArray) {
+      if (this.itemArray) {
         // Получаем id
         const id = this.getId();
 
         // Фильтруем массив по id,
         // Получаем нужную карточку
-        const foundCard = this.layoutArray.find((el) => el._id == id);
+        const foundCard = this.itemArray.find((el) => el._id == id);
 
         if (foundCard) {
           this.foundCard = foundCard;
@@ -308,7 +307,7 @@ class AdminLayoutEdit {
         );
 
         // // Кнопка добавления записи
-        this.initMainElBtn(this.selector, "Загрузить Layout");
+        this.initMainElBtn(this.selector, "Загрузить изменения Layout");
       } else {
         console.warn(`Элемент ${this.mainEl} не найден `);
       }
