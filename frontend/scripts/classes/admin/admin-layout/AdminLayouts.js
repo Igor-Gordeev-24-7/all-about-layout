@@ -187,11 +187,6 @@ class AdminLayouts {
       );
       this.initMainElLink(
         this.selector,
-        "Перейти к admin-layouts",
-        "https://www.all-about-layout.ru/admin-layouts.html"
-      );
-      this.initMainElLink(
-        this.selector,
         "Перейти к admin-content",
         "https://www.all-about-layout.ru/admin-content.html"
       );
