@@ -42,13 +42,26 @@ class AdminLayouts {
           method: "DELETE",
         }
       );
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        console.error(
+          `Ошибка при удалении записи: ${response.status} ${response.statusText}`,
+          errorMessage
+        );
+        return;
+      }
+
       const result = await response.json();
       // Если удаление успешно
       if (response.ok) {
         // Удаление запись из itemArray
         this.itemArray = this.itemArray.filter((item) => item._id !== id);
-        // Удаление элемент из DOM
-        element.remove();
+        // Проверка на наличие элемента в DOM перед удалением
+        if (element && element.parentNode) {
+          // Удаление элемент из DOM
+          element.remove();
+        }
       } else {
         // Обработка ошибок
         console.error(result.msg);
@@ -111,44 +124,44 @@ class AdminLayouts {
     if (itemArray.length > 0) {
       this.mainElList.innerHTML = "";
       itemArray.forEach((el) => {
-        this.mainElItem = document.createElement("li");
-        this.mainElItem.className = `${selector}__item`;
-        this.mainElList.append(this.mainElItem);
+        const mainElItem = document.createElement("li");
+        mainElItem.className = `${selector}__item`;
+        this.mainElList.append(mainElItem);
 
-        this.mainElSpan = document.createElement("span");
-        this.mainElSpan.className = `${selector}__span`;
-        this.mainElSpan.textContent = el.name;
-        this.mainElItem.append(this.mainElSpan);
+        const mainElSpanName = document.createElement("span");
+        mainElSpanName.className = `${selector}__span`;
+        mainElSpanName.textContent = el.name;
+        mainElItem.append(mainElSpanName);
 
-        this.mainElSpan = document.createElement("span");
-        this.mainElSpan.className = `${selector}__span`;
-        this.mainElSpan.textContent = el.description;
-        this.mainElItem.append(this.mainElSpan);
+        const mainElSpanDesc = document.createElement("span");
+        mainElSpanDesc.className = `${selector}__span`;
+        mainElSpanDesc.textContent = el.description;
+        mainElItem.append(mainElSpanDesc);
 
-        this.mainElBtnBox = document.createElement("div");
-        this.mainElBtnBox.className = `${selector}__btn-box`;
-        this.mainElItem.append(this.mainElBtnBox);
+        const mainElBtnBox = document.createElement("div");
+        mainElBtnBox.className = `${selector}__btn-box`;
+        mainElItem.append(mainElBtnBox);
 
-        this.mainElLink = document.createElement("a");
-        this.mainElLink.className = `${selector}__btn`;
-        this.mainElLink.href = `${linkToEditing}${el._id}`;
-        this.mainElLink.textContent = "Редактировать";
-        this.mainElBtnBox.append(this.mainElLink);
+        const mainElLink = document.createElement("a");
+        mainElLink.className = `${selector}__btn`;
+        mainElLink.href = `${linkToEditing}${el._id}`;
+        mainElLink.textContent = "Редактировать";
+        mainElBtnBox.append(mainElLink);
 
-        this.mainElBtn = document.createElement("button");
-        this.mainElBtn.className = `${selector}__btn`;
-        this.mainElBtn.textContent = "Удалить";
-        this.mainElBtn.addEventListener("click", () => {
-          this.deleteItem(el._id, this.mainElItem);
+        const mainElBtn = document.createElement("button");
+        mainElBtn.className = `${selector}__btn`;
+        mainElBtn.textContent = "Удалить";
+        mainElBtn.addEventListener("click", () => {
+          this.deleteItem(el._id, mainElItem); // Используем mainElItem вместо this.mainElItem
         });
-        this.mainElBtnBox.append(this.mainElBtn);
+        mainElBtnBox.append(mainElBtn);
       });
     } else {
-      // Исправление: добавлено сообщение, если нет элементов для отображения
       this.mainElList.innerHTML =
-        '<li class="admin-layout-add__empty-message">Нет элементов для отображения</li>';
+        '<li class="admin-layouts__empty-message">Нет элементов для отображения</li>';
     }
   }
+
   // Метод рендора элементов
   initElements() {
     if (this.mainEl) {
