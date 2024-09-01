@@ -95,17 +95,20 @@ class AdminLayoutEdit {
         console.error("Массив layout не загружен");
       }
     } else {
-      console.warn(`Элемент ${this.mainEl} не найден `);
+      console.warn(`Элемент с селектором ${this.selector} не найден `);
     }
   }
   //   Метод вызова методов добавления элементов
   initElements() {
     if (this.mainEl) {
+      // Метод добавления popup
       this.initMainElPopup(
         "sending-error",
         "Данные не отправлены",
         this.selector
       );
+
+      // Метод добавления popup
       this.initMainElPopup(
         "successful-submission",
         "Данные отправлены",

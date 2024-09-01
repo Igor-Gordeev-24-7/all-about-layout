@@ -44,8 +44,8 @@ const layoutContentRender = new LayoutContentRender(
 );
 
 // Admin-Layout
-const adminLayout = new AdminLayoutEdit(
-  "admin-layout",
+const adminLayoutEdit = new AdminLayoutEdit(
+  "admin-layout-edit",
   dbRoutes,
   port,
   dbNameLayouts
