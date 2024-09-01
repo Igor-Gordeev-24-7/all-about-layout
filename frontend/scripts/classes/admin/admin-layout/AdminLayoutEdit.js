@@ -77,7 +77,7 @@ class AdminLayoutEdit {
   // Получение карточки из массива по id
   async findItemById() {
     if (this.mainEl) {
-      // Проверка на наличие массива layout
+      // Проверка на наличие массива элементов
       if (this.itemArray) {
         // Получаем id
         const id = this.getId();
@@ -92,7 +92,7 @@ class AdminLayoutEdit {
           console.error("Карточка не найдена");
         }
       } else {
-        console.error("Массив layout не загружен");
+        console.error("Массив элементов не загружен");
       }
     } else {
       console.warn(`Элемент с селектором ${this.selector} не найден `);
