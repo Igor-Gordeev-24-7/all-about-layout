@@ -51,7 +51,7 @@ const adminLayout = new AdminLayout(
   dbNameLayouts
 );
 const adminLayouts = new AdminLayouts(
-  ".admin-layouts__list",
+  "admin-layouts",
   dbRoutes,
   port,
   dbNameLayouts

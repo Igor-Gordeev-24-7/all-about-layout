@@ -1,37 +1,40 @@
 class AdminLayouts {
   constructor(selector, dbRoutes, port, dbName) {
-    this.mainEl = document.querySelector(selector);
+    this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
     this.dbRoutes = dbRoutes;
     this.port = port;
     this.dbName = dbName;
 
+    // Массив с полученными элементами
+    this.itemArray = [];
+
     // Проверка на наличие селектора
     if (!this.mainEl) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
+    } else {
+      this.getItems().then(() => {
+        // Метод редора элементов
+        this.initElements();
+      });
     }
-
-    this.layoutArray = [];
-
-    this.getLayouts().then(() => {
-      this.renderLayout();
-    });
   }
 
-  async getLayouts() {
+  // Метод получения элементов
+  async getItems() {
     try {
       const response = await fetch(
         `${this.dbRoutes}${this.port}${this.dbName}`
       );
-      const layoutArray = await response.json();
-      console.log(layoutArray);
-      this.layoutArray = layoutArray;
+      const itemArray = await response.json();
+      this.itemArray = itemArray;
     } catch (error) {
-      console.log("Не удалось получить layout:", error);
+      console.log("Не удалось получить элементы:", error);
     }
   }
 
-  async deleteLayout(id, element) {
+  // Метод удаление элемента
+  async deleteItem(id, element) {
     try {
       const response = await fetch(
         `${this.dbRoutes}${this.port}${this.dbName}/${id}`,
@@ -39,61 +42,135 @@ class AdminLayouts {
           method: "DELETE",
         }
       );
-
       const result = await response.json();
+      // Если удаление успешно
       if (response.ok) {
-        console.log(result.msg); // Запись удалена
-        // Удаление запись из layoutArray
-        this.layoutArray = this.layoutArray.filter(
-          (layout) => layout._id !== id
-        );
+        // Удаление запись из itemArray
+        this.itemArray = this.itemArray.filter((item) => item._id !== id);
         // Удаление элемент из DOM
         element.remove();
       } else {
-        console.error(result.msg); // Обработка ошибок
+        // Обработка ошибок
+        console.error(result.msg);
       }
     } catch (error) {
       console.error("Ошибка при удалении записи:", error);
     }
   }
 
-  renderLayout() {
-    if (this.mainEl) {
-      this.layoutArray.forEach((el) => {
-        this.adminLayoutsItem = document.createElement("li");
-        this.adminLayoutsItem.className = "admin-layouts__item";
-        this.mainEl.append(this.adminLayoutsItem);
+  //   Метод добавления Wrapper
+  initMainElWrapper(selector) {
+    this.mainElWrapper = document.createElement("div");
+    this.mainElWrapper.classList.add(`${selector}__wrapper`, "wrapper");
+    this.mainEl.append(this.mainElWrapper);
+  }
+  //   Метод добавления Heading
+  initMainElHeading(selector, textContent) {
+    this.mainElHeading = document.createElement("h1");
+    this.mainElHeading.className = `${selector}__heading`;
+    this.mainElHeading.textContent = textContent;
+    this.mainElWrapper.append(this.mainElHeading);
+  }
+  //   Метод добавления LinkBox
+  initMainElLinkBox(selector) {
+    this.mainElLinkBox = document.createElement("div");
+    this.mainElLinkBox.className = `${selector}__link-box`;
+    this.mainElWrapper.append(this.mainElLinkBox);
+  }
+  //   Метод добавления ссылки с переадными парамеитрами textContent - Текст ссылки, linkToPage ссылка на страницу
+  initMainElLink(selector, textContent, link) {
+    this.mainElAddLink = document.createElement("a");
+    this.mainElAddLink.className = `${selector}__link`;
+    this.mainElAddLink.href = link;
+    this.mainElAddLink.textContent = textContent;
+    this.mainElLinkBox.append(this.mainElAddLink);
+  }
+  //   Метод добавления списка
+  initMainElList(selector) {
+    this.mainElList = document.createElement("ul");
+    this.mainElList.className = `${selector}__list`;
+    this.mainElWrapper.append(this.mainElList);
+  }
+  //   Метод добавления Item
+  initMainElItem(selector, linkToEditing) {
+    if (this.itemArray.length > 0) {
+      this.itemArray.forEach((el) => {
+        this.mainElItem = document.createElement("li");
+        this.mainElItem.className = `${selector}__item`;
+        this.mainElList.append(this.mainElItem);
 
-        this.adminLayoutsSpan = document.createElement("span");
-        this.adminLayoutsSpan.className = "admin-layouts__span";
-        this.adminLayoutsSpan.textContent = el.name;
-        this.adminLayoutsItem.append(this.adminLayoutsSpan);
+        this.mainElSpan = document.createElement("span");
+        this.mainElSpan.className = `${selector}__span`;
+        this.mainElSpan.textContent = el.name;
+        this.mainElItem.append(this.mainElSpan);
 
-        this.adminLayoutsSpan = document.createElement("span");
-        this.adminLayoutsSpan.className = "admin-layouts__span";
-        this.adminLayoutsSpan.textContent = el.description;
-        this.adminLayoutsItem.append(this.adminLayoutsSpan);
+        this.mainElSpan = document.createElement("span");
+        this.mainElSpan.className = `${selector}__span`;
+        this.mainElSpan.textContent = el.description;
+        this.mainElItem.append(this.mainElSpan);
 
-        this.adminLayoutsBox = document.createElement("div");
-        this.adminLayoutsBox.className = "admin-layouts__btn-box";
-        this.adminLayoutsItem.append(this.adminLayoutsBox);
+        this.mainElBtnBox = document.createElement("div");
+        this.mainElBtnBox.className = `${selector}__btn-box`;
+        this.mainElItem.append(this.mainElBtnBox);
 
-        this.adminLayoutsLink = document.createElement("a");
-        this.adminLayoutsLink.className = "admin-layouts__btn";
-        this.adminLayoutsLink.href = `https://www.all-about-layout.ru/admin-layout.html?id=${el._id}`;
-        this.adminLayoutsLink.textContent = "Редактировать";
-        this.adminLayoutsBox.append(this.adminLayoutsLink);
+        this.mainElLink = document.createElement("a");
+        this.mainElLink.className = `${selector}__btn`;
+        this.mainElLink.href = `${linkToEditing}${el._id}`;
+        this.mainElLink.textContent = "Редактировать";
+        this.mainElBtnBox.append(this.mainElLink);
 
-        this.adminLayoutsBtn = document.createElement("btn");
-        this.adminLayoutsBtn.className = "admin-layouts__btn";
-        this.adminLayoutsBtn.textContent = "Удалить";
-        this.adminLayoutsBox.append(this.adminLayoutsBtn);
-        this.adminLayoutsBtn.addEventListener("click", () => {
-          this.deleteLayout(el._id, this.adminLayoutsItem);
+        this.mainElBtn = document.createElement("btn");
+        this.mainElBtn.className = `${selector}__btn`;
+        this.mainElBtn.textContent = "Удалить";
+        this.mainElBtn.addEventListener("click", () => {
+          this.deleteItem(el._id, this.mainElItem);
         });
+        this.mainElBtnBox.append(this.mainElBtn);
       });
     } else {
-      console.warn(`Элемент с селектором ${this.mainEl} не найден.`);
+      console.warn("В массиве нет элементов");
+    }
+  }
+  // Метод редора элементов
+  initElements() {
+    if (this.mainEl) {
+      this.mainEl.innerHTML = "";
+      //   Метод добавления Wrapper
+      this.initMainElWrapper(this.selector);
+      //   Метод добавления Heading
+      this.initMainElHeading(this.selector, "Все доступные проекты");
+      //   Метод добавления LinkBox
+      this.initMainElLinkBox(this.selector);
+      //  Добавление ссылок
+      this.initMainElLink(
+        this.selector,
+        "Добавить запись",
+        "https://www.all-about-layout.ru/admin-layout-add.html"
+      );
+      this.initMainElLink(
+        this.selector,
+        "Перейти к Layouts",
+        "https://www.all-about-layout.ru/layouts.html"
+      );
+      this.initMainElLink(
+        this.selector,
+        "Перейти к admin-layouts",
+        "https://www.all-about-layout.ru/admin-layouts.html"
+      );
+      this.initMainElLink(
+        this.selector,
+        "Перейти к admin-content",
+        "https://www.all-about-layout.ru/admin-content.html"
+      );
+      //   Метод добавления списка
+      this.initMainElList(this.selector);
+      //   Метод добавления Item
+      this.initMainElItem(
+        this.selector,
+        `https://www.all-about-layout.ru/admin-layout.html?id=`
+      );
+    } else {
+      console.warn(`Элемент с селектором ${this.selector} не найден.`);
     }
   }
 }

@@ -355,11 +355,11 @@ class AdminLayout {
   }
   //   Метод добавления ссылки с переадными парамеитрами textContent - Текст ссылки, linkToPage ссылка на страницу
   initMainElLink(selector, textContent, link) {
-    this.adminLayoutAddLink = document.createElement("a");
-    this.adminLayoutAddLink.className = `${selector}__link`;
-    this.adminLayoutAddLink.href = link;
-    this.adminLayoutAddLink.textContent = textContent;
-    this.mainElLinkBox.append(this.adminLayoutAddLink);
+    this.mainElAddLink = document.createElement("a");
+    this.mainElAddLink.className = `${selector}__link`;
+    this.mainElAddLink.href = link;
+    this.mainElAddLink.textContent = textContent;
+    this.mainElLinkBox.append(this.mainElAddLink);
   }
   //   Метод добавления Label, textContent - текст label, htmlFor - for для связи с id input
   initMainElLabel(selector, textContent, htmlFor) {
