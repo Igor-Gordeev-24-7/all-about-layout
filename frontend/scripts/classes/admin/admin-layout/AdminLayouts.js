@@ -157,8 +157,10 @@ class AdminLayouts {
         mainElBtnBox.append(mainElBtn);
       });
     } else {
-      this.mainElList.innerHTML =
-        '<li class="admin-layouts__empty-message">Нет элементов для отображения</li>';
+      this.mainElEmptyMessage = document.createElement("li");
+      this.mainElEmptyMessage.className = `${selector}__empty-message`;
+      this.mainElEmptyMessage.textContent = "Нет элементов для отображения";
+      this.mainElList.append(this.mainElEmptyMessage);
     }
   }
 
