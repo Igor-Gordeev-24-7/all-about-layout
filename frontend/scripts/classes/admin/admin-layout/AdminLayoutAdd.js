@@ -367,29 +367,40 @@ class AdminLayoutAdd {
       this.handleSubmit();
     });
   }
-  // Метод активации пунктов. id =  id соответствующего Filters
+  // Метод устанавливает обработчики событий для элементов span, которые управляют отображением связанных элементов box. Вот что делает каждый его фрагмент:
+  // id =  id соответствующего Filters
   makeAdminLayoutAddSpanActive(selector, id) {
+    // Получение додительского элемента по id
     const parentFilters = document.getElementById(id);
+
+    // Проверка на налицие элемента
     if (!parentFilters) {
       console.error(`Контейнер с id ${id} не найден.`);
       return;
     }
 
+    // Получение spans,boxes по родительскому элементу
     const spans = parentFilters.querySelectorAll(`.${selector}__span`);
     const boxes = parentFilters.querySelectorAll(`.${selector}__box`);
 
+    // Используется метод forEach, чтобы пройтись по каждому span в коллекции spans.
+    // Параметр spanIndex хранит индекс текущего span в массиве, что позволяет находить соответствующий box с тем же индексом.
     spans.forEach((span, spanIndex) => {
+      // Для каждого span добавляется обработчик события click, который срабатывает, когда пользователь кликает на данный span.
       span.addEventListener("click", (event) => {
+        // Метод stopPropagation предотвращает всплытие события клика выше по дереву DOM, что может быть полезно, если другие элементы на странице также имеют обработчики событий для кликов.
         event.stopPropagation(); // Предотвращаем всплытие события
 
+        // Определяет, содержит ли соответствующий элемент box с таким же индексом (например, boxes[spanIndex]) класс "active". Это нужно, чтобы узнать, активен ли уже этот элемент.
         const isActive = boxes[spanIndex].classList.contains("active");
 
-        // Скрываем все boxes
+        // Перед активацией текущего box элемент, код удаляет класс "active" у всех элементов box, скрывая их.
         boxes.forEach((box) => {
           box.classList.remove("active");
         });
 
-        // Если текущий элемент не был активным, делаем его активным
+        // Если соответствующий элемент box не был активным, ему добавляется класс "active", что делает его видимым или стилизует его как активный.
+        // Если он уже был активным, никакие изменения не применяются.
         if (!isActive) {
           boxes[spanIndex].classList.add("active");
         }
@@ -408,34 +419,47 @@ class AdminLayoutAdd {
   passingArrayToInput(array, input) {
     input.value = array;
   }
-  // Метод замены текста в Span в Container
-  // И передедачи массив
+  // Метод предназначен для изменения текста внутри элементов span и обновления соответствующего массива на основе кликов по элементам в списке.
+  // Этот метод позволяет пользователю выбрать элемент из списка, после чего текст span обновляется, а данные сохраняются в массиве и передаются в input элемент для дальнейшего использования.
+
   // id - id соответствующего Filters
   // tagsArray - Массив куда добавляются элементы
   // inputId - input Импульс в которой отображаются элементы переданы в массив и из него же передаются на бэк
   makeTextSpanChange(selector, id, tagsArray, inputId) {
+    // Получение родительского элемента по id
     const parentFilters = document.getElementById(id);
+
+    // Проверка на налицие элемента
     if (!parentFilters) {
       console.error(`Контейнер с id ${id} не найден.`);
       return;
     }
-    console.log(tagsArray);
+
+    // Внутри основного контейнера parentFilters ищутся все дочерние элементы, которые соответствуют классу .${selector}__container.
     const containers = parentFilters.querySelectorAll(
       `.${selector}__container`
     );
 
+    // Проходит по каждому найденному контейнеру.
+    // Внутри каждого контейнера находит элемент span (для изменения текста) и все элементы списка items (по которым можно кликнуть).
+    // Также получает элемент input с заданным inputId, куда будут передаваться обновленные данные.
     containers.forEach((container, containerIndex) => {
       const span = container.querySelector(`.${selector}__span`);
       const items = container.querySelectorAll(`.${selector}__item`);
       const inputById = document.getElementById(inputId);
-      console.log(inputById);
+      // console.log(inputById);
 
+      // Для каждого элемента item в списке items добавляется обработчик события click.
+      // Когда пользователь кликает по элементу, происходит следующее:
+      // Если индекс элемента itemIndex равен 0 (предположительно, это "сброс" или "выбор по умолчанию"), текст внутри span меняется на текст элемента, а соответствующее значение в массиве tagsArray очищается.
+      // В противном случае текст span обновляется на текст элемента, и массив tagsArray сохраняет текст выбранного элемента.
+      // Обновленный массив передается в input элемент через метод this.passingArrayToInput.
       items.forEach((item, itemIndex) => {
         item.addEventListener("click", () => {
           if (itemIndex === 0) {
             span.textContent = item.textContent;
             tagsArray[containerIndex] = "";
-            console.log(tagsArray);
+            // console.log(tagsArray);
             this.passingArrayToInput(tagsArray, inputById);
           } else {
             span.textContent = item.textContent;
@@ -446,6 +470,7 @@ class AdminLayoutAdd {
       });
     });
   }
+
   // Метод активации popup
   makeActivePopup(id) {
     const mainElPopup = document.getElementById(id);
@@ -453,6 +478,7 @@ class AdminLayoutAdd {
       mainElPopup.classList.add("active");
     }
   }
+
   // Метод отчистки полей
   clearFormFields() {
     const inputArr = this.mainEl.querySelectorAll(`.${this.selector}__input`);
@@ -464,6 +490,7 @@ class AdminLayoutAdd {
       }
     });
   }
+
   //   Метод сбора и отправки Layout на сервер
   handleSubmit() {
     const data = {
@@ -483,7 +510,7 @@ class AdminLayoutAdd {
       author: document.getElementById("tags-field-author").value,
     };
 
-    console.log(data); // Проверка формата данных
+    // console.log(data); // Проверка формата данных
 
     fetch(`${this.dbRoutes}${this.port}${this.dbName}`, {
       method: "POST",

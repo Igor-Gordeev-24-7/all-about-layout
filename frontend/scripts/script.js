@@ -5,7 +5,7 @@ import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
 import LayoutContentRender from "./classes/LayoutContentRender.js";
 // Admin-Layout
 import AdminLayouts from "./classes/admin/admin-layout/AdminLayouts.js";
-import AdminLayout from "./classes/admin/admin-layout/AdminLayout.js";
+import AdminLayoutEdit from "./classes/admin/admin-layout/AdminLayoutEdit.js";
 import AdminLayoutAdd from "./classes/admin/admin-layout/AdminLayoutAdd.js";
 
 // Article
@@ -44,7 +44,7 @@ const layoutContentRender = new LayoutContentRender(
 );
 
 // Admin-Layout
-const adminLayout = new AdminLayout(
+const adminLayout = new AdminLayoutEdit(
   "admin-layout",
   dbRoutes,
   port,

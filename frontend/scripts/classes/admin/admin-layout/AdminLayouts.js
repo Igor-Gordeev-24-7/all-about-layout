@@ -85,16 +85,32 @@ class AdminLayouts {
     this.mainElAddLink.textContent = textContent;
     this.mainElLinkBox.append(this.mainElAddLink);
   }
+
+  // Метод добавления поисковой строки по именам
+  initMainElSearchLine(selector) {
+    this.mainElSearchLine = document.createElement("input");
+    this.mainElSearchLine.className = `${selector}__input`;
+    this.mainElSearchLine.placeholder = "Поиск по названию";
+    this.mainElSearchLine.addEventListener("input", () => {
+      // Получаем текст, введенный пользователем
+      const searchText = this.mainElSearchLine.value.toLowerCase();
+      // Вызываем метод для обновления элементов в зависимости от введенного текста
+      this.updateItemsByName(searchText);
+    });
+    this.mainElWrapper.append(this.mainElSearchLine);
+  }
+
   //   Метод добавления списка
   initMainElList(selector) {
     this.mainElList = document.createElement("ul");
     this.mainElList.className = `${selector}__list`;
     this.mainElWrapper.append(this.mainElList);
   }
-  //   Метод добавления Item
-  initMainElItem(selector, linkToEditing) {
-    if (this.itemArray.length > 0) {
-      this.itemArray.forEach((el) => {
+  //   Метод рендера Item
+  initMainElItem(selector, itemArray, linkToEditing) {
+    if (itemArray.length > 0) {
+      this.mainElList.innerHTML = "";
+      itemArray.forEach((el) => {
         this.mainElItem = document.createElement("li");
         this.mainElItem.className = `${selector}__item`;
         this.mainElList.append(this.mainElItem);
@@ -119,7 +135,7 @@ class AdminLayouts {
         this.mainElLink.textContent = "Редактировать";
         this.mainElBtnBox.append(this.mainElLink);
 
-        this.mainElBtn = document.createElement("btn");
+        this.mainElBtn = document.createElement("button");
         this.mainElBtn.className = `${selector}__btn`;
         this.mainElBtn.textContent = "Удалить";
         this.mainElBtn.addEventListener("click", () => {
@@ -128,10 +144,12 @@ class AdminLayouts {
         this.mainElBtnBox.append(this.mainElBtn);
       });
     } else {
-      console.warn("В массиве нет элементов");
+      // Исправление: добавлено сообщение, если нет элементов для отображения
+      this.mainElList.innerHTML =
+        '<li class="admin-layout-add__empty-message">Нет элементов для отображения</li>';
     }
   }
-  // Метод редора элементов
+  // Метод рендора элементов
   initElements() {
     if (this.mainEl) {
       this.mainEl.innerHTML = "";
@@ -162,16 +180,35 @@ class AdminLayouts {
         "Перейти к admin-content",
         "https://www.all-about-layout.ru/admin-content.html"
       );
+      // Метод добавления поисковой строки по именам
+      this.initMainElSearchLine(this.selector);
       //   Метод добавления списка
       this.initMainElList(this.selector);
       //   Метод добавления Item
       this.initMainElItem(
         this.selector,
-        `https://www.all-about-layout.ru/admin-layout.html?id=`
+        this.itemArray,
+        `https://www.all-about-layout.ru/admin-layout-edit.html?id=`
       );
     } else {
       console.warn(`Элемент с селектором ${this.selector} не найден.`);
     }
+  }
+
+  // Метод для фильтрации и обновления элементов по имени
+  updateItemsByName(searchText) {
+    // Создаем новый массив отфильтрованных элементов на основе исходного массива
+    const filteredItems = this.itemArray.filter((item) =>
+      item.name.toLowerCase().includes(searchText)
+    );
+    console.log(filteredItems);
+
+    // Обновляем список элементов на основе отфильтрованных данных
+    this.initMainElItem(
+      this.selector,
+      filteredItems,
+      `https://www.all-about-layout.ru/admin-layout-edit.html?id=`
+    );
   }
 }
 export default AdminLayouts;

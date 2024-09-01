@@ -1,4 +1,4 @@
-class AdminLayout {
+class AdminLayoutEdit {
   constructor(selector, dbRoutes, port, dbName) {
     this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
@@ -17,7 +17,7 @@ class AdminLayout {
     this.skillsArray = [];
 
     this.getLayouts().then(() => {
-      this.findCardById();
+      this.findItemById();
       this.render();
     });
   }
@@ -76,7 +76,7 @@ class AdminLayout {
     return id;
   }
   // Получение карточки из массива по id
-  async findCardById() {
+  async findItemById() {
     if (this.mainEl) {
       // Проверка на наличие массива layout
       if (this.layoutArray) {
@@ -593,7 +593,7 @@ class AdminLayout {
       author: document.getElementById("tags-field-author").value,
     };
 
-    console.log(data); // Проверка формата данных
+    // console.log(data); // Проверка формата данных
 
     fetch(`${this.dbRoutes}${this.port}${this.dbName}/${id}`, {
       method: "PUT",
@@ -621,4 +621,4 @@ class AdminLayout {
       });
   }
 }
-export default AdminLayout;
+export default AdminLayoutEdit;

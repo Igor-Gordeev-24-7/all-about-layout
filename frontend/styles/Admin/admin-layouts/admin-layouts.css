@@ -1,10 +1,12 @@
 .admin-layouts {
   padding: 30px 0px;
+}
+.admin-layouts__wrapper {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 .admin-layouts__heading {
-  margin-bottom: 15px;
   color: var(--white);
   font-family: var(--inter);
   font-size: clamp(1.25rem, 1rem + 1.25vw, 2.5rem);
@@ -33,8 +35,29 @@
   font-weight: 700;
   line-height: normal;
 }
+.admin-layouts__input {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: var(--dull-green);
+  border-radius: 5px;
+  color: var(--white);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.admin-layouts__input::-moz-placeholder {
+  width: 100%;
+  color: var(--white);
+}
+.admin-layouts__input::placeholder {
+  width: 100%;
+  color: var(--white);
+}
+.admin-layouts__input:focus {
+  outline: 2px dashed var(--white);
+}
 .admin-layouts__list {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -69,4 +92,12 @@
   font-weight: 700;
   line-height: normal;
   cursor: pointer;
+}
+.admin-layouts__empty-message {
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }/*# sourceMappingURL=admin-layouts.css.map */

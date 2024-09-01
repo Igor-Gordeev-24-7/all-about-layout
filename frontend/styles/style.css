@@ -2,8 +2,8 @@
 @import url(./resets.css);
 @import url(../accets/fonts/inter/inter.css);
 @import url(../accets/fonts/nextart/nextart.css);
-@import url(./Admin/admin-layout/admin-layout.css);
 @import url(./Admin/admin-layouts/admin-layouts.css);
+@import url(./Admin/admin-layout-edit/admin-layout-edit.css);
 @import url(./Admin/admin-layout-add/admin-layout-add.css);
 :root {
   --grey: #5d7279;
