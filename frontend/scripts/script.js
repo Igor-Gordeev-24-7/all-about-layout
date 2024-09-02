@@ -17,7 +17,7 @@ import MembersCardRender from "./classes/MembersCardRender.js";
 import MembersContentRender from "./classes/MembersContentRender.js";
 // Admin-Member
 import AdminMembers from "./classes/admin/admin-members/AdminMembers.js";
-import AdminMemberAdd from "./classes/admin/admin-members/AdminMembersAdd.js";
+import AdminMemberAdd from "./classes/admin/admin-members/AdminMemberAdd.js";
 
 // const dbRoutes = "https://79.174.86.232:";
 const dbRoutes = "https://79-174-86-232.cloudvps.regruhosting.ru:";
