@@ -90,7 +90,7 @@ class AdminLayouts {
     this.mainElLinkBox.className = `${selector}__link-box`;
     this.mainElWrapper.append(this.mainElLinkBox);
   }
-  //   Метод добавления ссылки с переадными парамеитрами textContent - Текст ссылки, linkToPage ссылка на страницу
+  //   Метод добавления ссылки с переадными параметрами textContent - Текст ссылки, linkToPage ссылка на страницу
   initMainElLink(selector, textContent, link) {
     this.mainElAddLink = document.createElement("a");
     this.mainElAddLink.className = `${selector}__link`;

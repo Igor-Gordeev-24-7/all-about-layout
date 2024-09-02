@@ -87,7 +87,7 @@ const membersCardRender = new MembersCardRender(
 const membersContentRender = new MembersContentRender(".member");
 // Admin-Member
 const adminMembers = new AdminMembers(
-  ".members-item",
+  "admin-members",
   dbRoutes,
   port,
   dbNameMembers

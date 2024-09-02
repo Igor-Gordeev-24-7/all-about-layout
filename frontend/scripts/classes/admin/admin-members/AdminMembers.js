@@ -1,162 +1,218 @@
 class AdminMembers {
   constructor(selector, dbRoutes, port, dbName) {
-    this.mainEl = document.querySelector(selector);
+    this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
     this.dbRoutes = dbRoutes;
     this.port = port;
     this.dbName = dbName;
 
+    this.itemArray = [];
+
     // Проверка на наличие селектора
-
-    if (!this.selector) {
+    if (!this.mainEl) {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
-    }
-
-    this.elementArray = [];
-
-    this.getItems().then(() => {
-      // this.renderItems();
-      if (this.mainEl) {
+    } else {
+      this.getItems().then(() => {
         this.initElements();
-      } else {
-        console.warn("Элемент не найден");
-      }
-    });
+      });
+    }
   }
 
-  // Получение с сервера
+  // Метод получения элементов
   async getItems() {
     try {
-      const response = await fetch(`${this.dbRoutes}${this.port}${this.dbName}`);
-      const elementArray = await response.json();
-      this.elementArray = elementArray;
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}`
+      );
+      const itemArray = await response.json();
+      this.itemArray = itemArray;
     } catch (error) {
       console.log("Не удалось получить элементы:", error);
     }
   }
 
-  // Удаление с сервера
+  // Метод удаление элемента
   async deleteItem(id, element) {
     try {
-      const response = await fetch(`${fileRoutesPath}${this.nameDB}${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        console.error(
+          `Ошибка при удалении записи: ${response.status} ${response.statusText}`,
+          errorMessage
+        );
+        return;
+      }
 
       const result = await response.json();
+      // Если удаление успешно
       if (response.ok) {
-        // Запись удалена
-        console.log(result.msg);
-
-        // Удалите запись из elementArray
-        this.elementArray = this.elementArray.filter((el) => el._id !== id);
-
-        // Удалите элемент из DOM
-        element.remove();
+        // Удаление запись из itemArray
+        this.itemArray = this.itemArray.filter((item) => item._id !== id);
+        // Проверка на наличие элемента в DOM перед удалением
+        if (element && element.parentNode) {
+          // Удаление элемент из DOM
+          element.remove();
+        }
       } else {
-        console.error(result.msg); // Обработка ошибок
+        // Обработка ошибок
+        console.error(result.msg);
       }
     } catch (error) {
       console.error("Ошибка при удалении записи:", error);
     }
   }
-
-  // Метод инициализации элементов DOM
-  initElements() {
-    // Создание mainElWrapper
-    this.initMainElWrapper(this.selector);
-    // Создание mainElHeading
-    this.initMainElHeading(this.selector, "Все доступные проекты");
-    // Создание mainElLinkBox
-    this.initMainElLinkBox(this.selector);
-    // Создание ссылок
-    this.initMainElLink(
-      this.selector,
-      "Добавить элемент",
-      "http://127.0.0.1:5501/frontend/admin-members-add.html"
-    );
-    this.initMainElLink(
-      this.selector,
-      "Перейти к members",
-      "http://127.0.0.1:5501/frontend/members.html"
-    );
-    this.initMainElLink(
-      this.selector,
-      "Перейти к admin-content",
-      "http://127.0.0.1:5501/frontend/admin-content.html"
-    );
-  }
-
-  // Метод cоздание mainElWrapper
+  //   Метод добавления Wrapper
   initMainElWrapper(selector) {
-    if (this.mainEl) {
-      this.mainElWrapper = document.createElement("div");
-      this.mainElWrapper.classList.add(`${selector}__wrapper`, "wrapper");
-      this.mainEl.append(this.mainElWrapper);
-    } else {
-      console.warn("Элемент не найден");
-    }
+    this.mainElWrapper = document.createElement("div");
+    this.mainElWrapper.classList.add(`${selector}__wrapper`, "wrapper");
+    this.mainEl.append(this.mainElWrapper);
   }
-  // Метод cоздание mainElHeading
+  //   Метод добавления Heading
   initMainElHeading(selector, textContent) {
-    this.mainElHeading = document.createElement("h2");
+    this.mainElHeading = document.createElement("h1");
     this.mainElHeading.className = `${selector}__heading`;
     this.mainElHeading.textContent = textContent;
     this.mainElWrapper.append(this.mainElHeading);
   }
-  // Метод добавления LinkBox
+  //   Метод добавления LinkBox
   initMainElLinkBox(selector) {
     this.mainElLinkBox = document.createElement("div");
     this.mainElLinkBox.className = `${selector}__link-box`;
     this.mainElWrapper.append(this.mainElLinkBox);
   }
-  // Метод добавления ссылки с переадными парамеитрами textContent - Текст ссылки, linkToPage ссылка на страницу
+  //   Метод добавления ссылки с переадными параметрами textContent - Текст ссылки, linkToPage ссылка на страницу
   initMainElLink(selector, textContent, link) {
-    this.mainElLink = document.createElement("a");
-    this.mainElLink.className = `${selector}__link`;
-    this.mainElLink.href = link;
-    this.mainElLink.textContent = textContent;
-    this.mainElLinkBox.append(this.mainElLink);
+    this.mainElAddLink = document.createElement("a");
+    this.mainElAddLink.className = `${selector}__link`;
+    this.mainElAddLink.href = link;
+    this.mainElAddLink.textContent = textContent;
+    this.mainElLinkBox.append(this.mainElAddLink);
   }
-  // Метод добавления mainElList
+  // Метод добавления поисковой строки по именам
+  initMainElSearchLine(selector) {
+    this.mainElSearchLine = document.createElement("input");
+    this.mainElSearchLine.className = `${selector}__input`;
+    this.mainElSearchLine.placeholder = "Поиск по названию";
+    this.mainElSearchLine.addEventListener("input", () => {
+      // Получаем текст, введенный пользователем
+      const searchText = this.mainElSearchLine.value.toLowerCase();
+      // Вызываем метод для обновления элементов в зависимости от введенного текста
+      this.updateItemsByName(searchText);
+    });
+    this.mainElWrapper.append(this.mainElSearchLine);
+  }
+  //   Метод добавления списка
   initMainElList(selector) {
     this.mainElList = document.createElement("ul");
     this.mainElList.className = `${selector}__list`;
     this.mainElWrapper.append(this.mainElList);
   }
+  //   Метод рендера Item
+  initMainElItem(selector, itemArray, linkToEditing) {
+    if (itemArray.length > 0) {
+      this.mainElList.innerHTML = "";
+      itemArray.forEach((el) => {
+        const mainElItem = document.createElement("li");
+        mainElItem.className = `${selector}__item`;
+        this.mainElList.append(mainElItem);
 
-  renderItems() {
-    if (this.mainEl) {
-      this.elementArray.forEach((el) => {
-        // this.adminLayoutsItem = document.createElement("li");
-        // this.adminLayoutsItem.className = "admin-layouts__item";
-        // this.mainEl.append(this.adminLayoutsItem);
-        // this.adminLayoutsSpan = document.createElement("span");
-        // this.adminLayoutsSpan.className = "admin-layouts__span";
-        // this.adminLayoutsSpan.textContent = el.name;
-        // this.adminLayoutsItem.append(this.adminLayoutsSpan);
-        // this.adminLayoutsSpan = document.createElement("span");
-        // this.adminLayoutsSpan.className = "admin-layouts__span";
-        // this.adminLayoutsSpan.textContent = el.description;
-        // this.adminLayoutsItem.append(this.adminLayoutsSpan);
-        // this.adminLayoutsBox = document.createElement("div");
-        // this.adminLayoutsBox.className = "admin-layouts__btn-box";
-        // this.adminLayoutsItem.append(this.adminLayoutsBox);
-        // this.adminLayoutsLink = document.createElement("a");
-        // this.adminLayoutsLink.className = "admin-layouts__btn";
-        // this.adminLayoutsLink.href = `http://127.0.0.1:5500/frontend/admin-layout.html?id=${el._id}`;
-        // this.adminLayoutsLink.textContent = "Редактировать";
-        // this.adminLayoutsBox.append(this.adminLayoutsLink);
-        // this.adminLayoutsBtn = document.createElement("btn");
-        // this.adminLayoutsBtn.className = "admin-layouts__btn";
-        // this.adminLayoutsBtn.textContent = "Удалить";
-        // this.adminLayoutsBox.append(this.adminLayoutsBtn);
-        // this.adminLayoutsBtn.addEventListener("click", () => {
-        //   this.deleteLayout(el._id, this.adminLayoutsItem);
-        // });
+        const mainElSpanName = document.createElement("span");
+        mainElSpanName.className = `${selector}__span`;
+        mainElSpanName.textContent = el.name;
+        mainElItem.append(mainElSpanName);
+
+        const mainElSpanDesc = document.createElement("span");
+        mainElSpanDesc.className = `${selector}__span`;
+        mainElSpanDesc.textContent = el.description;
+        mainElItem.append(mainElSpanDesc);
+
+        const mainElBtnBox = document.createElement("div");
+        mainElBtnBox.className = `${selector}__btn-box`;
+        mainElItem.append(mainElBtnBox);
+
+        const mainElLink = document.createElement("a");
+        mainElLink.className = `${selector}__btn`;
+        mainElLink.href = `${linkToEditing}${el._id}`;
+        mainElLink.textContent = "Редактировать";
+        mainElBtnBox.append(mainElLink);
+
+        const mainElBtn = document.createElement("button");
+        mainElBtn.className = `${selector}__btn`;
+        mainElBtn.textContent = "Удалить";
+        mainElBtn.addEventListener("click", () => {
+          this.deleteItem(el._id, mainElItem);
+        });
+        mainElBtnBox.append(mainElBtn);
       });
     } else {
-      console.warn(`Элемент с селектором this.adminLayoutList не найден.`);
+      this.mainElList.innerHTML = "";
+      this.mainElEmptyMessage = document.createElement("li");
+      this.mainElEmptyMessage.className = `${selector}__empty-message`;
+      this.mainElEmptyMessage.textContent = "Нет элементов для отображения";
+      this.mainElList.append(this.mainElEmptyMessage);
     }
+  }
+  // Метод рендора элементов
+  initElements() {
+    if (this.mainEl) {
+      this.mainEl.innerHTML = "";
+      //   Метод добавления Wrapper
+      this.initMainElWrapper(this.selector);
+      //   Метод добавления Heading
+      this.initMainElHeading(this.selector, "Все доступные проекты");
+      //   Метод добавления LinkBox
+      this.initMainElLinkBox(this.selector);
+      //  Добавление ссылок
+      this.initMainElLink(
+        this.selector,
+        "Добавить запись",
+        "https://www.all-about-layout.ru/admin-member-add.html"
+      );
+      this.initMainElLink(
+        this.selector,
+        "Перейти к Layouts",
+        "https://www.all-about-layout.ru/members.html"
+      );
+      this.initMainElLink(
+        this.selector,
+        "Перейти к admin-content",
+        "https://www.all-about-layout.ru/admin-content.html"
+      );
+      // Метод добавления поисковой строки по именам
+      this.initMainElSearchLine(this.selector);
+      //   Метод добавления списка
+      this.initMainElList(this.selector);
+      //   Метод добавления Item
+      this.initMainElItem(
+        this.selector,
+        this.itemArray,
+        `https://www.all-about-layout.ru/admin-member-edit.html?id=`
+      );
+    } else {
+      console.warn(`Элемент с селектором ${this.selector} не найден.`);
+    }
+  }
+  // Метод для фильтрации и обновления элементов по имени
+  updateItemsByName(searchText) {
+    // Создаем новый массив отфильтрованных элементов на основе исходного массива
+    const filteredItems = this.itemArray.filter((item) =>
+      item.name.toLowerCase().includes(searchText)
+    );
+    // console.log(filteredItems);
+
+    // Обновляем список элементов на основе отфильтрованных данных
+    this.initMainElItem(
+      this.selector,
+      filteredItems,
+      `https://www.all-about-layout.ru/admin-member-edit.html?id=`
+    );
   }
 }
 export default AdminMembers;

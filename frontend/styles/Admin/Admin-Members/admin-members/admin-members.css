@@ -1,0 +1,103 @@
+.admin-members {
+  padding: 30px 0px;
+}
+.admin-members__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.admin-members__heading {
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: clamp(1.25rem, 1rem + 1.25vw, 2.5rem);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.admin-members__link-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.admin-members__link {
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: var(--dark-color);
+  border-radius: 10px;
+  gap: 10px;
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.admin-members__input {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: var(--dull-green);
+  border-radius: 5px;
+  color: var(--white);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.admin-members__input::-moz-placeholder {
+  width: 100%;
+  color: var(--white);
+}
+.admin-members__input::placeholder {
+  width: 100%;
+  color: var(--white);
+}
+.admin-members__input:focus {
+  outline: 2px dashed var(--white);
+}
+.admin-members__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.admin-members__item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.admin-members__span {
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.admin-members__btn-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.admin-members__btn {
+  display: block;
+  padding: 5px 10px;
+  background-color: var(--dull-yellow);
+  border-radius: 20px;
+  color: var(--black);
+  font-family: var(--inter);
+  font-size: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+.admin-members__empty-message {
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}/*# sourceMappingURL=admin-members.css.map */
