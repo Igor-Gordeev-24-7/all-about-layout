@@ -12,8 +12,7 @@ class AdminMemberAdd {
     }
 
     // Необходимо создать переменню с масиовм в зависимости от содержимого
-    this.tagsArray = ["", "", "", "", "", ""];
-    this.skillsArray = [];
+    this.tagsArray = [];
 
     // Проверка на наличие селектора
     if (!this.mainEl) {
@@ -112,9 +111,10 @@ class AdminMemberAdd {
       this.selector,
       "filters-tags",
       "Уровень навыков:",
-      ["Не выбрано"]
+      ["Не выбрано", "Эксперт"]
     );
     this.initMainElContainer(this.selector, "filters-tags", "Кем является:", [
+      "Не выбрано",
       "Автор",
     ]);
     //    Метод добавления Input - в Filters
@@ -414,17 +414,23 @@ class AdminMemberAdd {
 
   //   Метод сбора и отправки Layout на сервер
   handleSubmit() {
+    const nameField = document.getElementById("field-name");
+    const descriptionField = document.getElementById("field-description");
+    const imgLinkField = document.getElementById("field-link-to-img");
+    const tagsField = document.getElementById("field-tags");
+
+    console.log(nameField, descriptionField, imgLinkField, tagsField); // Проверка наличия элементов
+
     const data = {
-      name: document.getElementById("field-name").value,
-      description: document.getElementById("field-description").value,
-      imgLink: document.getElementById("field-link-to-img").value,
-      tags: document
-        .getElementById("field-tags")
-        .value.split(",")
+      name: nameField.value,
+      description: descriptionField.value,
+      imgLink: imgLinkField.value,
+      tags: tagsField.value
+        .split(",")
         .map((tag) => tag.trim().replace(/^"|"$/g, "")),
     };
 
-    // console.log(data); // Проверка формата данных
+    console.log(data); // Проверка формата данных
 
     fetch(`${this.dbRoutes}${this.port}${this.dbName}`, {
       method: "POST",
