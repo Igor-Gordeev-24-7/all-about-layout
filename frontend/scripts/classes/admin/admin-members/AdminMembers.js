@@ -166,7 +166,7 @@ class AdminMembers {
       //   Метод добавления Wrapper
       this.initMainElWrapper(this.selector);
       //   Метод добавления Heading
-      this.initMainElHeading(this.selector, "Все доступные проекты");
+      this.initMainElHeading(this.selector, "Все доступные Members");
       //   Метод добавления LinkBox
       this.initMainElLinkBox(this.selector);
       //  Добавление ссылок

@@ -18,11 +18,6 @@ const MembersSchema = new mongoose.Schema({
       type: String,
     },
   ],
-  skills: [
-    {
-      type: String,
-    },
-  ],
 });
 
 export default mongoose.model("Members", MembersSchema);

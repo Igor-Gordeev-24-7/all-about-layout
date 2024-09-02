@@ -1,4 +1,4 @@
-class AdminLayoutAdd {
+class AdminMemberAdd {
   constructor(selector, dbRoutes, port, dbName) {
     this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
@@ -11,7 +11,7 @@ class AdminLayoutAdd {
       console.warn(`Элемент с селектором "${selector}" не найден.`);
     }
 
-    // Необходимо создать переменную с массивом в зависимости от содержимого
+    // Необходимо создать переменню с масиовм в зависимости от содержимого
     this.tagsArray = ["", "", "", "", "", ""];
     this.skillsArray = [];
 
@@ -46,7 +46,7 @@ class AdminLayoutAdd {
       "field-skills"
     );
   }
-  //   Метод вызова методов добавления элементов
+
   initElements() {
     //   Метод добавления popup
     this.initMainElPopup(
@@ -66,7 +66,7 @@ class AdminLayoutAdd {
     this.initMainElWrapper(this.selector);
 
     //   Метод добавления Heading
-    this.initMainElHeading(this.selector, "Добавление Layout");
+    this.initMainElHeading(this.selector, "Добавление Member");
 
     //   Метод добавления LinkBox
     this.initMainElLinkBox(this.selector);
@@ -74,19 +74,20 @@ class AdminLayoutAdd {
     //   Добавление ссылок
     this.initMainElLink(
       this.selector,
-      "Перейти к Layouts",
-      "https://www.all-about-layout.ru/layouts.html"
+      "Перейти к Members",
+      "https://www.all-about-layout.ru/members.html"
     );
     this.initMainElLink(
       this.selector,
-      "Перейти к admin-layouts",
-      "https://www.all-about-layout.ru/admin-layouts.html"
+      "Перейти к admin-members",
+      "https://www.all-about-layout.ru/admin-members.html"
     );
     this.initMainElLink(
       this.selector,
       "Перейти к admin-content",
       "https://www.all-about-layout.ru/admin-content.html"
     );
+
     // ----------------------------------
     //    Метод добавления Lable - Имя
     this.initMainElLabel(this.selector, "Имя", "field-name");
@@ -102,17 +103,6 @@ class AdminLayoutAdd {
     this.initMainElInput(this.selector, "field-description");
 
     // ----------------------------------
-    //    Метод добавления Lable - Ссылка на макет
-    this.initMainElLabel(
-      this.selector,
-      "Ссылка на макет",
-      "field-layout-link"
-    );
-
-    //    Метод добавления Input - Ссылка на макет
-    this.initMainElInput(this.selector, "field-layout-link");
-
-    // ----------------------------------
     //    Метод добавления Lable - Ссылка на изображение
     this.initMainElLabel(
       this.selector,
@@ -125,7 +115,6 @@ class AdminLayoutAdd {
     // ----------------------------------
     //    Метод добавления Filters - Теги
     this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
-
     //    Метод добавления Container - Теги
     this.initMainElContainer(this.selector, "filters-tags", "Сложность:", [
       "Не выбрано",
@@ -138,119 +127,7 @@ class AdminLayoutAdd {
       "Одностраничный",
       "Многостраничный",
     ]);
-    this.initMainElContainer(
-      this.selector,
-      "filters-tags",
-      "Наличие адаптива:",
-      ["Не выбрано", "С адаптивом", "Без адаптива"]
-    );
-    this.initMainElContainer(this.selector, "filters-tags", "Язык:", [
-      "Не выбрано",
-      "Русский",
-      "Английский",
-    ]);
-    this.initMainElContainer(this.selector, "filters-tags", "Наличие превью:", [
-      "Не выбрано",
-      "Есть",
-      "Нет",
-    ]);
-    this.initMainElContainer(this.selector, "filters-tags", "Тип макета:", [
-      "Не выбрано",
-      "Макет сайта",
-      "Макет письма",
-    ]);
-
-    //    Метод добавления Input - в Filters
-    this.initmainElFiltersInput(
-      this.selector,
-      "filters-tags",
-      "field-tags"
-    );
-
-    // ----------------------------------
-    //    Метод добавления Filters - Навыки
-    this.initMainElFilters(
-      this.selector,
-      "filters-skills",
-      "Поле применяемые навыки"
-    );
-
-    //    Метод добавления Container - Теги
-    this.initMainElContainer(
-      this.selector,
-      "filters-skills",
-      "Сетка (flex или grid):",
-      ["Не выбрано", "Сетка (flex или grid)"]
-    );
-    this.initMainElContainer(this.selector, "filters-skills", "Анимация:", [
-      "Не выбрано",
-      "Анимация",
-    ]);
-    this.initMainElContainer(
-      this.selector,
-      "filters-skills",
-      "Элементы формы:",
-      ["Не выбрано", "Элементы формы"]
-    );
-    this.initMainElContainer(
-      this.selector,
-      "filters-skills",
-      "Декоративные элементы:",
-      ["Не выбрано", "Декоративные элементы"]
-    );
-    this.initMainElContainer(
-      this.selector,
-      "filters-skills",
-      "Псевдоэлементы:",
-      ["Не выбрано", "Псевдоэлементы"]
-    );
-    this.initMainElContainer(
-      this.selector,
-      "filters-skills",
-      "Декоративный фон:",
-      ["Не выбрано", "Декоративный фон"]
-    );
-    this.initMainElContainer(this.selector, "filters-skills", "Слайдеры:", [
-      "Не выбрано",
-      "Слайдеры",
-    ]);
-    this.initMainElContainer(this.selector, "filters-skills", "Формы:", [
-      "Не выбрано",
-      "Формы",
-    ]);
-
-    //    Метод добавления Input - в Filters
-    this.initmainElFiltersInput(
-      this.selector,
-      "filters-skills",
-      "field-skills"
-    );
-    // ----------------------------------
-
-    //    Метод добавления Lable - Ссылка на живую версию
-    this.initMainElLabel(
-      this.selector,
-      "Ссылка на живую версию",
-      "field-link-to-live"
-    );
-
-    //    Метод добавления Input - Ссылка на живую версию
-    this.initMainElInput(this.selector, "field-link-to-live");
-
-    // ----------------------------------
-
-    //    Метод добавления Lable - Автор
-    this.initMainElLabel(this.selector, "Автор", "field-author");
-
-    //    Метод добавления Input - Автор
-    this.initMainElInput(this.selector, "field-author");
-
-    // ----------------------------------
-
-    // // Кнопка добавления записи
-    this.initMainElBtn(this.selector, "Загрузить Layout");
   }
-
   //   Метод добавления POPUP
   //   В параметры передается id Popup и текст выводимый в нем и selector
   initMainElPopup(id, textContent, selector) {
@@ -465,6 +342,7 @@ class AdminLayoutAdd {
   passingArrayToInput(array, input) {
     input.value = array;
   }
+
   // Метод предназначен для изменения текста внутри элементов span и обновления соответствующего массива на основе кликов по элементам в списке.
   // Этот метод позволяет пользователю выбрать элемент из списка, после чего текст span обновляется, а данные сохраняются в массиве и передаются в input элемент для дальнейшего использования.
 
@@ -536,52 +414,6 @@ class AdminLayoutAdd {
       }
     });
   }
-
-  //   Метод сбора и отправки Layout на сервер
-  handleSubmit() {
-    const data = {
-      name: document.getElementById("field-name").value,
-      description: document.getElementById("field-description").value,
-      layoutLink: document.getElementById("field-layout-link").value,
-      imgLink: document.getElementById("field-link-to-img").value,
-      tags: document
-        .getElementById("field-tags")
-        .value.split(",")
-        .map((tag) => tag.trim().replace(/^"|"$/g, "")),
-      skills: document
-        .getElementById("field-skills")
-        .value.split(",")
-        .map((skill) => skill.trim().replace(/^"|"$/g, "")),
-      liveLink: document.getElementById("field-link-to-live").value,
-      author: document.getElementById("field-author").value,
-    };
-
-    // console.log(data); // Проверка формата данных
-
-    fetch(`${this.dbRoutes}${this.port}${this.dbName}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          return response.json().then((errorData) => {
-            throw new Error(errorData.error || "Unknown error");
-          });
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Success:", data);
-        this.makeActivePopup("successful-submission");
-        this.clearFormFields();
-      })
-      .catch((error) => {
-        this.makeActivePopup("sending-error");
-      });
-  }
 }
 
-export default AdminLayoutAdd;
+export default AdminMemberAdd;
