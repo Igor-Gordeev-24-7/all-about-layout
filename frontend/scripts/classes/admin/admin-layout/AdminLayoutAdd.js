@@ -6,11 +6,6 @@ class AdminLayoutAdd {
     this.port = port;
     this.dbName = dbName;
 
-    // Проверка на наличие селектора
-    if (!this.selector) {
-      console.warn(`Элемент с селектором "${selector}" не найден.`);
-    }
-
     // Необходимо создать переменную с массивом в зависимости от содержимого
     this.tagsArray = ["", "", "", "", "", ""];
     this.skillsArray = [];
