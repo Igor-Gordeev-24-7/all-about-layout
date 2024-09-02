@@ -20,13 +20,13 @@ class AdminLayoutAdd {
       console.warn(`Элемент с селектором ${this.selector} не найден.`);
     } else {
       this.callingMethods();
-      this.initElements();
     }
   }
 
   callingMethods() {
     // Очистка this.selector
     this.mainEl.innerHTML = "";
+    this.initElements();
     // Вызов методов после завершения рендеринга
 
     // Вызовы методов для Filtets id "filters-tags"
@@ -103,11 +103,7 @@ class AdminLayoutAdd {
 
     // ----------------------------------
     //    Метод добавления Lable - Ссылка на макет
-    this.initMainElLabel(
-      this.selector,
-      "Ссылка на макет",
-      "field-layout-link"
-    );
+    this.initMainElLabel(this.selector, "Ссылка на макет", "field-layout-link");
 
     //    Метод добавления Input - Ссылка на макет
     this.initMainElInput(this.selector, "field-layout-link");
@@ -161,11 +157,7 @@ class AdminLayoutAdd {
     ]);
 
     //    Метод добавления Input - в Filters
-    this.initmainElFiltersInput(
-      this.selector,
-      "filters-tags",
-      "field-tags"
-    );
+    this.initmainElFiltersInput(this.selector, "filters-tags", "field-tags");
 
     // ----------------------------------
     //    Метод добавления Filters - Навыки

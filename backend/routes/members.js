@@ -31,10 +31,10 @@ membersRouter.delete("/members/:id", async (req, res) => {
 // Маршрут для добавления новой записи
 membersRouter.post("/members", async (req, res) => {
   try {
-    const { name, description, imgLink, tags, skills } = req.body;
+    const { name, description, imgLink, tags } = req.body;
 
     // Проверка на обязательные поля
-    if (!name || !description || !imgLink || !tags || !skills) {
+    if (!name || !description || !imgLink || !tags) {
       return res
         .status(400)
         .json({ error: "Некоторые обязательные поля не заполнены" });
@@ -46,7 +46,6 @@ membersRouter.post("/members", async (req, res) => {
       description,
       imgLink,
       tags,
-      skills,
     });
 
     const member = await newMember.save();
@@ -60,10 +59,10 @@ membersRouter.post("/members", async (req, res) => {
 // Маршрут для обновления записи по ID
 membersRouter.put("/members/:id", async (req, res) => {
   try {
-    const { name, description, imgLink, tags, skills } = req.body;
+    const { name, description, imgLink, tags } = req.body;
 
     // Проверка на обязательные поля
-    if (!name || !description || !imgLink || !tags || !skills) {
+    if (!name || !description || !imgLink || !tags) {
       return res
         .status(400)
         .json({ error: "Некоторые обязательные поля не заполнены" });
@@ -77,7 +76,6 @@ membersRouter.put("/members/:id", async (req, res) => {
         description,
         imgLink,
         tags,
-        skills,
       },
       { new: true } // Возвращает обновленный документ
     );

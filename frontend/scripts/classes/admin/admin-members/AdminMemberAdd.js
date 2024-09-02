@@ -20,13 +20,13 @@ class AdminMemberAdd {
       console.warn(`Элемент с селектором ${this.selector} не найден.`);
     } else {
       this.callingMethods();
-      this.initElements();
     }
   }
 
   callingMethods() {
     // Очистка this.selector
     this.mainEl.innerHTML = "";
+    this.initElements();
     // Вызов методов после завершения рендеринга
 
     // Вызовы методов для Filtets id "filters-tags"
@@ -36,14 +36,6 @@ class AdminMemberAdd {
       "filters-tags",
       this.tagsArray,
       "field-tags"
-    );
-    // Вызовы методов для Filtets id "filters-skills"
-    this.makeAdminLayoutAddSpanActive(this.selector, "filters-skills");
-    this.makeTextSpanChange(
-      this.selector,
-      "filters-skills",
-      this.skillsArray,
-      "field-skills"
     );
   }
 
