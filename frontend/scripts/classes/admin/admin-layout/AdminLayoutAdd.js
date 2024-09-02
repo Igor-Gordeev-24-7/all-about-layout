@@ -247,7 +247,7 @@ class AdminLayoutAdd {
 
     // ----------------------------------
 
-    // // Кнопка добавления записи
+    //    Кнопка добавления записи
     this.initMainElBtn(this.selector, "Загрузить Layout");
   }
 

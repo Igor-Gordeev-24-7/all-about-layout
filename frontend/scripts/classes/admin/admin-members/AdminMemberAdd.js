@@ -116,17 +116,22 @@ class AdminMemberAdd {
     //    Метод добавления Filters - Теги
     this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
     //    Метод добавления Container - Теги
-    this.initMainElContainer(this.selector, "filters-tags", "Сложность:", [
-      "Не выбрано",
-      "Легкий",
-      "Средний",
-      "Сложный",
+    this.initMainElContainer(
+      this.selector,
+      "filters-tags",
+      "Уровень навыков:",
+      ["Не выбрано"]
+    );
+    this.initMainElContainer(this.selector, "filters-tags", "Кем является:", [
+      "Автор",
     ]);
-    this.initMainElContainer(this.selector, "filters-tags", "Страницы:", [
-      "Не выбрано",
-      "Одностраничный",
-      "Многостраничный",
-    ]);
+    //    Метод добавления Input - в Filters
+    this.initmainElFiltersInput(this.selector, "filters-tags", "field-tags");
+
+    // ----------------------------------
+
+    //    Кнопка добавления записи
+    this.initMainElBtn(this.selector, "Загрузить Layout");
   }
   //   Метод добавления POPUP
   //   В параметры передается id Popup и текст выводимый в нем и selector
@@ -413,6 +418,45 @@ class AdminMemberAdd {
         input.value = "";
       }
     });
+  }
+
+  //   Метод сбора и отправки Layout на сервер
+  handleSubmit() {
+    const data = {
+      name: document.getElementById("field-name").value,
+      description: document.getElementById("field-description").value,
+      imgLink: document.getElementById("field-link-to-img").value,
+      tags: document
+        .getElementById("field-tags")
+        .value.split(",")
+        .map((tag) => tag.trim().replace(/^"|"$/g, "")),
+    };
+
+    // console.log(data); // Проверка формата данных
+
+    fetch(`${this.dbRoutes}${this.port}${this.dbName}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((errorData) => {
+            throw new Error(errorData.error || "Unknown error");
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+        this.makeActivePopup("successful-submission");
+        this.clearFormFields();
+      })
+      .catch((error) => {
+        this.makeActivePopup("sending-error");
+      });
   }
 }
 
