@@ -41,14 +41,14 @@ membersRouter.post("/members", async (req, res) => {
     }
 
     // Создание нового макета
-    const newMember = new Member({
+    const newMembers = new Members({
       name,
       description,
       imgLink,
       tags,
     });
 
-    const member = await newMember.save();
+    const member = await newMembers.save();
     res.status(201).json(member);
   } catch (error) {
     console.error("Ошибка сервера:", error.message);
