@@ -6,48 +6,45 @@ class AdminLayoutEdit {
     this.port = port;
     this.dbName = dbName;
 
-    // Проверка на наличие селектора
-
-    if (!this.selector) {
-      console.warn(`Элемент с селектором "${selector}" не найден.`);
-    }
-
     this.foundCard = null;
     this.tagsArray = ["", "", "", "", "", ""];
     this.skillsArray = [];
 
-    this.getItems().then(() => {
-      this.findItemById();
-      this.render();
-    });
+    // Проверка на наличие элемента
+    if (!this.mainEl) {
+      console.warn(`Элемент с селектором "${selector}" не найден.`);
+    } else {
+      this.getItems().then(() => {
+        this.findItemById();
+        this.callingMethods();
+      });
+    }
   }
   // Метод рендера
-  render() {
-    if (!this.mainEl) {
-      console.warn(`Элемент ${this.mainEl} не найден.`);
-    } else {
-      // Очистка this.selector
-      this.mainEl.innerHTML = "";
-      this.initElements();
-      // Вызов методов после завершения рендеринга
+  callingMethods() {
+    // Очистка this.selector
+    this.mainEl.innerHTML = "";
 
-      // Вызовы методов для Filtets id "filters-tags"
-      this.makeAdminLayoutAddSpanActive(this.selector, "filters-tags");
-      this.makeTextSpanChange(
-        this.selector,
-        "filters-tags",
-        this.tagsArray,
-        "tags-field-tags"
-      );
-      // Вызовы методов для Filtets id "filters-skills"
-      this.makeAdminLayoutAddSpanActive(this.selector, "filters-skills");
-      this.makeTextSpanChange(
-        this.selector,
-        "filters-skills",
-        this.skillsArray,
-        "tags-field-skills"
-      );
-    }
+    // Вызов метода добавления элементов
+    this.initElements();
+
+    // Вызов методов после завершения рендеринга
+    // Вызовы методов для Filtets id "filters-tags"
+    this.makeAdminLayoutAddSpanActive(this.selector, "filters-tags");
+    this.makeTextSpanChange(
+      this.selector,
+      "filters-tags",
+      this.tagsArray,
+      "tags-field-tags"
+    );
+    // Вызовы методов для Filtets id "filters-skills"
+    this.makeAdminLayoutAddSpanActive(this.selector, "filters-skills");
+    this.makeTextSpanChange(
+      this.selector,
+      "filters-skills",
+      this.skillsArray,
+      "tags-field-skills"
+    );
   }
   // Метод получения элементов
   async getItems() {
@@ -399,6 +396,7 @@ class AdminLayoutEdit {
     this.mainElFilters.append(this.mainElFiltersContainers);
   }
   //  Метод создания элемента добавления элемента в массив элементов,
+  //  Метод находит родительский контейнер на странице с помощью переданного id. Он ищет элемент с этим id и внутри него ищет дочерний элемент с классом ${selector}__containers.
   //  id - id Filters,
   //  description - Название пункта,
   //  itemsArray - элементы для добавления в массив
@@ -413,29 +411,29 @@ class AdminLayoutEdit {
       return;
     }
 
-    // Создание Container
+    //  Метод добавления Container
     this.mainElContainer = document.createElement("div");
     this.mainElContainer.className = `${selector}__container`;
     parentContainer.append(this.mainElContainer);
 
-    // Создание Description
+    //  Метод добавления Description
     this.mainElAddDescription = document.createElement("span");
     this.mainElAddDescription.className = `${selector}__description`;
     this.mainElAddDescription.textContent = description;
     this.mainElContainer.append(this.mainElAddDescription);
 
-    // Создание Box
+    //  Метод добавления Box
     this.mainElBox = document.createElement("div");
     this.mainElBox.className = `${selector}__box`;
     this.mainElContainer.append(this.mainElBox);
 
-    // Создание Span
+    //  Метод добавления Span
     this.mainElSpan = document.createElement("span");
     this.mainElSpan.className = `${selector}__span`;
     this.mainElSpan.textContent = "Не выбрано";
     this.mainElBox.append(this.mainElSpan);
 
-    // Создание Items
+    //  Метод добавления Items
     this.mainElItems = document.createElement("div");
     this.mainElItems.className = `${selector}__items`;
     this.mainElBox.append(this.mainElItems);
@@ -448,8 +446,9 @@ class AdminLayoutEdit {
       this.mainElItems.append(this.mainElItem);
     });
   }
-  // Метод добавления Input в Filters по idParent - id Filters, idInput - id input по которому из него буду получать данные
-  initmainElFiltersInput(selector, idParent, idInput, parameter, itemArray) {
+  //  Метод добавления Input в Filters по idParent - id Filters,
+  //  idInput - id input по которому из него буду получать данные
+  initmainElFiltersInput(selector, idParent, idInput) {
     // Найти нужный контейнер по id
     const parentFilters = document.getElementById(idParent);
     if (!parentFilters) {
@@ -461,8 +460,6 @@ class AdminLayoutEdit {
     this.mainElFiltersInput.className = `${selector}__input`;
     this.mainElFiltersInput.id = idInput;
     this.mainElFiltersInput.type = "text";
-    itemArray = parameter;
-    this.mainElFiltersInput.value = itemArray;
     this.mainElFilters.append(this.mainElFiltersInput);
   }
   //   Метод добавления кнопки отправки данных
@@ -478,29 +475,40 @@ class AdminLayoutEdit {
       this.handleSubmit();
     });
   }
-  // Метод активации пунктов. id =  id соответствующего Filters
+  // Метод устанавливает обработчики событий для элементов span, которые управляют отображением связанных элементов box. Вот что делает каждый его фрагмент:
+  // id =  id соответствующего Filters
   makeAdminLayoutAddSpanActive(selector, id) {
+    // Получение додительского элемента по id
     const parentFilters = document.getElementById(id);
+
+    // Проверка на налицие элемента
     if (!parentFilters) {
       console.error(`Контейнер с id ${id} не найден.`);
       return;
     }
 
+    // Получение spans,boxes по родительскому элементу
     const spans = parentFilters.querySelectorAll(`.${selector}__span`);
     const boxes = parentFilters.querySelectorAll(`.${selector}__box`);
 
+    // Используется метод forEach, чтобы пройтись по каждому span в коллекции spans.
+    // Параметр spanIndex хранит индекс текущего span в массиве, что позволяет находить соответствующий box с тем же индексом.
     spans.forEach((span, spanIndex) => {
+      // Для каждого span добавляется обработчик события click, который срабатывает, когда пользователь кликает на данный span.
       span.addEventListener("click", (event) => {
+        // Метод stopPropagation предотвращает всплытие события клика выше по дереву DOM, что может быть полезно, если другие элементы на странице также имеют обработчики событий для кликов.
         event.stopPropagation(); // Предотвращаем всплытие события
 
+        // Определяет, содержит ли соответствующий элемент box с таким же индексом (например, boxes[spanIndex]) класс "active". Это нужно, чтобы узнать, активен ли уже этот элемент.
         const isActive = boxes[spanIndex].classList.contains("active");
 
-        // Скрываем все boxes
+        // Перед активацией текущего box элемент, код удаляет класс "active" у всех элементов box, скрывая их.
         boxes.forEach((box) => {
           box.classList.remove("active");
         });
 
-        // Если текущий элемент не был активным, делаем его активным
+        // Если соответствующий элемент box не был активным, ему добавляется класс "active", что делает его видимым или стилизует его как активный.
+        // Если он уже был активным, никакие изменения не применяются.
         if (!isActive) {
           boxes[spanIndex].classList.add("active");
         }
@@ -519,32 +527,47 @@ class AdminLayoutEdit {
   passingArrayToInput(array, input) {
     input.value = array;
   }
-  // Метод замены текста в Span в Container
-  // И передедачи массив
+  // Метод предназначен для изменения текста внутри элементов span и обновления соответствующего массива на основе кликов по элементам в списке.
+  // Этот метод позволяет пользователю выбрать элемент из списка, после чего текст span обновляется, а данные сохраняются в массиве и передаются в input элемент для дальнейшего использования.
+
   // id - id соответствующего Filters
   // tagsArray - Массив куда добавляются элементы
   // inputId - input Импульс в которой отображаются элементы переданы в массив и из него же передаются на бэк
   makeTextSpanChange(selector, id, tagsArray, inputId) {
+    // Получение родительского элемента по id
     const parentFilters = document.getElementById(id);
+
+    // Проверка на налицие элемента
     if (!parentFilters) {
       console.error(`Контейнер с id ${id} не найден.`);
       return;
     }
+
+    // Внутри основного контейнера parentFilters ищутся все дочерние элементы, которые соответствуют классу .${selector}__container.
     const containers = parentFilters.querySelectorAll(
       `.${selector}__container`
     );
 
+    // Проходит по каждому найденному контейнеру.
+    // Внутри каждого контейнера находит элемент span (для изменения текста) и все элементы списка items (по которым можно кликнуть).
+    // Также получает элемент input с заданным inputId, куда будут передаваться обновленные данные.
     containers.forEach((container, containerIndex) => {
       const span = container.querySelector(`.${selector}__span`);
       const items = container.querySelectorAll(`.${selector}__item`);
       const inputById = document.getElementById(inputId);
+      // console.log(inputById);
 
+      // Для каждого элемента item в списке items добавляется обработчик события click.
+      // Когда пользователь кликает по элементу, происходит следующее:
+      // Если индекс элемента itemIndex равен 0 (предположительно, это "сброс" или "выбор по умолчанию"), текст внутри span меняется на текст элемента, а соответствующее значение в массиве tagsArray очищается.
+      // В противном случае текст span обновляется на текст элемента, и массив tagsArray сохраняет текст выбранного элемента.
+      // Обновленный массив передается в input элемент через метод this.passingArrayToInput.
       items.forEach((item, itemIndex) => {
         item.addEventListener("click", () => {
           if (itemIndex === 0) {
             span.textContent = item.textContent;
             tagsArray[containerIndex] = "";
-            console.log(tagsArray);
+            // console.log(tagsArray);
             this.passingArrayToInput(tagsArray, inputById);
           } else {
             span.textContent = item.textContent;
@@ -574,7 +597,6 @@ class AdminLayoutEdit {
     });
   }
   //   Метод сбора и отправки Layout на сервер
-  // Метод сбора и отправки Layout на сервер
   handleSubmit() {
     const id = this.getId(); // Получение id для обновления
     console.log(id);
