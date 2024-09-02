@@ -20,7 +20,7 @@ class AdminLayoutEdit {
       });
     }
   }
-  // Метод рендера
+
   callingMethods() {
     // Очистка this.selector
     this.mainEl.innerHTML = "";
@@ -35,7 +35,7 @@ class AdminLayoutEdit {
       this.selector,
       "filters-tags",
       this.tagsArray,
-      "tags-field-tags"
+      "field-tags"
     );
     // Вызовы методов для Filtets id "filters-skills"
     this.makeAdminLayoutAddSpanActive(this.selector, "filters-skills");
@@ -43,7 +43,7 @@ class AdminLayoutEdit {
       this.selector,
       "filters-skills",
       this.skillsArray,
-      "tags-field-skills"
+      "field-skills"
     );
   }
   // Метод получения элементов
@@ -85,6 +85,7 @@ class AdminLayoutEdit {
 
         if (foundCard) {
           this.foundCard = foundCard;
+          console.log(this.foundCard.tags);
         } else {
           console.error("Карточка не найдена");
         }
@@ -119,7 +120,7 @@ class AdminLayoutEdit {
         //   Метод добавления Heading
         this.initMainElHeading(this.selector, this.foundCard.name);
 
-        // Добавление блока для ссылок
+        //   Метод добавления LinkBox
         this.initMainElLinkBox(this.selector);
 
         //  Добавление ссылок
@@ -139,51 +140,56 @@ class AdminLayoutEdit {
           "https://www.all-about-layout.ru/admin-content.html"
         );
 
-        // Поле Имя
-        this.initMainElLabel(this.selector, "Имя", "tags-field-name");
-        this.initMainElInput(
-          this.selector,
-          "tags-field-name",
-          this.foundCard.name
-        );
+        // ----------------------------------
+        //    Метод добавления Lable - Имя
+        this.initMainElLabel(this.selector, "Имя", "field-name");
 
-        // Поле Описание
-        this.initMainElLabel(
-          this.selector,
-          "Описание",
-          "tags-field-description"
-        );
+        //    Метод добавления Input - Имя
+        this.initMainElInput(this.selector, "field-name", this.foundCard.name);
+
+        // ----------------------------------
+        //    Метод добавления Lable - Описание
+        this.initMainElLabel(this.selector, "Описание", "field-description");
+
+        //    Метод добавления Input - Описание
         this.initMainElInput(
           this.selector,
-          "tags-field-description",
+          "field-description",
           this.foundCard.description
         );
 
-        // Поле Ссылка на макет
+        // ----------------------------------
+        //    Метод добавления Lable - Ссылка на макет
         this.initMainElLabel(
           this.selector,
           "Ссылка на макет",
-          "tags-field-layout-link"
+          "field-layout-link"
         );
+
+        //    Метод добавления Input - Ссылка на макет
         this.initMainElInput(
           this.selector,
-          "tags-field-layout-link",
+          "field-layout-link",
           this.foundCard.layoutLink
         );
 
-        // Поле Ссылка на изображение
+        // ----------------------------------
+        //    Метод добавления Lable - Ссылка на изображение
         this.initMainElLabel(
           this.selector,
           "Ссылка на изображение",
-          "tags-field-link-to-img"
+          "field-link-to-img"
         );
+
+        //    Метод добавления Input - Ссылка на изображение
         this.initMainElInput(
           this.selector,
-          "tags-field-link-to-img",
+          "field-link-to-img",
           this.foundCard.imgLink
         );
 
-        // Поле Теги
+        // ----------------------------------
+        //    Метод добавления Filters - Теги
         this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
         this.initMainElContainer(this.selector, "filters-tags", "Сложность:", [
           "Не выбрано",
@@ -191,6 +197,8 @@ class AdminLayoutEdit {
           "Средний",
           "Сложный",
         ]);
+
+        //    Метод добавления Container - Теги
         this.initMainElContainer(this.selector, "filters-tags", "Страницы:", [
           "Не выбрано",
           "Одностраничный",
@@ -218,14 +226,14 @@ class AdminLayoutEdit {
           "Макет сайта",
           "Макет письма",
         ]);
-        // Добавление input в Filters
+
+        //    Метод добавления Input - в Filters
         // selector, idParent, idInput, parameter, itemArray
         this.initmainElFiltersInput(
           this.selector,
           "filters-tags",
-          "tags-field-tags",
-          this.foundCard.tags,
-          this.tagsArray
+          "field-tags",
+          this.foundCard.tags
         );
 
         // Поле применяемые навыки
@@ -277,32 +285,31 @@ class AdminLayoutEdit {
           "Формы",
         ]);
         // Добавление input в Filters
-        // selector, idParent, idInput, parameter, itemArray
+        // selector, idParent, idInput, parameter
         this.initmainElFiltersInput(
           this.selector,
           "filters-skills",
-          "tags-field-skills",
-          this.foundCard.tags,
-          this.skillsArray
+          "field-skills",
+          this.foundCard.skills
         );
 
         // Поле Ссылка на живую версию
         this.initMainElLabel(
           this.selector,
           "Ссылка на живую версию",
-          "tags-field-link-to-live"
+          "field-link-to-live"
         );
         this.initMainElInput(
           this.selector,
-          "tags-field-link-to-live",
+          "field-link-to-live",
           this.foundCard.linkToLive
         );
 
         // Поле Автор
-        this.initMainElLabel(this.selector, "Автор", "tags-field-author");
+        this.initMainElLabel(this.selector, "Автор", "field-author");
         this.initMainElInput(
           this.selector,
-          "tags-field-author",
+          "field-author",
           this.foundCard.author
         );
 
@@ -313,6 +320,7 @@ class AdminLayoutEdit {
       }
     }
   }
+  //   Метод добавления POPUP
   //   В параметры передается id Popup и текст выводимый в нем и selector
   initMainElPopup(id, textContent, selector) {
     const mainElPopup = document.createElement("div");
@@ -448,7 +456,8 @@ class AdminLayoutEdit {
   }
   //  Метод добавления Input в Filters по idParent - id Filters,
   //  idInput - id input по которому из него буду получать данные
-  initmainElFiltersInput(selector, idParent, idInput) {
+  //  parameter - для отображения cоответствующей информации в input
+  initmainElFiltersInput(selector, idParent, idInput, parameter) {
     // Найти нужный контейнер по id
     const parentFilters = document.getElementById(idParent);
     if (!parentFilters) {
@@ -460,6 +469,7 @@ class AdminLayoutEdit {
     this.mainElFiltersInput.className = `${selector}__input`;
     this.mainElFiltersInput.id = idInput;
     this.mainElFiltersInput.type = "text";
+    this.mainElFiltersInput.value = parameter;
     this.mainElFilters.append(this.mainElFiltersInput);
   }
   //   Метод добавления кнопки отправки данных
@@ -601,20 +611,20 @@ class AdminLayoutEdit {
     const id = this.getId(); // Получение id для обновления
     console.log(id);
     const data = {
-      name: document.getElementById("tags-field-name").value,
-      description: document.getElementById("tags-field-description").value,
-      layoutLink: document.getElementById("tags-field-layout-link").value,
-      imgLink: document.getElementById("tags-field-link-to-img").value,
+      name: document.getElementById("field-name").value,
+      description: document.getElementById("field-description").value,
+      layoutLink: document.getElementById("field-layout-link").value,
+      imgLink: document.getElementById("field-link-to-img").value,
       tags: document
-        .getElementById("tags-field-tags")
+        .getElementById("field-tags")
         .value.split(",")
         .map((tag) => tag.trim().replace(/^"|"$/g, "")),
       skills: document
-        .getElementById("tags-field-skills")
+        .getElementById("field-skills")
         .value.split(",")
         .map((skill) => skill.trim().replace(/^"|"$/g, "")),
-      liveLink: document.getElementById("tags-field-link-to-live").value,
-      author: document.getElementById("tags-field-author").value,
+      liveLink: document.getElementById("field-link-to-live").value,
+      author: document.getElementById("field-author").value,
     };
 
     // console.log(data); // Проверка формата данных

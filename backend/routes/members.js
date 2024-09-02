@@ -69,7 +69,7 @@ membersRouter.put("/members/:id", async (req, res) => {
     }
 
     const memberId = req.params.id;
-    const updatedMember = await Member.findByIdAndUpdate(
+    const updatedMembers = await Members.findByIdAndUpdate(
       memberId,
       {
         name,
@@ -80,11 +80,11 @@ membersRouter.put("/members/:id", async (req, res) => {
       { new: true } // Возвращает обновленный документ
     );
 
-    if (!updatedMember) {
+    if (!updatedMembers) {
       return res.status(404).json({ msg: "Запись не найдена" });
     }
 
-    res.json(updatedMember);
+    res.json(updatedMembers);
   } catch (error) {
     console.error("Ошибка сервера:", error.message);
     res.status(500).json({ error: "Server error", details: error.message });

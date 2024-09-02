@@ -18,6 +18,7 @@ import MembersContentRender from "./classes/MembersContentRender.js";
 // Admin-Member
 import AdminMembers from "./classes/admin/admin-members/AdminMembers.js";
 import AdminMemberAdd from "./classes/admin/admin-members/AdminMemberAdd.js";
+import AdminMembersEdit from "./classes/admin/admin-members/AdminMemberEdit.js";
 
 // const dbRoutes = "https://79.174.86.232:";
 const dbRoutes = "https://79-174-86-232.cloudvps.regruhosting.ru:";
@@ -95,6 +96,12 @@ const adminMembers = new AdminMembers(
 );
 const adminMemberAdd = new AdminMemberAdd(
   "admin-member-add",
+  dbRoutes,
+  port,
+  dbNameMembers
+);
+const adminMembersEdit = new AdminMembersEdit(
+  "admin-member-edit",
   dbRoutes,
   port,
   dbNameMembers

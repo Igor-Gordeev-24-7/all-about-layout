@@ -6,15 +6,10 @@ class AdminMemberAdd {
     this.port = port;
     this.dbName = dbName;
 
-    // Проверка на наличие селектора
-    if (!this.selector) {
-      console.warn(`Элемент с селектором "${selector}" не найден.`);
-    }
-
-    // Необходимо создать переменню с масиовм в зависимости от содержимого
+    // Необходимо создать переменню с масивом в зависимости от содержимого
     this.tagsArray = [];
 
-    // Проверка на наличие селектора
+    // Проверка на наличие элемента
     if (!this.mainEl) {
       console.warn(`Элемент с селектором ${this.selector} не найден.`);
     } else {
@@ -38,6 +33,7 @@ class AdminMemberAdd {
     );
   }
 
+  //   Метод вызова методов добавления элементов
   initElements() {
     //   Метод добавления popup
     this.initMainElPopup(
