@@ -6,6 +6,7 @@
 @import url(./Admin/AdminLayout/admin-layout-add/admin-layout-add.css);
 @import url(./Admin/AdminLayout/admin-layout-edit/admin-layout-edit.css);
 @import url(./Admin/Admin-Members/admin-members/admin-members.css);
+@import url(./Admin/Admin-Members/admin-member-add/admin-member-add.css);
 :root {
   --grey: #5d7279;
   --grey-fonts: #cfcfcf;

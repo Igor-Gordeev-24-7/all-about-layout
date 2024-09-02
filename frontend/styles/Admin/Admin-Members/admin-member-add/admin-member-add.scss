@@ -1,0 +1,211 @@
+// ADMIN-MEMBER-ADD
+.admin-member-add {
+  padding: 30px 0px;
+  position: relative;
+  &__popup {
+    display: none;
+  }
+  &__popup.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+  }
+  &__popup.active body {
+    overflow: hidden;
+  }
+  &__popup-content {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-color);
+    border-radius: 30px;
+  }
+  &__popup-span {
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 15px;
+  }
+  &__heading {
+    margin-bottom: 15px;
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: clamp(1.25rem, 1rem + 1.25vw, 2.5rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &__link-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  &__link {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background-color: var(--dark-color);
+    border-radius: 10px;
+    gap: 10px;
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &__lable {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &__input {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: var(--dull-green);
+    border-radius: 5px;
+    color: var(--white);
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  &__input::placeholder {
+    width: 100%;
+    color: var(--white);
+  }
+  &__input:focus {
+    outline: 2px dashed var(--white);
+  }
+  //
+  &__filters {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+  }
+  &__filters-heading {
+    display: block;
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &__containers {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  &__container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+  }
+  &__description {
+    display: block;
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &__box {
+    min-width: 200px;
+    position: relative;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  &__span {
+    width: 100%;
+    padding: 10px 15px;
+    background: var(--grey-btns);
+    border-radius: 15px;
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    transition: all 0.33s;
+    cursor: pointer;
+  }
+  &__items {
+    width: 100%;
+    position: absolute;
+    top: 46px;
+    left: 0;
+    border-radius: 15px;
+    background: var(--grey-btns);
+    z-index: 3;
+    transform-origin: 0 0;
+    transform: rotateX(90deg);
+    opacity: 0;
+    transition: all 0.33s linear;
+  }
+  &__box.active &__items {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  &__item {
+    width: fit-content;
+    display: block;
+    padding: 15px 20px;
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    transition: all 0.33s;
+    cursor: pointer;
+  }
+  &__btn {
+    display: block;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: var(--grey-btns);
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    transition: all 0.33s;
+  }
+}
