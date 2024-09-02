@@ -414,12 +414,12 @@ class AdminMemberAdd {
 
   //   Метод сбора и отправки Layout на сервер
   handleSubmit() {
-    const nameField = document.getElementById("field-name");
-    const descriptionField = document.getElementById("field-description");
-    const imgLinkField = document.getElementById("field-link-to-img");
-    const tagsField = document.getElementById("field-tags");
+    // const nameField = document.getElementById("field-name");
+    // const descriptionField = document.getElementById("field-description");
+    // const imgLinkField = document.getElementById("field-link-to-img");
+    // const tagsField = document.getElementById("field-tags");
 
-    console.log(nameField, descriptionField, imgLinkField, tagsField); // Проверка наличия элементов
+    // console.log(nameField, descriptionField, imgLinkField, tagsField); // Проверка наличия элементов
 
     const data = {
       name: nameField.value,
@@ -430,7 +430,7 @@ class AdminMemberAdd {
         .map((tag) => tag.trim().replace(/^"|"$/g, "")),
     };
 
-    console.log(data); // Проверка формата данных
+    // console.log(data); // Проверка формата данных
 
     fetch(`${this.dbRoutes}${this.port}${this.dbName}`, {
       method: "POST",
