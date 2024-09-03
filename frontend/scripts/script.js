@@ -13,6 +13,7 @@ import ArticleContentRender from "./classes/ArticleContentRender.js";
 import ArticlesItemFilter from "./classes/ArticlesItemFilter.js";
 // Admin-Articles
 import AdminArticles from "./classes/admin/abmin-articles/AdminArticles.js";
+import AdminArticleAdd from "./classes/admin/abmin-articles/AdminArticleAdd.js";
 
 // Member
 import MembersCardRender from "./classes/MembersCardRender.js";
@@ -83,6 +84,12 @@ const articleContentRender = new ArticleContentRender(
 // Admin-Articles
 const adminArticles = new AdminArticles(
   "admin-articles",
+  dbRoutes,
+  port,
+  dbNameArticle
+);
+const adminArticleAdd = new AdminArticleAdd(
+  "admin-article-add",
   dbRoutes,
   port,
   dbNameArticle

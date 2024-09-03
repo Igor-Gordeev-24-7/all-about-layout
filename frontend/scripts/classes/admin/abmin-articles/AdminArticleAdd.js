@@ -1,4 +1,4 @@
-class AdminLayoutAdd {
+class AdminArticleAdd {
   constructor(selector, dbRoutes, port, dbName) {
     this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
@@ -571,4 +571,4 @@ class AdminLayoutAdd {
   }
 }
 
-export default AdminLayoutAdd;
+export default AdminArticleAdd;
