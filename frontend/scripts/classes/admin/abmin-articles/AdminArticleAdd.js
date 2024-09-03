@@ -7,7 +7,7 @@ class AdminArticleAdd {
     this.dbName = dbName;
 
     // Необходимо создать переменную с массивом в зависимости от содержимого
-    this.tagsArray = ["", "", "", "", "", ""];
+    this.tagsArray = [];
     this.skillsArray = [];
 
     // Проверка на наличие селектора
@@ -90,142 +90,6 @@ class AdminArticleAdd {
     this.initMainElInput(this.selector, "field-name");
 
     // ----------------------------------
-    //    Метод добавления Lable - Описание
-    this.initMainElLabel(this.selector, "Описание", "field-description");
-
-    //    Метод добавления Input - Описание
-    this.initMainElInput(this.selector, "field-description");
-
-    // ----------------------------------
-    //    Метод добавления Lable - Ссылка на макет
-    this.initMainElLabel(this.selector, "Ссылка на макет", "field-layout-link");
-
-    //    Метод добавления Input - Ссылка на макет
-    this.initMainElInput(this.selector, "field-layout-link");
-
-    // ----------------------------------
-    //    Метод добавления Lable - Ссылка на изображение
-    this.initMainElLabel(
-      this.selector,
-      "Ссылка на изображение",
-      "field-link-to-img"
-    );
-    //    Метод добавления Input - Ссылка на изображение
-    this.initMainElInput(this.selector, "field-link-to-img");
-
-    // ----------------------------------
-    //    Метод добавления Filters - Теги
-    this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
-
-    //    Метод добавления Container - Теги
-    this.initMainElContainer(this.selector, "filters-tags", "Сложность:", [
-      "Не выбрано",
-      "Легкий",
-      "Средний",
-      "Сложный",
-    ]);
-    this.initMainElContainer(this.selector, "filters-tags", "Страницы:", [
-      "Не выбрано",
-      "Одностраничный",
-      "Многостраничный",
-    ]);
-    this.initMainElContainer(
-      this.selector,
-      "filters-tags",
-      "Наличие адаптива:",
-      ["Не выбрано", "С адаптивом", "Без адаптива"]
-    );
-    this.initMainElContainer(this.selector, "filters-tags", "Язык:", [
-      "Не выбрано",
-      "Русский",
-      "Английский",
-    ]);
-    this.initMainElContainer(this.selector, "filters-tags", "Наличие превью:", [
-      "Не выбрано",
-      "Есть",
-      "Нет",
-    ]);
-    this.initMainElContainer(this.selector, "filters-tags", "Тип макета:", [
-      "Не выбрано",
-      "Макет сайта",
-      "Макет письма",
-    ]);
-
-    //    Метод добавления Input - в Filters
-    this.initmainElFiltersInput(this.selector, "filters-tags", "field-tags");
-
-    // ----------------------------------
-    //    Метод добавления Filters - Навыки
-    this.initMainElFilters(
-      this.selector,
-      "filters-skills",
-      "Поле применяемые навыки"
-    );
-
-    //    Метод добавления Container - Теги
-    this.initMainElContainer(
-      this.selector,
-      "filters-skills",
-      "Сетка (flex или grid):",
-      ["Не выбрано", "Сетка (flex или grid)"]
-    );
-    this.initMainElContainer(this.selector, "filters-skills", "Анимация:", [
-      "Не выбрано",
-      "Анимация",
-    ]);
-    this.initMainElContainer(
-      this.selector,
-      "filters-skills",
-      "Элементы формы:",
-      ["Не выбрано", "Элементы формы"]
-    );
-    this.initMainElContainer(
-      this.selector,
-      "filters-skills",
-      "Декоративные элементы:",
-      ["Не выбрано", "Декоративные элементы"]
-    );
-    this.initMainElContainer(
-      this.selector,
-      "filters-skills",
-      "Псевдоэлементы:",
-      ["Не выбрано", "Псевдоэлементы"]
-    );
-    this.initMainElContainer(
-      this.selector,
-      "filters-skills",
-      "Декоративный фон:",
-      ["Не выбрано", "Декоративный фон"]
-    );
-    this.initMainElContainer(this.selector, "filters-skills", "Слайдеры:", [
-      "Не выбрано",
-      "Слайдеры",
-    ]);
-    this.initMainElContainer(this.selector, "filters-skills", "Формы:", [
-      "Не выбрано",
-      "Формы",
-    ]);
-
-    //    Метод добавления Input - в Filters
-    this.initmainElFiltersInput(
-      this.selector,
-      "filters-skills",
-      "field-skills"
-    );
-    // ----------------------------------
-
-    //    Метод добавления Lable - Ссылка на живую версию
-    this.initMainElLabel(
-      this.selector,
-      "Ссылка на живую версию",
-      "field-link-to-live"
-    );
-
-    //    Метод добавления Input - Ссылка на живую версию
-    this.initMainElInput(this.selector, "field-link-to-live");
-
-    // ----------------------------------
-
     //    Метод добавления Lable - Автор
     this.initMainElLabel(this.selector, "Автор", "field-author");
 
@@ -233,7 +97,32 @@ class AdminArticleAdd {
     this.initMainElInput(this.selector, "field-author");
 
     // ----------------------------------
+    //    Метод добавления Lable - Автор
+    this.initMainElLabel(
+      this.selector,
+      "Дата - формат(дд.мм.гггг)",
+      "field-date"
+    );
 
+    //    Метод добавления Input - Автор
+    this.initMainElInput(this.selector, "field-date");
+
+    // ----------------------------------
+    //    Метод добавления Filters - Теги
+    this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
+
+    //    Метод добавления Container - Теги
+    this.initMainElContainer(
+      this.selector,
+      "filters-tags",
+      "Направление статьи:",
+      ["Не выбрано", "HTML", "CSS", "JS", "React"]
+    );
+
+    //    Метод добавления Input - в Filters
+    this.initmainElFiltersInput(this.selector, "filters-tags", "field-tags");
+
+    // ----------------------------------
     //    Кнопка добавления записи
     this.initMainElBtn(this.selector, "Загрузить Layout");
   }
@@ -259,12 +148,14 @@ class AdminArticleAdd {
       mainElPopup.classList.remove("active");
     });
   }
+
   //   Метод добавления Wrapper
   initMainElWrapper(selector) {
     this.mainElWrapper = document.createElement("div");
     this.mainElWrapper.classList.add(`${selector}__wrapper`, "wrapper");
     this.mainEl.append(this.mainElWrapper);
   }
+
   //   Метод добавления Heading
   initMainElHeading(selector, textContent) {
     this.mainElHeading = document.createElement("h1");
@@ -272,12 +163,14 @@ class AdminArticleAdd {
     this.mainElHeading.textContent = textContent;
     this.mainElWrapper.append(this.mainElHeading);
   }
+
   //   Метод добавления LinkBox
   initMainElLinkBox(selector) {
     this.mainElLinkBox = document.createElement("div");
     this.mainElLinkBox.className = `${selector}__link-box`;
     this.mainElWrapper.append(this.mainElLinkBox);
   }
+
   //   Метод добавления ссылки с переадными парамеитрами textContent - Текст ссылки, linkToPage ссылка на страницу
   initMainElLink(selector, textContent, link) {
     this.mainElLink = document.createElement("a");
@@ -286,6 +179,7 @@ class AdminArticleAdd {
     this.mainElLink.textContent = textContent;
     this.mainElLinkBox.append(this.mainElLink);
   }
+
   //   Метод добавления Label, textContent - текст label, htmlFor - for для связи с id input
   initMainElLabel(selector, textContent, htmlFor) {
     this.mainElLable = document.createElement("label");
@@ -294,6 +188,7 @@ class AdminArticleAdd {
     this.mainElLable.htmlFor = htmlFor;
     this.mainElWrapper.append(this.mainElLable);
   }
+
   //   Метод добавления Input, id - id для связи с lable и получения зачения для отпраки
   initMainElInput(selector, id) {
     this.mainElInput = document.createElement("input");
@@ -302,6 +197,7 @@ class AdminArticleAdd {
     this.mainElInput.type = "text";
     this.mainElWrapper.append(this.mainElInput);
   }
+
   //   Метод создает блок Filters и его содержимое. id - id элемента, title - описание элемента
   initMainElFilters(selector, id, title) {
     this.mainElFilters = document.createElement("div");
@@ -320,6 +216,7 @@ class AdminArticleAdd {
     this.mainElFiltersContainers.className = `${selector}__containers`;
     this.mainElFilters.append(this.mainElFiltersContainers);
   }
+
   //  Метод создания элемента добавления элемента в массив элементов,
   //  Метод находит родительский контейнер на странице с помощью переданного id. Он ищет элемент с этим id и внутри него ищет дочерний элемент с классом ${selector}__containers.
   //  id - id Filters,
@@ -371,6 +268,7 @@ class AdminArticleAdd {
       this.mainElItems.append(this.mainElItem);
     });
   }
+
   //  Метод добавления Input в Filters по idParent - id Filters,
   //  idInput - id input по которому из него буду получать данные
   initmainElFiltersInput(selector, idParent, idInput) {
@@ -387,6 +285,7 @@ class AdminArticleAdd {
     this.mainElFiltersInput.type = "text";
     this.mainElFilters.append(this.mainElFiltersInput);
   }
+
   //   Метод добавления кнопки отправки данных
   initMainElBtn(selector, textContent) {
     this.mainElBtn = document.createElement("button");
@@ -400,6 +299,7 @@ class AdminArticleAdd {
       this.handleSubmit();
     });
   }
+
   // Метод устанавливает обработчики событий для элементов span, которые управляют отображением связанных элементов box. Вот что делает каждый его фрагмент:
   // id =  id соответствующего Filters
   makeAdminLayoutAddSpanActive(selector, id) {
@@ -448,10 +348,12 @@ class AdminArticleAdd {
       });
     });
   }
+
   // Метод передачи массива в input
   passingArrayToInput(array, input) {
     input.value = array;
   }
+
   // Метод предназначен для изменения текста внутри элементов span и обновления соответствующего массива на основе кликов по элементам в списке.
   // Этот метод позволяет пользователю выбрать элемент из списка, после чего текст span обновляется, а данные сохраняются в массиве и передаются в input элемент для дальнейшего использования.
 
@@ -528,19 +430,13 @@ class AdminArticleAdd {
   handleSubmit() {
     const data = {
       name: document.getElementById("field-name").value,
-      description: document.getElementById("field-description").value,
-      layoutLink: document.getElementById("field-layout-link").value,
-      imgLink: document.getElementById("field-link-to-img").value,
+      author: document.getElementById("field-author").value,
+      date: document.getElementById("field-date").value,
       tags: document
         .getElementById("field-tags")
         .value.split(",")
         .map((tag) => tag.trim().replace(/^"|"$/g, "")),
-      skills: document
-        .getElementById("field-skills")
-        .value.split(",")
-        .map((skill) => skill.trim().replace(/^"|"$/g, "")),
-      liveLink: document.getElementById("field-link-to-live").value,
-      author: document.getElementById("field-author").value,
+      content: document.getElementById("field-content").value,
     };
 
     // console.log(data); // Проверка формата данных
