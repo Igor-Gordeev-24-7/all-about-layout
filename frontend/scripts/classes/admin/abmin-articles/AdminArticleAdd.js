@@ -32,14 +32,6 @@ class AdminArticleAdd {
       this.tagsArray,
       "field-tags"
     );
-    // Вызовы методов для Filtets id "filters-skills"
-    this.makeAdminLayoutAddSpanActive(this.selector, "filters-skills");
-    this.makeTextSpanChange(
-      this.selector,
-      "filters-skills",
-      this.skillsArray,
-      "field-skills"
-    );
   }
   //   Метод вызова методов добавления элементов
   initElements() {
