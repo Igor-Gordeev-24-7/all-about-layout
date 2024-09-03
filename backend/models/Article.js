@@ -13,7 +13,7 @@ const ArticleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tag: {
+  tags: {
     type: String,
     required: true,
   },

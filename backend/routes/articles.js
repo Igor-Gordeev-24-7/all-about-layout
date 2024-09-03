@@ -31,10 +31,10 @@ articlesRouter.delete("/articles/:id", async (req, res) => {
 // Маршрут для добавления новой записи
 articlesRouter.post("/articles", async (req, res) => {
   try {
-    const { name, author, date, tag, content } = req.body;
+    const { name, author, date, tags, content } = req.body;
 
     // Проверка на обязательные поля
-    if (!name || !author || !date || !tag || !content) {
+    if (!name || !author || !date || !tags || !content) {
       return res
         .status(400)
         .json({ error: "Некоторые обязательные поля не заполнены" });
@@ -45,7 +45,7 @@ articlesRouter.post("/articles", async (req, res) => {
       name,
       author,
       date,
-      tag,
+      tags,
       content,
     });
 
@@ -60,10 +60,10 @@ articlesRouter.post("/articles", async (req, res) => {
 // Маршрут для обновления записи по ID
 articlesRouter.put("/articles/:id", async (req, res) => {
   try {
-    const { name, author, date, tag, content } = req.body;
+    const { name, author, date, tags, content } = req.body;
 
     // Проверка на обязательные поля
-    if (!name || !author || !date || !tag || !content) {
+    if (!name || !author || !date || !tags || !content) {
       return res
         .status(400)
         .json({ error: "Некоторые обязательные поля не заполнены" });
@@ -76,7 +76,7 @@ articlesRouter.put("/articles/:id", async (req, res) => {
         name,
         author,
         date,
-        tag,
+        tags,
         content,
       },
       { new: true } // Возвращает обновленный документ
