@@ -410,10 +410,10 @@ class AdminMemberAdd {
 
   //   Метод сбора и отправки Layout на сервер
   handleSubmit() {
-    // const nameField = document.getElementById("field-name");
-    // const descriptionField = document.getElementById("field-description");
-    // const imgLinkField = document.getElementById("field-link-to-img");
-    // const tagsField = document.getElementById("field-tags");
+    const nameField = document.getElementById("field-name");
+    const descriptionField = document.getElementById("field-description");
+    const imgLinkField = document.getElementById("field-link-to-img");
+    const tagsField = document.getElementById("field-tags");
 
     // console.log(nameField, descriptionField, imgLinkField, tagsField); // Проверка наличия элементов
 

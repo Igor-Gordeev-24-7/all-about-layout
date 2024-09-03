@@ -4,13 +4,15 @@
 import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
 import LayoutContentRender from "./classes/LayoutContentRender.js";
 // Admin-Layout
-import AdminLayouts from "./classes/admin/admin-layout/AdminLayouts.js";
-import AdminLayoutEdit from "./classes/admin/admin-layout/AdminLayoutEdit.js";
-import AdminLayoutAdd from "./classes/admin/admin-layout/AdminLayoutAdd.js";
+import AdminLayouts from "./classes/admin/admin-layouts/AdminLayouts.js";
+import AdminLayoutEdit from "./classes/admin/admin-layouts/AdminLayoutEdit.js";
+import AdminLayoutAdd from "./classes/admin/admin-layouts/AdminLayoutAdd.js";
 
 // Article
 import ArticleContentRender from "./classes/ArticleContentRender.js";
 import ArticlesItemFilter from "./classes/ArticlesItemFilter.js";
+// Admin-Articles
+import AdminArticles from "./classes/admin/abmin-articles/AdminArticles.js";
 
 // Member
 import MembersCardRender from "./classes/MembersCardRender.js";
@@ -74,6 +76,13 @@ const articlesItemFilter = new ArticlesItemFilter(
 );
 const articleContentRender = new ArticleContentRender(
   ".article__wrapper",
+  dbRoutes,
+  port,
+  dbNameArticle
+);
+// Admin-Articles
+const adminArticles = new AdminArticles(
+  "admin-articles",
   dbRoutes,
   port,
   dbNameArticle
