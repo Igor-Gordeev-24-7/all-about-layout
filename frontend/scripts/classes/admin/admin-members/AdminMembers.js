@@ -177,7 +177,7 @@ class AdminMembers {
       );
       this.initMainElLink(
         this.selector,
-        "Перейти к Layouts",
+        "Перейти к Members",
         "https://www.all-about-layout.ru/members.html"
       );
       this.initMainElLink(

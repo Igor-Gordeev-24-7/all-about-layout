@@ -61,7 +61,7 @@ class AdminLayoutAdd {
     this.initMainElWrapper(this.selector);
 
     //   Метод добавления Heading
-    this.initMainElHeading(this.selector, "Добавление Layout");
+    this.initMainElHeading(this.selector, "Добавление Article");
 
     //   Метод добавления LinkBox
     this.initMainElLinkBox(this.selector);
@@ -69,7 +69,7 @@ class AdminLayoutAdd {
     //   Добавление ссылок
     this.initMainElLink(
       this.selector,
-      "Перейти к Layouts",
+      "Перейти к Article",
       "https://www.all-about-layout.ru/articles.html"
     );
     this.initMainElLink(

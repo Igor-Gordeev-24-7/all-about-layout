@@ -176,7 +176,7 @@ class AdminArticles {
       //   Метод добавления Wrapper
       this.initMainElWrapper(this.selector);
       //   Метод добавления Heading
-      this.initMainElHeading(this.selector, "Все доступные Layouts");
+      this.initMainElHeading(this.selector, "Все доступные Article");
       //   Метод добавления LinkBox
       this.initMainElLinkBox(this.selector);
       //  Добавление ссылок
@@ -187,7 +187,7 @@ class AdminArticles {
       );
       this.initMainElLink(
         this.selector,
-        "Перейти к Layouts",
+        "Перейти к Articles",
         "https://www.all-about-layout.ru/articles.html"
       );
       this.initMainElLink(
