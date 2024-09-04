@@ -10,12 +10,14 @@ class AdminArticleEdit {
     this.foundCard = null;
     this.tagsArray = [];
 
-    // Проверка на наличие селектора
+    // Проверка на наличие элемента
     if (!this.mainEl) {
-      console.warn(`Элемент с селектором ${this.selector} не найден.`);
+      console.warn(`Элемент с селектором "${selector}" не найден.`);
     } else {
-      //   this.callingMethods();
-      console.log(this.findItemById());
+      this.getItems().then(() => {
+        this.findItemById();
+        this.callingMethods();
+      });
     }
   }
 
@@ -107,7 +109,7 @@ class AdminArticleEdit {
     this.initMainElWrapper(this.selector);
 
     //   Метод добавления Heading
-    this.initMainElHeading(this.selector, "Добавление Article");
+    this.initMainElHeading(this.selector, "Изменение Article");
 
     //   Метод добавления LinkBox
     this.initMainElLinkBox(this.selector);
@@ -180,7 +182,7 @@ class AdminArticleEdit {
 
     // ----------------------------------
     //    Кнопка добавления записи
-    this.initMainElBtn(this.selector, "Загрузить Layout");
+    this.initMainElBtn(this.selector, "Загрузить изменения Article");
   }
 
   //   Метод добавления POPUP

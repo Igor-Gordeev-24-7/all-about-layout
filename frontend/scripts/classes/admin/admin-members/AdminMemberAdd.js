@@ -119,7 +119,7 @@ class AdminMemberAdd {
     // ----------------------------------
 
     //    Кнопка добавления записи
-    this.initMainElBtn(this.selector, "Загрузить Layout");
+    this.initMainElBtn(this.selector, "Загрузить Member");
   }
   //   Метод добавления POPUP
   //   В параметры передается id Popup и текст выводимый в нем и selector
@@ -408,7 +408,7 @@ class AdminMemberAdd {
     });
   }
 
-  //   Метод сбора и отправки Layout на сервер
+  //   Метод сбора и отправки Item на сервер
   handleSubmit() {
     const nameField = document.getElementById("field-name");
     const descriptionField = document.getElementById("field-description");

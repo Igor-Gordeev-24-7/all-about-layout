@@ -121,7 +121,7 @@ class AdminArticleAdd {
 
     // ----------------------------------
     //    Кнопка добавления записи
-    this.initMainElBtn(this.selector, "Загрузить Layout");
+    this.initMainElBtn(this.selector, "Загрузить Article");
   }
 
   //   Метод добавления POPUP
@@ -516,7 +516,7 @@ class AdminArticleAdd {
     });
   }
 
-  //   Метод сбора и отправки Layout на сервер
+  //   Метод сбора и отправки Item на сервер
   handleSubmit() {
     const data = {
       name: document.getElementById("field-name").value,
