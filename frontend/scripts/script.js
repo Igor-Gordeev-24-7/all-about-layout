@@ -14,6 +14,7 @@ import ArticlesItemFilter from "./classes/ArticlesItemFilter.js";
 // Admin-Articles
 import AdminArticles from "./classes/admin/abmin-articles/AdminArticles.js";
 import AdminArticleAdd from "./classes/admin/abmin-articles/AdminArticleAdd.js";
+import AdminArticleEdit from "./classes/admin/abmin-articles/AdminArticleEdit.js";
 
 // Member
 import MembersCardRender from "./classes/MembersCardRender.js";
@@ -90,6 +91,12 @@ const adminArticles = new AdminArticles(
 );
 const adminArticleAdd = new AdminArticleAdd(
   "admin-article-add",
+  dbRoutes,
+  port,
+  dbNameArticle
+);
+const adminArticleEdit = new AdminArticleEdit(
+  "admin-article-edit",
   dbRoutes,
   port,
   dbNameArticle

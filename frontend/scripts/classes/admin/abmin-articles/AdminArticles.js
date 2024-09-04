@@ -203,7 +203,7 @@ class AdminArticles {
       this.initMainElItem(
         this.selector,
         this.itemArray,
-        `https://www.all-about-layout.ru/admin-layout-edit.html?id=`
+        `https://www.all-about-layout.ru/admin-article-edit.html?id=`
       );
     } else {
       console.warn(`Элемент с селектором ${this.selector} не найден.`);
@@ -222,7 +222,7 @@ class AdminArticles {
     this.initMainElItem(
       this.selector,
       filteredItems,
-      `https://www.all-about-layout.ru/admin-layout-edit.html?id=`
+      `https://www.all-about-layout.ru/admin-article-edit.html?id=`
     );
   }
 }

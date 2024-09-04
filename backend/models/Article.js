@@ -13,11 +13,7 @@ const ArticleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tags: [
-    {
-      type: String,
-    },
-  ],
+  tags: [String], // Массив строк
   content: [
     {
       type: String,

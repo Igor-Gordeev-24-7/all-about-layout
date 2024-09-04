@@ -1,4 +1,4 @@
-class AdminLayoutEdit {
+class AdminArticleEdit {
   constructor(selector, dbRoutes, port, dbName) {
     this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
@@ -6,46 +6,19 @@ class AdminLayoutEdit {
     this.port = port;
     this.dbName = dbName;
 
+    // Необходимо создать переменную с массивом в зависимости от содержимого
     this.foundCard = null;
-    this.tagsArray = ["", "", "", "", "", ""];
-    this.skillsArray = [];
+    this.tagsArray = [];
 
-    // Проверка на наличие элемента
+    // Проверка на наличие селектора
     if (!this.mainEl) {
-      console.warn(`Элемент с селектором "${selector}" не найден.`);
+      console.warn(`Элемент с селектором ${this.selector} не найден.`);
     } else {
-      this.getItems().then(() => {
-        this.findItemById();
-        this.callingMethods();
-      });
+      //   this.callingMethods();
+      console.log(this.findItemById());
     }
   }
 
-  callingMethods() {
-    // Очистка this.selector
-    this.mainEl.innerHTML = "";
-
-    // Вызов метода добавления элементов
-    this.initElements();
-
-    // Вызов методов после завершения рендеринга
-    // Вызовы методов для Filtets id "filters-tags"
-    this.makeAdminLayoutAddSpanActive(this.selector, "filters-tags");
-    this.makeTextSpanChange(
-      this.selector,
-      "filters-tags",
-      this.tagsArray,
-      "field-tags"
-    );
-    // Вызовы методов для Filtets id "filters-skills"
-    this.makeAdminLayoutAddSpanActive(this.selector, "filters-skills");
-    this.makeTextSpanChange(
-      this.selector,
-      "filters-skills",
-      this.skillsArray,
-      "field-skills"
-    );
-  }
   // Метод получения элементов
   async getItems() {
     try {
@@ -78,10 +51,12 @@ class AdminLayoutEdit {
       if (this.itemArray) {
         // Получаем id
         const id = this.getId();
+        console.log(id);
 
         // Фильтруем массив по id,
         // Получаем нужную карточку
         const foundCard = this.itemArray.find((el) => el._id == id);
+        console.log(foundCard);
 
         if (foundCard) {
           this.foundCard = foundCard;
@@ -96,230 +71,118 @@ class AdminLayoutEdit {
       console.warn(`Элемент с селектором ${this.selector} не найден `);
     }
   }
+
+  callingMethods() {
+    // Очистка this.selector
+    this.mainEl.innerHTML = "";
+    this.initElements();
+    // Вызов методов после завершения рендеринга
+
+    // Вызовы методов для Filtets id "filters-tags"
+    this.makeAdminLayoutAddSpanActive(this.selector, "filters-tags");
+    this.makeTextSpanChange(
+      this.selector,
+      "filters-tags",
+      this.tagsArray,
+      "field-tags"
+    );
+  }
   //   Метод вызова методов добавления элементов
   initElements() {
-    if (this.mainEl) {
-      // Метод добавления popup
-      this.initMainElPopup(
-        "sending-error",
-        "Данные не отправлены",
-        this.selector
-      );
+    //   Метод добавления popup
+    this.initMainElPopup(
+      "sending-error",
+      "Данные не отправлены",
+      this.selector
+    );
 
-      // Метод добавления popup
-      this.initMainElPopup(
-        "successful-submission",
-        "Данные отправлены",
-        this.selector
-      );
+    //   Метод инициализации popup
+    this.initMainElPopup(
+      "successful-submission",
+      "Данные отправлены",
+      this.selector
+    );
 
-      //   Метод добавления Wrapper
-      this.initMainElWrapper(this.selector);
+    //   Метод добавления Wrapper
+    this.initMainElWrapper(this.selector);
 
-      if (this.foundCard) {
-        //   Метод добавления Heading
-        this.initMainElHeading(this.selector, this.foundCard.name);
+    //   Метод добавления Heading
+    this.initMainElHeading(this.selector, "Добавление Article");
 
-        //   Метод добавления LinkBox
-        this.initMainElLinkBox(this.selector);
+    //   Метод добавления LinkBox
+    this.initMainElLinkBox(this.selector);
 
-        //  Добавление ссылок
-        this.initMainElLink(
-          this.selector,
-          "Перейти к Layouts",
-          "https://www.all-about-layout.ru/layouts.html"
-        );
-        this.initMainElLink(
-          this.selector,
-          "Перейти к admin-layouts",
-          "https://www.all-about-layout.ru/admin-layouts.html"
-        );
-        this.initMainElLink(
-          this.selector,
-          "Перейти к admin-content",
-          "https://www.all-about-layout.ru/admin-content.html"
-        );
+    //   Добавление ссылок
+    this.initMainElLink(
+      this.selector,
+      "Перейти к Article",
+      "https://www.all-about-layout.ru/articles.html"
+    );
+    this.initMainElLink(
+      this.selector,
+      "Перейти к admin-articles",
+      "https://www.all-about-layout.ru/admin-articles.html"
+    );
+    this.initMainElLink(
+      this.selector,
+      "Перейти к admin-content",
+      "https://www.all-about-layout.ru/admin-content.html"
+    );
+    // ----------------------------------
+    //    Метод добавления Lable - Имя
+    // this.initMainElLabel(this.selector, "Имя", "field-name");
 
-        // ----------------------------------
-        //    Метод добавления Lable - Имя
-        this.initMainElLabel(this.selector, "Имя", "field-name");
+    // //    Метод добавления Input - Имя
+    // this.initMainElInput(this.selector, "field-name", this.foundCard.name);
 
-        //    Метод добавления Input - Имя
-        this.initMainElInput(this.selector, "field-name", this.foundCard.name);
+    // ----------------------------------
+    //    Метод добавления Lable - Автор
+    this.initMainElLabel(this.selector, "Автор", "field-author");
 
-        // ----------------------------------
-        //    Метод добавления Lable - Описание
-        this.initMainElLabel(this.selector, "Описание", "field-description");
+    //    Метод добавления Input - Автор
+    this.initMainElInput(this.selector, "field-author", this.foundCard.author);
 
-        //    Метод добавления Input - Описание
-        this.initMainElInput(
-          this.selector,
-          "field-description",
-          this.foundCard.description
-        );
+    // ----------------------------------
+    //    Метод добавления Lable - Автор
+    this.initMainElLabel(
+      this.selector,
+      "Дата - формат(дд.мм.гггг)",
+      "field-date"
+    );
 
-        // ----------------------------------
-        //    Метод добавления Lable - Ссылка на макет
-        this.initMainElLabel(
-          this.selector,
-          "Ссылка на макет",
-          "field-layout-link"
-        );
+    //    Метод добавления Input - Автор
+    this.initMainElInput(this.selector, "field-date", this.foundCard.date);
 
-        //    Метод добавления Input - Ссылка на макет
-        this.initMainElInput(
-          this.selector,
-          "field-layout-link",
-          this.foundCard.layoutLink
-        );
+    // ----------------------------------
+    //    Метод добавления Filters - Теги
+    this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
 
-        // ----------------------------------
-        //    Метод добавления Lable - Ссылка на изображение
-        this.initMainElLabel(
-          this.selector,
-          "Ссылка на изображение",
-          "field-link-to-img"
-        );
+    //    Метод добавления Container - Теги
+    this.initMainElContainer(this.selector, "filters-tags", "Теги:", [
+      "Не выбрано",
+      "HTML",
+      "CSS",
+      "JS",
+      "React",
+    ]);
 
-        //    Метод добавления Input - Ссылка на изображение
-        this.initMainElInput(
-          this.selector,
-          "field-link-to-img",
-          this.foundCard.imgLink
-        );
+    //    Метод добавления Input - в Filters
+    this.initmainElFiltersInput(this.selector, "filters-tags", "field-tags");
 
-        // ----------------------------------
-        //    Метод добавления Filters - Теги
-        this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
-        this.initMainElContainer(this.selector, "filters-tags", "Сложность:", [
-          "Не выбрано",
-          "Легкий",
-          "Средний",
-          "Сложный",
-        ]);
+    // ----------------------------------
+    //    Метод добавления ElementsPanel
 
-        //    Метод добавления Container - Теги
-        this.initMainElContainer(this.selector, "filters-tags", "Страницы:", [
-          "Не выбрано",
-          "Одностраничный",
-          "Многостраничный",
-        ]);
-        this.initMainElContainer(
-          this.selector,
-          "filters-tags",
-          "Наличие адаптива:",
-          ["Не выбрано", "С адаптивом", "Без адаптива"]
-        );
-        this.initMainElContainer(this.selector, "filters-tags", "Язык:", [
-          "Не выбрано",
-          "Русский",
-          "Английский",
-        ]);
-        this.initMainElContainer(
-          this.selector,
-          "filters-tags",
-          "Наличие превью:",
-          ["Не выбрано", "Есть", "Нет"]
-        );
-        this.initMainElContainer(this.selector, "filters-tags", "Тип макета:", [
-          "Не выбрано",
-          "Макет сайта",
-          "Макет письма",
-        ]);
+    this.initElementsPanel(
+      this.selector,
+      "element-panel",
+      this.foundCard.content
+    );
 
-        //    Метод добавления Input - в Filters
-        // selector, idParent, idInput, parameter
-        this.initmainElFiltersInput(
-          this.selector,
-          "filters-tags",
-          "field-tags",
-          this.foundCard.tags
-        );
-
-        // Поле применяемые навыки
-        this.initMainElFilters(
-          this.selector,
-          "filters-skills",
-          "Поле применяемые навыки"
-        );
-        this.initMainElContainer(
-          this.selector,
-          "filters-skills",
-          "Сетка (flex или grid):",
-          ["Не выбрано", "Сетка (flex или grid)"]
-        );
-        this.initMainElContainer(this.selector, "filters-skills", "Анимация:", [
-          "Не выбрано",
-          "Анимация",
-        ]);
-        this.initMainElContainer(
-          this.selector,
-          "filters-skills",
-          "Элементы формы:",
-          ["Не выбрано", "Элементы формы"]
-        );
-        this.initMainElContainer(
-          this.selector,
-          "filters-skills",
-          "Декоративные элементы:",
-          ["Не выбрано", "Декоративные элементы"]
-        );
-        this.initMainElContainer(
-          this.selector,
-          "filters-skills",
-          "Псевдоэлементы:",
-          ["Не выбрано", "Псевдоэлементы"]
-        );
-        this.initMainElContainer(
-          this.selector,
-          "filters-skills",
-          "Декоративный фон:",
-          ["Не выбрано", "Декоративный фон"]
-        );
-        this.initMainElContainer(this.selector, "filters-skills", "Слайдеры:", [
-          "Не выбрано",
-          "Слайдеры",
-        ]);
-        this.initMainElContainer(this.selector, "filters-skills", "Формы:", [
-          "Не выбрано",
-          "Формы",
-        ]);
-        // Добавление input в Filters
-        // selector, idParent, idInput, parameter
-        this.initmainElFiltersInput(
-          this.selector,
-          "filters-skills",
-          "field-skills",
-          this.foundCard.skills
-        );
-
-        // Поле Ссылка на живую версию
-        this.initMainElLabel(
-          this.selector,
-          "Ссылка на живую версию",
-          "field-link-to-live"
-        );
-        this.initMainElInput(
-          this.selector,
-          "field-link-to-live",
-          this.foundCard.linkToLive
-        );
-
-        // Поле Автор
-        this.initMainElLabel(this.selector, "Автор", "field-author");
-        this.initMainElInput(
-          this.selector,
-          "field-author",
-          this.foundCard.author
-        );
-
-        // // Кнопка добавления записи
-        this.initMainElBtn(this.selector, "Загрузить изменения Layout");
-      } else {
-        console.warn(`Элемент ${this.mainEl} не найден `);
-      }
-    }
+    // ----------------------------------
+    //    Кнопка добавления записи
+    this.initMainElBtn(this.selector, "Загрузить Layout");
   }
+
   //   Метод добавления POPUP
   //   В параметры передается id Popup и текст выводимый в нем и selector
   initMainElPopup(id, textContent, selector) {
@@ -341,12 +204,14 @@ class AdminLayoutEdit {
       mainElPopup.classList.remove("active");
     });
   }
+
   //   Метод добавления Wrapper
   initMainElWrapper(selector) {
     this.mainElWrapper = document.createElement("div");
     this.mainElWrapper.classList.add(`${selector}__wrapper`, "wrapper");
     this.mainEl.append(this.mainElWrapper);
   }
+
   //   Метод добавления Heading
   initMainElHeading(selector, textContent) {
     this.mainElHeading = document.createElement("h1");
@@ -354,20 +219,23 @@ class AdminLayoutEdit {
     this.mainElHeading.textContent = textContent;
     this.mainElWrapper.append(this.mainElHeading);
   }
+
   //   Метод добавления LinkBox
   initMainElLinkBox(selector) {
     this.mainElLinkBox = document.createElement("div");
     this.mainElLinkBox.className = `${selector}__link-box`;
     this.mainElWrapper.append(this.mainElLinkBox);
   }
+
   //   Метод добавления ссылки с переадными парамеитрами textContent - Текст ссылки, linkToPage ссылка на страницу
   initMainElLink(selector, textContent, link) {
-    this.mainElAddLink = document.createElement("a");
-    this.mainElAddLink.className = `${selector}__link`;
-    this.mainElAddLink.href = link;
-    this.mainElAddLink.textContent = textContent;
-    this.mainElLinkBox.append(this.mainElAddLink);
+    this.mainElLink = document.createElement("a");
+    this.mainElLink.className = `${selector}__link`;
+    this.mainElLink.href = link;
+    this.mainElLink.textContent = textContent;
+    this.mainElLinkBox.append(this.mainElLink);
   }
+
   //   Метод добавления Label, textContent - текст label, htmlFor - for для связи с id input
   initMainElLabel(selector, textContent, htmlFor) {
     this.mainElLable = document.createElement("label");
@@ -376,6 +244,7 @@ class AdminLayoutEdit {
     this.mainElLable.htmlFor = htmlFor;
     this.mainElWrapper.append(this.mainElLable);
   }
+
   //   Метод добавления Input, id - id для связи с lable и получения зачения для отпраки
   initMainElInput(selector, id, parameter) {
     this.mainElInput = document.createElement("input");
@@ -385,6 +254,7 @@ class AdminLayoutEdit {
     this.mainElInput.value = parameter;
     this.mainElWrapper.append(this.mainElInput);
   }
+
   //   Метод создает блок Filters и его содержимое. id - id элемента, title - описание элемента
   initMainElFilters(selector, id, title) {
     this.mainElFilters = document.createElement("div");
@@ -403,6 +273,7 @@ class AdminLayoutEdit {
     this.mainElFiltersContainers.className = `${selector}__containers`;
     this.mainElFilters.append(this.mainElFiltersContainers);
   }
+
   //  Метод создания элемента добавления элемента в массив элементов,
   //  Метод находит родительский контейнер на странице с помощью переданного id. Он ищет элемент с этим id и внутри него ищет дочерний элемент с классом ${selector}__containers.
   //  id - id Filters,
@@ -454,10 +325,10 @@ class AdminLayoutEdit {
       this.mainElItems.append(this.mainElItem);
     });
   }
+
   //  Метод добавления Input в Filters по idParent - id Filters,
   //  idInput - id input по которому из него буду получать данные
-  //  parameter - для отображения cоответствующей информации в input
-  initmainElFiltersInput(selector, idParent, idInput, parameter) {
+  initmainElFiltersInput(selector, idParent, idInput) {
     // Найти нужный контейнер по id
     const parentFilters = document.getElementById(idParent);
     if (!parentFilters) {
@@ -469,9 +340,104 @@ class AdminLayoutEdit {
     this.mainElFiltersInput.className = `${selector}__input`;
     this.mainElFiltersInput.id = idInput;
     this.mainElFiltersInput.type = "text";
-    this.mainElFiltersInput.value = parameter;
     this.mainElFilters.append(this.mainElFiltersInput);
   }
+
+  initPanelBtn(selector, btnText, html, insertField, parentEl) {
+    this.mainElPanelBtn = document.createElement("button");
+    this.mainElPanelBtn.className = `${selector}__panel-btn`;
+    this.mainElPanelBtn.textContent = btnText;
+
+    this.mainElPanelBtn.addEventListener("click", () => {
+      if (
+        insertField &&
+        (insertField.tagName === "TEXTAREA" ||
+          (insertField.tagName === "INPUT" && insertField.type === "text"))
+      ) {
+        const startPos = insertField.selectionStart;
+        const endPos = insertField.selectionEnd;
+
+        const beforeCursor = insertField.value.substring(0, startPos);
+        const afterCursor = insertField.value.substring(
+          endPos,
+          insertField.value.length
+        );
+
+        insertField.value = beforeCursor + html + afterCursor;
+
+        insertField.selectionStart = insertField.selectionEnd =
+          startPos + html.length;
+
+        insertField.scrollTop = insertField.scrollHeight;
+      } else {
+        console.error("Invalid insertField element provided.");
+      }
+    });
+
+    parentEl.append(this.mainElPanelBtn);
+  }
+
+  initElementsPanel(selector, idElementPanel, parameter) {
+    this.mainElPanel = document.createElement("div");
+    this.mainElPanel.className = `${selector}__panel`;
+    this.mainElPanel.id = idElementPanel;
+    this.mainElWrapper.append(this.mainElPanel);
+
+    this.mainElPanelBtns = document.createElement("div");
+    this.mainElPanelBtns.className = `${selector}__panel-btns`;
+    this.mainElPanel.append(this.mainElPanelBtns);
+
+    this.mainElPanelBtnsBox = document.createElement("div");
+    this.mainElPanelBtnsBox.className = `${selector}__panel-btns-box`;
+    this.mainElPanelBtns.append(this.mainElPanelBtnsBox);
+
+    this.mainElPanelCode = document.createElement("textarea");
+    this.mainElPanelCode.className = `${selector}__panel-code`;
+    this.mainElPanelCode.id = "field-content";
+    this.mainElPanelCode.value = parameter;
+
+    this.mainElPanelCode.addEventListener("input", () => {
+      this.mainElPanelViewing.innerHTML = this.mainElPanelCode.value;
+    });
+    this.mainElPanel.append(this.mainElPanelCode);
+
+    this.initPanelBtn(
+      this.selector,
+      "Добавить текст p",
+      `<p class="article__text">
+    ТЕКСТ
+  </p>
+  
+  `,
+      this.mainElPanelCode,
+      this.mainElPanelBtnsBox
+    );
+    this.initPanelBtn(
+      this.selector,
+      "Добавить жирный текст span",
+      `   <span class="article__text--bold">ТЕКСТ</span>`,
+      this.mainElPanelCode,
+      this.mainElPanelBtnsBox
+    );
+    this.initPanelBtn(
+      this.selector,
+      "Добавить код pre",
+      `<pre class="article__code">
+    <code class="language-javascript">
+      КОД
+    </code>
+  </pre>
+  
+  `,
+      this.mainElPanelCode,
+      this.mainElPanelBtnsBox
+    );
+
+    this.mainElPanelViewing = document.createElement("div");
+    this.mainElPanelViewing.className = `${selector}__panel-viewing`;
+    this.mainElPanel.append(this.mainElPanelViewing);
+  }
+
   //   Метод добавления кнопки отправки данных
   initMainElBtn(selector, textContent) {
     this.mainElBtn = document.createElement("button");
@@ -485,6 +451,7 @@ class AdminLayoutEdit {
       this.handleSubmit();
     });
   }
+
   // Метод устанавливает обработчики событий для элементов span, которые управляют отображением связанных элементов box. Вот что делает каждый его фрагмент:
   // id =  id соответствующего Filters
   makeAdminLayoutAddSpanActive(selector, id) {
@@ -533,10 +500,12 @@ class AdminLayoutEdit {
       });
     });
   }
+
   // Метод передачи массива в input
   passingArrayToInput(array, input) {
     input.value = array;
   }
+
   // Метод предназначен для изменения текста внутри элементов span и обновления соответствующего массива на основе кликов по элементам в списке.
   // Этот метод позволяет пользователю выбрать элемент из списка, после чего текст span обновляется, а данные сохраняются в массиве и передаются в input элемент для дальнейшего использования.
 
@@ -588,6 +557,7 @@ class AdminLayoutEdit {
       });
     });
   }
+
   // Метод активации popup
   makeActivePopup(id) {
     const mainElPopup = document.getElementById(id);
@@ -595,6 +565,7 @@ class AdminLayoutEdit {
       mainElPopup.classList.add("active");
     }
   }
+
   // Метод отчистки полей
   clearFormFields() {
     const inputArr = this.mainEl.querySelectorAll(`.${this.selector}__input`);
@@ -606,30 +577,25 @@ class AdminLayoutEdit {
       }
     });
   }
+
   //   Метод сбора и отправки Layout на сервер
   handleSubmit() {
     const id = this.getId(); // Получение id для обновления
     console.log(id);
     const data = {
       name: document.getElementById("field-name").value,
-      description: document.getElementById("field-description").value,
-      layoutLink: document.getElementById("field-layout-link").value,
-      imgLink: document.getElementById("field-link-to-img").value,
+      author: document.getElementById("field-author").value,
+      date: document.getElementById("field-date").value,
       tags: document
         .getElementById("field-tags")
         .value.split(",")
         .map((tag) => tag.trim().replace(/^"|"$/g, "")),
-      skills: document
-        .getElementById("field-skills")
-        .value.split(",")
-        .map((skill) => skill.trim().replace(/^"|"$/g, "")),
-      liveLink: document.getElementById("field-link-to-live").value,
-      author: document.getElementById("field-author").value,
+      content: document.getElementById("field-content").value,
     };
 
     // console.log(data); // Проверка формата данных
 
-    fetch(`${this.dbRoutes}${this.port}${this.dbName}/${id}`, {
+    fetch(`${this.dbRoutes}${this.port}${this.dbName}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -650,9 +616,9 @@ class AdminLayoutEdit {
         this.clearFormFields();
       })
       .catch((error) => {
-        console.error("Error:", error);
         this.makeActivePopup("sending-error");
       });
   }
 }
-export default AdminLayoutEdit;
+
+export default AdminArticleEdit;
