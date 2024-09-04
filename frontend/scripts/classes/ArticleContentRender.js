@@ -13,13 +13,13 @@ class ArticleContentRender {
 
     this.articleContent;
 
-    this.getArticleById()
-      .then(() => {
-        this.render();
-      })
-      .catch((error) => {
-        console.error("Не удалось получить карточку:", error);
-      });
+    // this.getArticleById()
+    //   .then(() => {
+    //     this.render();
+    //   })
+    //   .catch((error) => {
+    //     console.error("Не удалось получить карточку:", error);
+    //   });
   }
   getId() {
     // Получение текущего URL
@@ -37,7 +37,9 @@ class ArticleContentRender {
   async getArticleById() {
     try {
       const id = this.getId();
-      const response = await fetch(`${this.dbRoutes}${this.port}${this.dbName}`);
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}`
+      );
       const articleContent = await response.json();
 
       if (articleContent && articleContent.length > 0) {

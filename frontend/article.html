@@ -63,7 +63,7 @@
                     </div>
                   </div>
                   <div class="article__body">
-                    <div class="article__text">
+                    <p class="article__text">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Perferendis quae ea maiores quos eum quibusdam similique,
                       eveniet ipsum natus
@@ -72,20 +72,14 @@
                       architecto! Excepturi,
                       <a href="#" class="article__text--link">dicta</a> dicta
                       doloribus?
-                    </div>
+                    </p>
 
                     <h2 class="article__subheading">Заголовок статьи</h2>
 
                     <pre class="article__code">
-                      <code >
+                      <code class="language-javascript">
                         async getAllArticles() {
-                          try {
-                            const response = await fetch(`http://localhost:5001/articles`);
-                            const articlesArray = await response.json();
-                            this.articlesArray = articlesArray;
-                          } catch (error) {
-                            console.log("Не удалось получить статьи:", error);
-                          }
+
                         }
                         async getAllArticles() {
                           try {
@@ -107,7 +101,8 @@
                         }
                       </code>
                     </pre>
-                    <div class="article__text">
+
+                    <p class="article__text">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Perferendis quae ea maiores quos eum quibusdam similique,
                       eveniet ipsum natus
@@ -116,7 +111,7 @@
                       architecto! Excepturi,
                       <a href="#" class="article__text--link">dicta</a> dicta
                       doloribus?
-                    </div>
+                    </p>
                     <iframe
                       class="iframe"
                       height="400"
@@ -187,6 +182,14 @@
       src="https://cpwebassets.codepen.io/assets/embed/ei.js"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script type="module" src="./scripts/highlight.js"></script>
+    <script type="module">
+      import { highlightCodeBlocks } from "./scripts/highlight.js";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        highlightCodeBlocks("article__body");
+      });
+    </script>
 
     <script type="module" src="./scripts/script.js"></script>
   </body>

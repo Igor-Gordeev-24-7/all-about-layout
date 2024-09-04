@@ -13,16 +13,17 @@ const ArticleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tags: {
-    type: String,
-    required: true,
-  },
+  tags: [
+    {
+      type: String,
+    },
+  ],
   content: [
     {
       type: String,
       required: true,
     },
-  ]
+  ],
 });
 
 export default mongoose.model("Article", ArticleSchema);

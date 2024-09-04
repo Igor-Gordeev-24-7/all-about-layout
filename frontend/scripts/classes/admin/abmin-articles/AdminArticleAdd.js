@@ -8,7 +8,6 @@ class AdminArticleAdd {
 
     // Необходимо создать переменную с массивом в зависимости от содержимого
     this.tagsArray = [];
-    this.skillsArray = [];
 
     // Проверка на наличие селектора
     if (!this.mainEl) {
@@ -104,15 +103,21 @@ class AdminArticleAdd {
     this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
 
     //    Метод добавления Container - Теги
-    this.initMainElContainer(
-      this.selector,
-      "filters-tags",
-      "Направление статьи:",
-      ["Не выбрано", "HTML", "CSS", "JS", "React"]
-    );
+    this.initMainElContainer(this.selector, "filters-tags", "Теги:", [
+      "Не выбрано",
+      "HTML",
+      "CSS",
+      "JS",
+      "React",
+    ]);
 
     //    Метод добавления Input - в Filters
     this.initmainElFiltersInput(this.selector, "filters-tags", "field-tags");
+
+    // ----------------------------------
+    //    Метод добавления ElementsPanel
+
+    this.initElementsPanel(this.selector, "element-panel");
 
     // ----------------------------------
     //    Кнопка добавления записи
@@ -276,6 +281,99 @@ class AdminArticleAdd {
     this.mainElFiltersInput.id = idInput;
     this.mainElFiltersInput.type = "text";
     this.mainElFilters.append(this.mainElFiltersInput);
+  }
+
+  initPanelBtn(selector, btnText, html, insertField, parentEl) {
+    this.mainElPanelBtn = document.createElement("button");
+    this.mainElPanelBtn.className = `${selector}__panel-btn`;
+    this.mainElPanelBtn.textContent = btnText;
+
+    this.mainElPanelBtn.addEventListener("click", () => {
+      if (
+        insertField &&
+        (insertField.tagName === "TEXTAREA" ||
+          (insertField.tagName === "INPUT" && insertField.type === "text"))
+      ) {
+        const startPos = insertField.selectionStart;
+        const endPos = insertField.selectionEnd;
+
+        const beforeCursor = insertField.value.substring(0, startPos);
+        const afterCursor = insertField.value.substring(
+          endPos,
+          insertField.value.length
+        );
+
+        insertField.value = beforeCursor + html + afterCursor;
+
+        insertField.selectionStart = insertField.selectionEnd =
+          startPos + html.length;
+
+        insertField.scrollTop = insertField.scrollHeight;
+      } else {
+        console.error("Invalid insertField element provided.");
+      }
+    });
+
+    parentEl.append(this.mainElPanelBtn);
+  }
+
+  initElementsPanel(selector, idElementPanel) {
+    this.mainElPanel = document.createElement("div");
+    this.mainElPanel.className = `${selector}__panel`;
+    this.mainElPanel.id = idElementPanel;
+    this.mainElWrapper.append(this.mainElPanel);
+
+    this.mainElPanelBtns = document.createElement("div");
+    this.mainElPanelBtns.className = `${selector}__panel-btns`;
+    this.mainElPanel.append(this.mainElPanelBtns);
+
+    this.mainElPanelBtnsBox = document.createElement("div");
+    this.mainElPanelBtnsBox.className = `${selector}__panel-btns-box`;
+    this.mainElPanelBtns.append(this.mainElPanelBtnsBox);
+
+    this.mainElPanelCode = document.createElement("textarea");
+    this.mainElPanelCode.className = `${selector}__panel-code`;
+    this.mainElPanelCode.id = "field-content";
+    this.mainElPanelCode.addEventListener("input", () => {
+      this.mainElPanelViewing.innerHTML = this.mainElPanelCode.value;
+    });
+    this.mainElPanel.append(this.mainElPanelCode);
+
+    this.initPanelBtn(
+      this.selector,
+      "Добавить текст p",
+      `<p class="article__text">
+  ТЕКСТ
+</p>
+
+`,
+      this.mainElPanelCode,
+      this.mainElPanelBtnsBox
+    );
+    this.initPanelBtn(
+      this.selector,
+      "Добавить жирный текст span",
+      `   <span class="article__text--bold">ТЕКСТ</span>`,
+      this.mainElPanelCode,
+      this.mainElPanelBtnsBox
+    );
+    this.initPanelBtn(
+      this.selector,
+      "Добавить код pre",
+      `<pre class="article__code">
+  <code class="language-javascript">
+    КОД
+  </code>
+</pre>
+
+`,
+      this.mainElPanelCode,
+      this.mainElPanelBtnsBox
+    );
+
+    this.mainElPanelViewing = document.createElement("div");
+    this.mainElPanelViewing.className = `${selector}__panel-viewing`;
+    this.mainElPanel.append(this.mainElPanelViewing);
   }
 
   //   Метод добавления кнопки отправки данных
