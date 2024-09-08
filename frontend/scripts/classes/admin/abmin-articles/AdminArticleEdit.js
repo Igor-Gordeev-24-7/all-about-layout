@@ -132,10 +132,10 @@ class AdminArticleEdit {
     );
     // ----------------------------------
     //    Метод добавления Lable - Имя
-    // this.initMainElLabel(this.selector, "Имя", "field-name");
+    this.initMainElLabel(this.selector, "Имя", "field-name");
 
     // //    Метод добавления Input - Имя
-    // this.initMainElInput(this.selector, "field-name", this.foundCard.name);
+    this.initMainElInput(this.selector, "field-name", this.foundCard.name);
 
     // ----------------------------------
     //    Метод добавления Lable - Автор

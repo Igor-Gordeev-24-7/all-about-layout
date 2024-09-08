@@ -1,5 +1,8 @@
 // ИМПОРТЫ
 
+// Admin-Add
+import AdminItemAdd from "./classes/admin/admin-add/AdminItemAdd.js";
+
 // Layout
 import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
 import LayoutContentRender from "./classes/LayoutContentRender.js";
@@ -13,7 +16,7 @@ import ArticleContentRender from "./classes/ArticleContentRender.js";
 import ArticlesItemFilter from "./classes/ArticlesItemFilter.js";
 // Admin-Articles
 import AdminArticles from "./classes/admin/abmin-articles/AdminArticles.js";
-import AdminArticleAdd from "./classes/admin/abmin-articles/AdminArticleAdd.js";
+// import AdminArticleAdd from "./classes/admin/abmin-articles/AdminArticleAdd.js";
 import AdminArticleEdit from "./classes/admin/abmin-articles/AdminArticleEdit.js";
 
 // Member
@@ -89,12 +92,55 @@ const adminArticles = new AdminArticles(
   port,
   dbNameArticle
 );
-const adminArticleAdd = new AdminArticleAdd(
+
+const adminItemAdd = new AdminItemAdd(
   "admin-article-add",
   dbRoutes,
   port,
-  dbNameArticle
+  dbNameArticle,
+  [
+    { lableSpanTextContent: "Имя", id: "name" },
+    { lableSpanTextContent: "Автор", id: "author" },
+    { lableSpanTextContent: "Дата - формат(дд.мм.гггг)", id: "date" },
+  ],
+  [
+    {
+      textContent: "Перейти к Article",
+      link: "https://www.all-about-layout.ru/articles.html",
+    },
+    {
+      textContent: "Перейти к admin-articles",
+      link: "https://www.all-about-layout.ru/admin-articles.html",
+    },
+    {
+      textContent: "Перейти к admin-content",
+      link: "https://www.all-about-layout.ru/admin-content.html",
+    },
+  ],
+  {
+    selectorId: "selector-tags",
+    selectorTitle: "Поле тегов",
+    idInput: "tags",
+    containersArray: [
+      {
+        parentContainerId: "selector-tags",
+        containerDescription: "Теги:",
+        containerItemsArray: ["Не выбрано", "HTML", "CSS", "JS", "React"],
+      },
+      {
+        parentContainerId: "selector-tags",
+        containerDescription: "Виды:",
+        containerItemsArray: ["Не выбрано", "Виды1", "Виды2", "Виды3", "Виды4"],
+      },
+      {
+        parentContainerId: "selector-tags",
+        containerDescription: "Виды:",
+        containerItemsArray: ["Не выбрано", "Виды1", "Виды2", "Виды3", "Виды4"],
+      },
+    ],
+  }
 );
+
 const adminArticleEdit = new AdminArticleEdit(
   "admin-article-edit",
   dbRoutes,
@@ -129,9 +175,6 @@ const adminMembersEdit = new AdminMembersEdit(
   port,
   dbNameMembers
 );
-
-// Путь к файлу
-export const linkToLayouts = "http://127.0.0.1:5500/frontend/articles.html";
 
 document.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector(".header");
@@ -173,7 +216,7 @@ if (entranceFormEl) {
     if (loginValue == login && passValue == pass) {
       localStorage.setItem("isAuth", true);
       window.location.assign(
-        "http://127.0.0.1:5501/frontend/admin-content.html"
+        "https://www.all-about-layout.ru/admin-content.html"
       );
     } else {
       entranceErrorSpanEl.classList.add("active");

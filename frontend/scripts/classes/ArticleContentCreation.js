@@ -1,4 +1,3 @@
-import { linkToLayouts } from "../script.js";
 class ArticleContentCreation {
   constructor({ name, author, date, tag, content }) {
     this.name = name;
@@ -52,7 +51,7 @@ class ArticleContentCreation {
     this.articleLink = document.createElement("a");
     this.articleLink.className = "article__link-back";
     this.articleLink.textContent = "Вернуться в статьям";
-    this.articleLink.href = linkToLayouts;
+    // this.articleLink.href = linkToLayouts;
     this.articleWrapper.append(this.articleLink);
   }
 

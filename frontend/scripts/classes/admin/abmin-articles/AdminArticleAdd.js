@@ -1,13 +1,16 @@
 class AdminArticleAdd {
-  constructor(selector, dbRoutes, port, dbName) {
+  constructor(selector, dbRoutes, port, dbName, lableArray, linksArray) {
     this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
     this.dbRoutes = dbRoutes;
     this.port = port;
     this.dbName = dbName;
+    this.lableArray = lableArray;
+    this.linksArray = linksArray;
 
     // Необходимо создать переменную с массивом в зависимости от содержимого
     this.tagsArray = [];
+    this.foundCard = null;
 
     // Проверка на наличие селектора
     if (!this.mainEl) {
@@ -24,7 +27,7 @@ class AdminArticleAdd {
     // Вызов методов после завершения рендеринга
 
     // Вызовы методов для Filtets id "filters-tags"
-    this.makeAdminLayoutAddSpanActive(this.selector, "filters-tags");
+    this.makeSpanActive(this.selector, "filters-tags");
     this.makeTextSpanChange(
       this.selector,
       "filters-tags",
@@ -49,58 +52,51 @@ class AdminArticleAdd {
     );
 
     //   Метод добавления Wrapper
-    this.initMainElWrapper(this.selector);
+    this.initWrapper();
 
     //   Метод добавления Heading
     this.initMainElHeading(this.selector, "Добавление Article");
 
     //   Метод добавления LinkBox
-    this.initMainElLinkBox(this.selector);
+    this.initLinkBox();
 
     //   Добавление ссылок
-    this.initMainElLink(
-      this.selector,
-      "Перейти к Article",
-      "https://www.all-about-layout.ru/articles.html"
-    );
-    this.initMainElLink(
-      this.selector,
-      "Перейти к admin-articles",
-      "https://www.all-about-layout.ru/admin-articles.html"
-    );
-    this.initMainElLink(
-      this.selector,
-      "Перейти к admin-content",
-      "https://www.all-about-layout.ru/admin-content.html"
-    );
+    // this.initLink(
+    //   this.selector,
+    //   "Перейти к Article",
+    //   "https://www.all-about-layout.ru/articles.html"
+    // );
+    // this.initLink(
+    //   this.selector,
+    //   "Перейти к admin-articles",
+    //   "https://www.all-about-layout.ru/admin-articles.html"
+    // );
+    // this.initLink(
+    //   this.selector,
+    //   "Перейти к admin-content",
+    //   "https://www.all-about-layout.ru/admin-content.html"
+    // );
+
+    this.initMainElLabels(this.lableArray);
     // ----------------------------------
     //    Метод добавления Lable - Имя
-    this.initMainElLabel(this.selector, "Имя", "field-name");
-
-    //    Метод добавления Input - Имя
-    this.initMainElInput(this.selector, "field-name");
+    // this.initMainElLabel(this.selector, "Имя", "field-name");
 
     // ----------------------------------
     //    Метод добавления Lable - Автор
-    this.initMainElLabel(this.selector, "Автор", "field-author");
-
-    //    Метод добавления Input - Автор
-    this.initMainElInput(this.selector, "field-author");
+    // this.initMainElLabel(this.selector, "Автор", "field-author");
 
     // ----------------------------------
     //    Метод добавления Lable - Автор
-    this.initMainElLabel(
-      this.selector,
-      "Дата - формат(дд.мм.гггг)",
-      "field-date"
-    );
-
-    //    Метод добавления Input - Автор
-    this.initMainElInput(this.selector, "field-date");
+    // this.initMainElLabel(
+    //   this.selector,
+    //   "Дата - формат(дд.мм.гггг)",
+    //   "field-date"
+    // );
 
     // ----------------------------------
-    //    Метод добавления Filters - Теги
-    this.initMainElFilters(this.selector, "filters-tags", "Поле тегов");
+    //    Метод добавления Selector - Теги
+    this.initMainElSelector(this.selector, "filters-tags", "Поле тегов");
 
     //    Метод добавления Container - Теги
     this.initMainElContainer(this.selector, "filters-tags", "Теги:", [
@@ -126,18 +122,18 @@ class AdminArticleAdd {
 
   //   Метод добавления POPUP
   //   В параметры передается id Popup и текст выводимый в нем и selector
-  initMainElPopup(id, textContent, selector) {
+  initMainElPopup(id, textContent) {
     const mainElPopup = document.createElement("div");
     mainElPopup.id = id;
-    mainElPopup.className = `${selector}__popup`;
+    mainElPopup.className = `${this.selector}__popup`;
     this.mainEl.append(mainElPopup);
 
     const mainElPopupContent = document.createElement("div");
-    mainElPopupContent.className = `${selector}__popup-content`;
+    mainElPopupContent.className = `${this.selector}__popup-content`;
     mainElPopup.append(mainElPopupContent);
 
     const mainElPopupSpan = document.createElement("span");
-    mainElPopupSpan.className = `${selector}__popup-span`;
+    mainElPopupSpan.className = `${this.selector}__popup-span`;
     mainElPopupSpan.textContent = textContent;
     mainElPopupContent.append(mainElPopupSpan);
 
@@ -147,9 +143,9 @@ class AdminArticleAdd {
   }
 
   //   Метод добавления Wrapper
-  initMainElWrapper(selector) {
+  initWrapper() {
     this.mainElWrapper = document.createElement("div");
-    this.mainElWrapper.classList.add(`${selector}__wrapper`, "wrapper");
+    this.mainElWrapper.classList.add(`${this.selector}__wrapper`, "wrapper");
     this.mainEl.append(this.mainElWrapper);
   }
 
@@ -162,61 +158,79 @@ class AdminArticleAdd {
   }
 
   //   Метод добавления LinkBox
-  initMainElLinkBox(selector) {
-    this.mainElLinkBox = document.createElement("div");
-    this.mainElLinkBox.className = `${selector}__link-box`;
-    this.mainElWrapper.append(this.mainElLinkBox);
+  initLinkBox(selector) {
+    this.linkBox = document.createElement("div");
+    this.linkBox.className = `${selector}__link-box`;
+    this.Wrapper.append(this.linkBox);
+  }
+
+  //   Метод рендера ссылок из массива
+  initLinks(linksArray) {
+    linksArray.forEach((link) => {
+      this.initLink(link.textContent, link.link);
+    });
   }
 
   //   Метод добавления ссылки с переадными парамеитрами textContent - Текст ссылки, linkToPage ссылка на страницу
-  initMainElLink(selector, textContent, link) {
-    this.mainElLink = document.createElement("a");
-    this.mainElLink.className = `${selector}__link`;
-    this.mainElLink.href = link;
-    this.mainElLink.textContent = textContent;
-    this.mainElLinkBox.append(this.mainElLink);
+  initLink(textContent, link) {
+    this.link = document.createElement("a");
+    this.link.className = `${this.selector}__link`;
+    this.link.href = link;
+    this.link.textContent = textContent;
+    this.linkBox.append(this.link);
   }
 
-  //   Метод добавления Label, textContent - текст label, htmlFor - for для связи с id input
-  initMainElLabel(selector, textContent, htmlFor) {
+  //  Метод добавления Label,
+  //  textContent - текст label
+  //  htmlFor - for для связи с id input
+  // selector, lableSpanTextContent, id
+  initMainElLabels(lableArray) {
+    lableArray.forEach((lable) => {
+      this.initMainElLabel(lable.lableSpanTextContent, lable.id);
+    });
+  }
+  initMainElLabel(lableSpanTextContent, id) {
     this.mainElLable = document.createElement("label");
-    this.mainElLable.className = `${selector}__lable`;
-    this.mainElLable.textContent = textContent;
-    this.mainElLable.htmlFor = htmlFor;
+    this.mainElLable.className = `${this.selector}__lable`;
+    this.mainElLable.htmlFor = id;
     this.mainElWrapper.append(this.mainElLable);
-  }
 
-  //   Метод добавления Input, id - id для связи с lable и получения зачения для отпраки
-  initMainElInput(selector, id) {
+    this.lableSpan = document.createElement("span");
+    this.lableSpan.className = `${this.selector}__lable-span`;
+    this.lableSpan.textContent = lableSpanTextContent;
+    this.mainElLable.append(this.lableSpan);
+
     this.mainElInput = document.createElement("input");
-    this.mainElInput.className = `${selector}__input`;
+    this.mainElInput.className = `${this.selector}__input`;
     this.mainElInput.id = id;
     this.mainElInput.type = "text";
     this.mainElWrapper.append(this.mainElInput);
   }
 
-  //   Метод создает блок Filters и его содержимое. id - id элемента, title - описание элемента
-  initMainElFilters(selector, id, title) {
-    this.mainElFilters = document.createElement("div");
-    this.mainElFilters.className = `${selector}__filters`;
-    this.mainElFilters.id = id;
-    this.mainElWrapper.append(this.mainElFilters);
+  //   Метод создает блок Selector  и его содержимое. id - id элемента, title - описание элемента
+  initMainElSelector(selector, id, title) {
+    // Filters
+    this.mainElSelector = document.createElement("div");
+    this.mainElSelector.className = `${selector}__selector`;
+    this.mainElSelector.id = id;
+    this.mainElWrapper.append(this.mainElSelector);
 
-    // Создание FiltersHeading
-    this.mainElFiltersHeading = document.createElement("span");
-    this.mainElFiltersHeading.className = `${selector}__filters-heading`;
-    this.mainElFiltersHeading.textContent = title;
-    this.mainElFilters.append(this.mainElFiltersHeading);
+    // Создание InputItemsHeading
+    this.mainElSelectionBlockHeading = document.createElement("span");
+    this.mainElSelectionBlockHeading.className = `${selector}__selector-heading`;
+    this.mainElSelectionBlockHeading.textContent = title;
+    this.mainElSelector.append(this.mainElSelectionBlockHeading);
 
     // Создание Containers
-    this.mainElFiltersContainers = document.createElement("div");
-    this.mainElFiltersContainers.className = `${selector}__containers`;
-    this.mainElFilters.append(this.mainElFiltersContainers);
+    this.mainElInputItemsContainers = document.createElement("div");
+    this.mainElInputItemsContainers.className = `${selector}__containers`;
+    this.mainElSelector.append(this.mainElInputItemsContainers);
   }
 
   //  Метод создания элемента добавления элемента в массив элементов,
-  //  Метод находит родительский контейнер на странице с помощью переданного id. Он ищет элемент с этим id и внутри него ищет дочерний элемент с классом ${selector}__containers.
-  //  id - id Filters,
+  //  Метод находит родительский контейнер на странице с помощью переданного id.
+  //  Он ищет элемент с этим id и внутри него ищет дочерний элемент с классом ${selector}__containers.
+  //  id - id SelectionBlock,
   //  description - Название пункта,
   //  itemsArray - элементы для добавления в массив
   initMainElContainer(selector, id, description, itemsArray) {
@@ -280,7 +294,7 @@ class AdminArticleAdd {
     this.mainElFiltersInput.className = `${selector}__input`;
     this.mainElFiltersInput.id = idInput;
     this.mainElFiltersInput.type = "text";
-    this.mainElFilters.append(this.mainElFiltersInput);
+    this.mainElSelector.append(this.mainElFiltersInput);
   }
 
   initPanelBtn(selector, btnText, html, insertField, parentEl) {
@@ -392,7 +406,7 @@ class AdminArticleAdd {
 
   // Метод устанавливает обработчики событий для элементов span, которые управляют отображением связанных элементов box. Вот что делает каждый его фрагмент:
   // id =  id соответствующего Filters
-  makeAdminLayoutAddSpanActive(selector, id) {
+  makeSpanActive(selector, id) {
     // Получение додительского элемента по id
     const parentFilters = document.getElementById(id);
 

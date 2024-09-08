@@ -1,4 +1,4 @@
-// ADMIN-ARTICLE-ADD
+// ADMIN-ITEM-ADD
 .admin-article-add {
   padding: 30px 0px;
   position: relative;
@@ -150,7 +150,7 @@
     font-weight: 700;
     line-height: normal;
   }
-  &__box {
+  &__container-btn {
     min-width: 200px;
     position: relative;
     width: fit-content;
@@ -158,7 +158,7 @@
     flex-direction: column;
     align-items: start;
   }
-  &__span {
+  &__container-span {
     width: 100%;
     padding: 10px 15px;
     background: var(--grey-btns);
@@ -172,7 +172,7 @@
     transition: all 0.33s;
     cursor: pointer;
   }
-  &__items {
+  &__container-items {
     width: 100%;
     position: absolute;
     top: 46px;
@@ -185,11 +185,11 @@
     opacity: 0;
     transition: all 0.33s linear;
   }
-  &__box.active &__items {
+  &__container-btn.active &__container-items {
     transform: rotateX(0deg);
     opacity: 1;
   }
-  &__item {
+  &__container-item {
     width: fit-content;
     display: block;
     padding: 15px 20px;
@@ -202,7 +202,7 @@
     transition: all 0.33s;
     cursor: pointer;
   }
-  &__btn {
+  &__send-btn {
     display: block;
     padding: 15px 20px;
     border-radius: 10px;

@@ -16,6 +16,9 @@
 @import url(./resets.css);
 @import url(../accets/fonts/inter/inter.css);
 @import url(../accets/fonts/nextart/nextart.css);
+
+@import url(./Admin/admin-item-add.css);
+
 // Admin-Layout styles
 @import url(./Admin/AdminLayout/admin-layouts/admin-layouts.css);
 @import url(./Admin/AdminLayout/admin-layout-add/admin-layout-add.css);
@@ -28,7 +31,7 @@
 
 // Admin-Articles styles
 @import url(./Admin/Admin-Articles/admin-articles/admin-articles.css);
-@import url(./Admin/Admin-Articles/admin-article-add/admin-article-add.css);
+// @import url(./Admin/Admin-Articles/admin-article-add/admin-article-add.css);
 @import url(./Admin/Admin-Articles/admin-article-edit/admin-article-edit.css);
 
 // Стили отображения элементов кода
