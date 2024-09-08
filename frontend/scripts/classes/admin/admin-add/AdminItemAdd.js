@@ -196,7 +196,6 @@ class AdminItemAdd {
     containersArray,
     containerArrayInfo
   ) {
-    console.log(containerArrayInfo);
     containersArray.forEach((container) => {
       this.initContainer(
         selector,
@@ -394,7 +393,6 @@ class AdminItemAdd {
       console.error(`Контейнер с id ${id} не найден.`);
       return;
     }
-    console.log(1);
     // Получение spans,boxes по родительскому элементу
     const spans = parentFilters.querySelectorAll(
       `.${selector}__container-span`
