@@ -1,4 +1,4 @@
-class AdminItemAdd {
+class AdminItemEdit {
   constructor(
     selector,
     dbRoutes,
@@ -6,7 +6,8 @@ class AdminItemAdd {
     dbName,
     lableArray,
     linksArray,
-    containerArrayInfo
+    containerArrayInfo,
+    inputIdObject
   ) {
     this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
@@ -15,13 +16,82 @@ class AdminItemAdd {
     this.dbName = dbName;
     this.lableArray = lableArray;
     this.linksArray = linksArray;
+    this.inputIdObject = inputIdObject;
     this.containerArrayInfo = containerArrayInfo;
 
-    // Проверка на наличие селектора
+    this.foundCard = null;
+
+    this.itemArray = null;
+
     if (!this.mainEl) {
-      console.warn(`Элемент с селектором ${this.selector} не найден.`);
+      console.warn(`Элемент с селектором "${this.selector}" не найден.`);
     } else {
-      this.callingMethods();
+      this.getItems().then(() => {
+        this.findItemById();
+        this.callingMethods();
+      });
+    }
+
+    // Проверка на наличие селектора
+    // if (!this.mainEl) {
+    //   console.warn(`Элемент с селектором ${this.selector} не найден.`);
+    // } else {
+    //   this.callingMethods();
+    // }
+  }
+
+  // Метод получения элементов
+  async getItems() {
+    try {
+      const response = await fetch(
+        `${this.dbRoutes}${this.port}${this.dbName}`
+      );
+      const itemArray = await response.json();
+      this.itemArray = itemArray;
+    } catch (error) {
+      console.log("Не удалось получить элементы:", error);
+    }
+  }
+  // Метод получения id
+  getId() {
+    // Получение текущего URL
+    const currentUrl = window.location.href;
+    // Создание объекта URL с текущим URL
+    const url = new URL(currentUrl);
+    // Получение параметров запроса
+    const searchParams = new URLSearchParams(url.search);
+    // Извлечение значения параметра 'id'
+    const id = searchParams.get("id");
+    // Метод возвращает id
+    return id;
+  }
+  // Получение карточки из массива по id
+  async findItemById() {
+    if (this.mainEl) {
+      // Проверка на наличие массива элементов
+      if (this.itemArray) {
+        // Получаем id
+        const id = this.getId();
+        console.log(id);
+
+        // Фильтруем массив по id,
+        // Получаем нужную карточку
+        const foundCard = this.itemArray.find((el) => el._id == id);
+        console.log(foundCard);
+        console.log(this.itemArray);
+
+        if (foundCard) {
+          this.foundCard = foundCard;
+          console.log(this.foundCard);
+          console.log(this.foundCard.tags);
+        } else {
+          console.error("Карточка не найдена");
+        }
+      } else {
+        console.error("Массив элементов не загружен");
+      }
+    } else {
+      console.warn(`Элемент с селектором ${this.selector} не найден `);
     }
   }
 
@@ -56,7 +126,7 @@ class AdminItemAdd {
 
     // ----------------------------------
     //    Метод добавления ElementsPanel
-    this.initElementsPanel(this.selector, "element-panel");
+    this.initElementsPanel(this.selector, "element-panel", "content");
 
     // ----------------------------------
     //    Кнопка добавления записи
@@ -150,7 +220,8 @@ class AdminItemAdd {
     this.inputEl = document.createElement("input");
     this.inputEl.className = `${this.selector}__input`;
     this.inputEl.id = id;
-    this.inputEl.textContent = `${parameter}.${id}`;
+    this.inputEl.value = this.foundCard[id];
+    console.log(`${parameter}.${id}`);
     this.inputEl.type = "text";
     this.wrapperEl.append(this.inputEl);
   }
@@ -263,6 +334,7 @@ class AdminItemAdd {
       (`${selector}__selector-input`, `${selector}__input`);
     this.selectorInputEl.id = idInput;
     this.selectorInputEl.type = "text";
+    this.selectorInputEl.value = this.foundCard[idInput];
     this.selectorEl.append(this.selectorInputEl);
   }
 
@@ -307,7 +379,7 @@ class AdminItemAdd {
   }
 
   // Метод добавления ElementsPanel
-  initElementsPanel(selector, idElementPanel) {
+  initElementsPanel(selector, idElementPanel, textAreaId) {
     this.panelEl = document.createElement("div");
     this.panelEl.className = `${selector}__panel`;
     this.panelEl.id = idElementPanel;
@@ -323,7 +395,8 @@ class AdminItemAdd {
 
     this.panelCodeEl = document.createElement("textarea");
     this.panelCodeEl.className = `${selector}__panel-code`;
-    this.panelCodeEl.id = "content";
+    this.panelCodeEl.id = textAreaId;
+    this.panelCodeEl.value = this.foundCard[textAreaId];
     this.panelCodeEl.addEventListener("input", () => {
       this.panelViewingEl.innerHTML = this.panelCodeEl.value;
     });
@@ -333,10 +406,10 @@ class AdminItemAdd {
       this.selector,
       "Добавить текст p",
       `<p class="article__text">
-    ТЕКСТ
-  </p>
-  
-  `,
+      ТЕКСТ
+    </p>
+    
+    `,
       this.panelCodeEl,
       this.panelBtnsBoxEl
     );
@@ -351,12 +424,12 @@ class AdminItemAdd {
       this.selector,
       "Добавить код pre",
       `<pre class="article__code">
-    <code class="language-javascript">
-      КОД
-    </code>
-  </pre>
-  
-  `,
+      <code class="language-javascript">
+        КОД
+      </code>
+    </pre>
+    
+    `,
       this.panelCodeEl,
       this.panelBtnsBoxEl
     );
@@ -376,7 +449,7 @@ class AdminItemAdd {
     // Добавление обработчика события на кнопку
     this.sendBtnEl.addEventListener("click", (event) => {
       event.preventDefault();
-      this.handleSubmit();
+      this.handleSubmit(event);
     });
   }
 
@@ -512,6 +585,9 @@ class AdminItemAdd {
 
   //   Метод сбора и отправки Item на сервер
   handleSubmit() {
+    const id = this.getId(); // Получение id для обновления
+    console.log(id);
+
     const data = {};
 
     // Получаем все input и textarea элементы внутри основного элемента
@@ -531,10 +607,14 @@ class AdminItemAdd {
       }
     });
 
-    // console.log(data); // Проверка формата данных
+    console.log("Отправляемые данные:", data);
 
-    fetch(`${this.dbRoutes}${this.port}${this.dbName}`, {
-      method: "POST",
+    // Генерация корректного URL для PUT-запроса (например, с использованием ID элемента)
+    const url = `${this.dbRoutes}${this.port}${this.dbName}/${id}`;
+
+    // Отправка данных на сервер через PUT-запрос
+    fetch(url, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -549,14 +629,15 @@ class AdminItemAdd {
         return response.json();
       })
       .then((data) => {
-        console.log("Success:", data);
+        console.log("Успешный ответ от сервера:", data);
         this.makeActivePopup("successful-submission");
         this.clearFormFields();
       })
       .catch((error) => {
+        console.error("Ошибка:", error);
         this.makeActivePopup("sending-error");
       });
   }
 }
 
-export default AdminItemAdd;
+export default AdminItemEdit;

@@ -1,7 +1,15 @@
 // ИМПОРТЫ
 
+import {
+  articleLabelArray,
+  articleLinksArray,
+  articleContainerArrayInfo,
+} from "./classes/admin/parametrs.js";
+
 // Admin-Add
 import AdminItemAdd from "./classes/admin/admin-add/AdminItemAdd.js";
+// Admin-Edit
+import AdminItemEdit from "./classes/admin/admin-add/AdminItemEdit.js";
 
 // Layout
 import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
@@ -93,60 +101,34 @@ const adminArticles = new AdminArticles(
   dbNameArticle
 );
 
+// AdminArticleAdd
 const adminItemAdd = new AdminItemAdd(
   "admin-article-add",
   dbRoutes,
   port,
   dbNameArticle,
-  [
-    { lableSpanTextContent: "Имя", id: "name" },
-    { lableSpanTextContent: "Автор", id: "author" },
-    { lableSpanTextContent: "Дата - формат(дд.мм.гггг)", id: "date" },
-  ],
-  [
-    {
-      textContent: "Перейти к Article",
-      link: "https://www.all-about-layout.ru/articles.html",
-    },
-    {
-      textContent: "Перейти к admin-articles",
-      link: "https://www.all-about-layout.ru/admin-articles.html",
-    },
-    {
-      textContent: "Перейти к admin-content",
-      link: "https://www.all-about-layout.ru/admin-content.html",
-    },
-  ],
-  {
-    selectorId: "selector-tags",
-    selectorTitle: "Поле тегов",
-    idInput: "tags",
-    containersArray: [
-      {
-        parentContainerId: "selector-tags",
-        containerDescription: "Теги:",
-        containerItemsArray: ["Не выбрано", "HTML", "CSS", "JS", "React"],
-      },
-      {
-        parentContainerId: "selector-tags",
-        containerDescription: "Виды:",
-        containerItemsArray: ["Не выбрано", "Виды1", "Виды2", "Виды3", "Виды4"],
-      },
-      {
-        parentContainerId: "selector-tags",
-        containerDescription: "Виды:",
-        containerItemsArray: ["Не выбрано", "Виды1", "Виды2", "Виды3", "Виды4"],
-      },
-    ],
-  }
+  articleLabelArray,
+  articleLinksArray,
+  articleContainerArrayInfo
 );
 
-const adminArticleEdit = new AdminArticleEdit(
+// AdminArticleEdit
+const adminItemEdit = new AdminItemEdit(
   "admin-article-edit",
   dbRoutes,
   port,
-  dbNameArticle
+  dbNameArticle,
+  articleLabelArray,
+  articleLinksArray,
+  articleContainerArrayInfo
 );
+
+// const adminArticleEdit = new AdminArticleEdit(
+//   "admin-article-edit",
+//   dbRoutes,
+//   port,
+//   dbNameArticle
+// );
 
 // Member
 const membersCardRender = new MembersCardRender(
