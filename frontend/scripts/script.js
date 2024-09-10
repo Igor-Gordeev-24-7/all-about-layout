@@ -8,6 +8,10 @@ import {
   layoutLabelArray,
   layoutLinksArray,
   layoutSelectorArray,
+  memberItemsLinkArray,
+  memberLabelArray,
+  memberLinksArray,
+  memberSelectorArray,
 } from "./classes/admin/parametrs.js";
 
 // Admin-Items
@@ -20,10 +24,6 @@ import AdminItemEdit from "./classes/admin/AdminItemEdit.js";
 // Layout
 import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
 import LayoutContentRender from "./classes/LayoutContentRender.js";
-// Admin-Layout
-// import AdminLayouts from "./classes/admin/admin-layouts/AdminLayouts.js";
-import AdminLayoutEdit from "./classes/admin/admin-layouts/AdminLayoutEdit.js";
-import AdminLayoutAdd from "./classes/admin/admin-layouts/AdminLayoutAdd.js";
 
 // Article
 import ArticleContentRender from "./classes/ArticleContentRender.js";
@@ -32,12 +32,7 @@ import ArticlesItemFilter from "./classes/ArticlesItemFilter.js";
 // Member
 import MembersCardRender from "./classes/MembersCardRender.js";
 import MembersContentRender from "./classes/MembersContentRender.js";
-// Admin-Member
-import AdminMembers from "./classes/admin/admin-members/AdminMembers.js";
-import AdminMemberAdd from "./classes/admin/admin-members/AdminMemberAdd.js";
-import AdminMembersEdit from "./classes/admin/admin-members/AdminMemberEdit.js";
 
-// const dbRoutes = "https://79.174.86.232:";
 const dbRoutes = "https://79-174-86-232.cloudvps.regruhosting.ru:";
 const port = "443";
 const dbNameLayouts = "/layouts";
@@ -104,8 +99,36 @@ const adminLayoutEdit = new AdminItemEdit(
   port,
   dbNameLayouts,
   layoutLabelArray,
-  layoutLinksArray,
-  layoutSelectorArray
+  layoutLinksArray
+);
+
+// -------------------------------------
+// Admin-Member
+const adminMembers = new AdminItems(
+  "admin-members",
+  dbRoutes,
+  port,
+  dbNameMembers,
+  memberItemsLinkArray,
+  "admin-member-edit"
+);
+const adminMemberAdd = new AdminItemAdd(
+  "admin-member-add",
+  dbRoutes,
+  port,
+  dbNameMembers,
+  memberLabelArray,
+  memberLinksArray,
+  memberSelectorArray
+);
+const adminMembersEdit = new AdminItemEdit(
+  "admin-member-edit",
+  dbRoutes,
+  port,
+  dbNameMembers,
+  memberLabelArray,
+  memberLinksArray,
+  memberSelectorArray
 );
 
 // Layout
@@ -121,26 +144,6 @@ const layoutContentRender = new LayoutContentRender(
   port,
   dbNameLayouts
 );
-
-// Admin-Layout
-// const adminLayoutEdit = new AdminLayoutEdit(
-//   "admin-layout-edit",
-//   dbRoutes,
-//   port,
-//   dbNameLayouts
-// );
-// const adminLayouts = new AdminLayouts(
-//   "admin-layouts",
-//   dbRoutes,
-//   port,
-//   dbNameLayouts
-// );
-// const adminLayoutAdd = new AdminLayoutAdd(
-//   "admin-layout-add",
-//   dbRoutes,
-//   port,
-//   dbNameLayouts
-// );
 
 // Article
 const articlesItemFilter = new ArticlesItemFilter(
@@ -164,25 +167,6 @@ const membersCardRender = new MembersCardRender(
   dbNameMembers
 );
 const membersContentRender = new MembersContentRender(".member");
-// Admin-Member
-const adminMembers = new AdminMembers(
-  "admin-members",
-  dbRoutes,
-  port,
-  dbNameMembers
-);
-const adminMemberAdd = new AdminMemberAdd(
-  "admin-member-add",
-  dbRoutes,
-  port,
-  dbNameMembers
-);
-const adminMembersEdit = new AdminMembersEdit(
-  "admin-member-edit",
-  dbRoutes,
-  port,
-  dbNameMembers
-);
 
 document.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector(".header");

@@ -189,6 +189,7 @@ class AdminArticles {
         const linkEl = document.createElement("a");
         linkEl.className = `${selector}__box-link`;
         linkEl.href = `${linkToEditing}${el._id}`;
+        console.log(`${linkToEditing}${el._id}`);
         linkEl.textContent = "Редактировать";
         boxEl.append(linkEl);
 

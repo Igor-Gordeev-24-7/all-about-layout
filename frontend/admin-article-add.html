@@ -18,13 +18,11 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script type="module" src="./scripts/highlight.js"></script>
+    <script type="module" src="../scripts/highlight.js"></script>
     <script type="module">
-      import { highlightCodeBlocks } from "./scripts/highlight.js";
+      import { highlightCodeBlocks } from "../scripts/highlight.js";
       document.addEventListener("DOMContentLoaded", () => {
-        const panelCode = document.querySelector(
-          ".admin-article-add"
-        );
+        const panelCode = document.querySelector(".admin-article-add");
 
         if (!panelCode) {
           console.error(
@@ -38,7 +36,7 @@
         });
       });
     </script>
-    <script type="module" src="./scripts/checkAuth.js"></script>
-    <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="../scripts/checkAuth.js"></script>
+    <script type="module" src="../scripts/script.js"></script>
   </body>
 </html>

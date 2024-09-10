@@ -4,9 +4,6 @@
 @import url(../accets/fonts/nextart/nextart.css);
 @import url(./Admin/Admin-Item-Add-Edit/admin-item-add-edit.css);
 @import url(./Admin/Admin-Items/admin-items.css);
-@import url(./Admin/Admin-Members/admin-members/admin-members.css);
-@import url(./Admin/Admin-Members/admin-member-add/admin-member-add.css);
-@import url(./Admin/Admin-Members/admin-member-edit/admin-member-edit.css);
 :root {
   --grey: #5d7279;
   --grey-fonts: #cfcfcf;

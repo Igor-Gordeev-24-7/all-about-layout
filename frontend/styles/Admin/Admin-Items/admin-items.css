@@ -1,15 +1,18 @@
 .admin-articles,
-.admin-layouts {
+.admin-layouts,
+.admin-members {
   padding: 30px 0px;
 }
 .admin-articles__wrapper,
-.admin-layouts__wrapper {
+.admin-layouts__wrapper,
+.admin-members__wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 .admin-articles__heading,
-.admin-layouts__heading {
+.admin-layouts__heading,
+.admin-members__heading {
   color: var(--white);
   font-family: var(--inter);
   font-size: clamp(1.25rem, 1rem + 1.25vw, 2.5rem);
@@ -18,14 +21,16 @@
   line-height: normal;
 }
 .admin-articles__link-box,
-.admin-layouts__link-box {
+.admin-layouts__link-box,
+.admin-members__link-box {
   display: flex;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
 }
 .admin-articles__link,
-.admin-layouts__link {
+.admin-layouts__link,
+.admin-members__link {
   padding: 15px 20px;
   display: flex;
   flex-direction: column;
@@ -41,7 +46,8 @@
   line-height: normal;
 }
 .admin-articles__input,
-.admin-layouts__input {
+.admin-layouts__input,
+.admin-members__input {
   width: 100%;
   padding: 10px 15px;
   background-color: var(--dull-green);
@@ -52,33 +58,38 @@
   font-weight: 400;
   line-height: normal;
 }
-.admin-articles__input::-moz-placeholder, .admin-layouts__input::-moz-placeholder {
+.admin-articles__input::-moz-placeholder, .admin-layouts__input::-moz-placeholder, .admin-members__input::-moz-placeholder {
   width: 100%;
   color: var(--white);
 }
 .admin-articles__input::placeholder,
-.admin-layouts__input::placeholder {
+.admin-layouts__input::placeholder,
+.admin-members__input::placeholder {
   width: 100%;
   color: var(--white);
 }
 .admin-articles__input:focus,
-.admin-layouts__input:focus {
+.admin-layouts__input:focus,
+.admin-members__input:focus {
   outline: 2px dashed var(--white);
 }
 .admin-articles__list,
-.admin-layouts__list {
+.admin-layouts__list,
+.admin-members__list {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 .admin-articles__item,
-.admin-layouts__item {
+.admin-layouts__item,
+.admin-members__item {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 .admin-articles__span,
-.admin-layouts__span {
+.admin-layouts__span,
+.admin-members__span {
   color: var(--white);
   font-family: var(--inter);
   font-size: 16px;
@@ -87,13 +98,15 @@
   line-height: normal;
 }
 .admin-articles__box,
-.admin-layouts__box {
+.admin-layouts__box,
+.admin-members__box {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 .admin-articles__btn,
-.admin-layouts__btn {
+.admin-layouts__btn,
+.admin-members__btn {
   display: block;
   padding: 5px 10px;
   background-color: var(--dull-yellow);
@@ -107,7 +120,8 @@
   cursor: pointer;
 }
 .admin-articles__box-link,
-.admin-layouts__box-link {
+.admin-layouts__box-link,
+.admin-members__box-link {
   display: block;
   padding: 5px 10px;
   background-color: var(--dull-yellow);
@@ -121,7 +135,8 @@
   cursor: pointer;
 }
 .admin-articles__empty-message,
-.admin-layouts__empty-message {
+.admin-layouts__empty-message,
+.admin-members__empty-message {
   color: var(--white);
   font-family: var(--inter);
   font-size: 16px;

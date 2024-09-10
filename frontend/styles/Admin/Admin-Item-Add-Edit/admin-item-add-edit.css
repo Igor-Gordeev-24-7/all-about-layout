@@ -2,20 +2,26 @@
 .admin-article-add,
 .admin-article-edit,
 .admin-layout-add,
-.admin-layout-edit {
+.admin-layout-edit,
+.admin-member-add,
+.admin-member-edit {
   padding: 30px 0px;
   position: relative;
 }
 .admin-article-add__popup,
 .admin-article-edit__popup,
 .admin-layout-add__popup,
-.admin-layout-edit__popup {
+.admin-layout-edit__popup,
+.admin-member-add__popup,
+.admin-member-edit__popup {
   display: none;
 }
 .admin-article-add__popup.active,
 .admin-article-edit__popup.active,
 .admin-layout-add__popup.active,
-.admin-layout-edit__popup.active {
+.admin-layout-edit__popup.active,
+.admin-member-add__popup.active,
+.admin-member-edit__popup.active {
   position: fixed;
   top: 0;
   left: 0;
@@ -30,13 +36,17 @@
 .admin-article-add__popup.active body,
 .admin-article-edit__popup.active body,
 .admin-layout-add__popup.active body,
-.admin-layout-edit__popup.active body {
+.admin-layout-edit__popup.active body,
+.admin-member-add__popup.active body,
+.admin-member-edit__popup.active body {
   overflow: hidden;
 }
 .admin-article-add__popup-content,
 .admin-article-edit__popup-content,
 .admin-layout-add__popup-content,
-.admin-layout-edit__popup-content {
+.admin-layout-edit__popup-content,
+.admin-member-add__popup-content,
+.admin-member-edit__popup-content {
   width: 300px;
   height: 300px;
   display: flex;
@@ -48,7 +58,9 @@
 .admin-article-add__popup-span,
 .admin-article-edit__popup-span,
 .admin-layout-add__popup-span,
-.admin-layout-edit__popup-span {
+.admin-layout-edit__popup-span,
+.admin-member-add__popup-span,
+.admin-member-edit__popup-span {
   color: var(--white);
   font-family: var(--inter);
   font-size: 22px;
@@ -59,7 +71,9 @@
 .admin-article-add__wrapper,
 .admin-article-edit__wrapper,
 .admin-layout-add__wrapper,
-.admin-layout-edit__wrapper {
+.admin-layout-edit__wrapper,
+.admin-member-add__wrapper,
+.admin-member-edit__wrapper {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -68,7 +82,9 @@
 .admin-article-add__heading,
 .admin-article-edit__heading,
 .admin-layout-add__heading,
-.admin-layout-edit__heading {
+.admin-layout-edit__heading,
+.admin-member-add__heading,
+.admin-member-edit__heading {
   margin-bottom: 15px;
   color: var(--white);
   font-family: var(--inter);
@@ -80,7 +96,9 @@
 .admin-article-add__link-box,
 .admin-article-edit__link-box,
 .admin-layout-add__link-box,
-.admin-layout-edit__link-box {
+.admin-layout-edit__link-box,
+.admin-member-add__link-box,
+.admin-member-edit__link-box {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -89,7 +107,9 @@
 .admin-article-add__link,
 .admin-article-edit__link,
 .admin-layout-add__link,
-.admin-layout-edit__link {
+.admin-layout-edit__link,
+.admin-member-add__link,
+.admin-member-edit__link {
   padding: 15px 20px;
   display: flex;
   flex-direction: column;
@@ -107,7 +127,9 @@
 .admin-article-add__lable,
 .admin-article-edit__lable,
 .admin-layout-add__lable,
-.admin-layout-edit__lable {
+.admin-layout-edit__lable,
+.admin-member-add__lable,
+.admin-member-edit__lable {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -123,7 +145,9 @@
 .admin-article-add__input,
 .admin-article-edit__input,
 .admin-layout-add__input,
-.admin-layout-edit__input {
+.admin-layout-edit__input,
+.admin-member-add__input,
+.admin-member-edit__input {
   width: 100%;
   padding: 10px 15px;
   background-color: var(--dull-green);
@@ -134,27 +158,33 @@
   font-weight: 400;
   line-height: normal;
 }
-.admin-article-add__input::-moz-placeholder, .admin-article-edit__input::-moz-placeholder, .admin-layout-add__input::-moz-placeholder, .admin-layout-edit__input::-moz-placeholder {
+.admin-article-add__input::-moz-placeholder, .admin-article-edit__input::-moz-placeholder, .admin-layout-add__input::-moz-placeholder, .admin-layout-edit__input::-moz-placeholder, .admin-member-add__input::-moz-placeholder, .admin-member-edit__input::-moz-placeholder {
   width: 100%;
   color: var(--white);
 }
 .admin-article-add__input::placeholder,
 .admin-article-edit__input::placeholder,
 .admin-layout-add__input::placeholder,
-.admin-layout-edit__input::placeholder {
+.admin-layout-edit__input::placeholder,
+.admin-member-add__input::placeholder,
+.admin-member-edit__input::placeholder {
   width: 100%;
   color: var(--white);
 }
 .admin-article-add__input:focus,
 .admin-article-edit__input:focus,
 .admin-layout-add__input:focus,
-.admin-layout-edit__input:focus {
+.admin-layout-edit__input:focus,
+.admin-member-add__input:focus,
+.admin-member-edit__input:focus {
   outline: 2px dashed var(--white);
 }
 .admin-article-add__selector,
 .admin-article-edit__selector,
 .admin-layout-add__selector,
-.admin-layout-edit__selector {
+.admin-layout-edit__selector,
+.admin-member-add__selector,
+.admin-member-edit__selector {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -164,7 +194,9 @@
 .admin-article-add__selector,
 .admin-article-edit__selector,
 .admin-layout-add__selector,
-.admin-layout-edit__selector {
+.admin-layout-edit__selector,
+.admin-member-add__selector,
+.admin-member-edit__selector {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -174,7 +206,9 @@
 .admin-article-add__selector-heading,
 .admin-article-edit__selector-heading,
 .admin-layout-add__selector-heading,
-.admin-layout-edit__selector-heading {
+.admin-layout-edit__selector-heading,
+.admin-member-add__selector-heading,
+.admin-member-edit__selector-heading {
   display: block;
   color: var(--white);
   font-family: var(--inter);
@@ -186,7 +220,9 @@
 .admin-article-add__containers,
 .admin-article-edit__containers,
 .admin-layout-add__containers,
-.admin-layout-edit__containers {
+.admin-layout-edit__containers,
+.admin-member-add__containers,
+.admin-member-edit__containers {
   width: 100%;
   display: flex;
   align-items: center;
@@ -196,7 +232,9 @@
 .admin-article-add__container,
 .admin-article-edit__container,
 .admin-layout-add__container,
-.admin-layout-edit__container {
+.admin-layout-edit__container,
+.admin-member-add__container,
+.admin-member-edit__container {
   width: -moz-fit-content;
   width: fit-content;
   display: flex;
@@ -207,7 +245,9 @@
 .admin-article-add__container-description,
 .admin-article-edit__container-description,
 .admin-layout-add__container-description,
-.admin-layout-edit__container-description {
+.admin-layout-edit__container-description,
+.admin-member-add__container-description,
+.admin-member-edit__container-description {
   display: block;
   color: var(--white);
   font-family: var(--inter);
@@ -219,7 +259,9 @@
 .admin-article-add__container-btn,
 .admin-article-edit__container-btn,
 .admin-layout-add__container-btn,
-.admin-layout-edit__container-btn {
+.admin-layout-edit__container-btn,
+.admin-member-add__container-btn,
+.admin-member-edit__container-btn {
   min-width: 200px;
   position: relative;
   width: -moz-fit-content;
@@ -231,7 +273,9 @@
 .admin-article-add__container-span,
 .admin-article-edit__container-span,
 .admin-layout-add__container-span,
-.admin-layout-edit__container-span {
+.admin-layout-edit__container-span,
+.admin-member-add__container-span,
+.admin-member-edit__container-span {
   width: 100%;
   padding: 10px 15px;
   background: var(--grey-btns);
@@ -248,7 +292,9 @@
 .admin-article-add__container-items,
 .admin-article-edit__container-items,
 .admin-layout-add__container-items,
-.admin-layout-edit__container-items {
+.admin-layout-edit__container-items,
+.admin-member-add__container-items,
+.admin-member-edit__container-items {
   width: 100%;
   position: absolute;
   top: 46px;
@@ -265,25 +311,47 @@
 .admin-article-add__container-btn.active .admin-article-edit__container-items,
 .admin-article-add__container-btn.active .admin-layout-add__container-items,
 .admin-article-add__container-btn.active .admin-layout-edit__container-items,
+.admin-article-add__container-btn.active .admin-member-add__container-items,
+.admin-article-add__container-btn.active .admin-member-edit__container-items,
 .admin-article-edit__container-btn.active .admin-article-add__container-items,
 .admin-article-edit__container-btn.active .admin-article-edit__container-items,
 .admin-article-edit__container-btn.active .admin-layout-add__container-items,
 .admin-article-edit__container-btn.active .admin-layout-edit__container-items,
+.admin-article-edit__container-btn.active .admin-member-add__container-items,
+.admin-article-edit__container-btn.active .admin-member-edit__container-items,
 .admin-layout-add__container-btn.active .admin-article-add__container-items,
 .admin-layout-add__container-btn.active .admin-article-edit__container-items,
 .admin-layout-add__container-btn.active .admin-layout-add__container-items,
 .admin-layout-add__container-btn.active .admin-layout-edit__container-items,
+.admin-layout-add__container-btn.active .admin-member-add__container-items,
+.admin-layout-add__container-btn.active .admin-member-edit__container-items,
 .admin-layout-edit__container-btn.active .admin-article-add__container-items,
 .admin-layout-edit__container-btn.active .admin-article-edit__container-items,
 .admin-layout-edit__container-btn.active .admin-layout-add__container-items,
-.admin-layout-edit__container-btn.active .admin-layout-edit__container-items {
+.admin-layout-edit__container-btn.active .admin-layout-edit__container-items,
+.admin-layout-edit__container-btn.active .admin-member-add__container-items,
+.admin-layout-edit__container-btn.active .admin-member-edit__container-items,
+.admin-member-add__container-btn.active .admin-article-add__container-items,
+.admin-member-add__container-btn.active .admin-article-edit__container-items,
+.admin-member-add__container-btn.active .admin-layout-add__container-items,
+.admin-member-add__container-btn.active .admin-layout-edit__container-items,
+.admin-member-add__container-btn.active .admin-member-add__container-items,
+.admin-member-add__container-btn.active .admin-member-edit__container-items,
+.admin-member-edit__container-btn.active .admin-article-add__container-items,
+.admin-member-edit__container-btn.active .admin-article-edit__container-items,
+.admin-member-edit__container-btn.active .admin-layout-add__container-items,
+.admin-member-edit__container-btn.active .admin-layout-edit__container-items,
+.admin-member-edit__container-btn.active .admin-member-add__container-items,
+.admin-member-edit__container-btn.active .admin-member-edit__container-items {
   transform: rotateX(0deg);
   opacity: 1;
 }
 .admin-article-add__container-item,
 .admin-article-edit__container-item,
 .admin-layout-add__container-item,
-.admin-layout-edit__container-item {
+.admin-layout-edit__container-item,
+.admin-member-add__container-item,
+.admin-member-edit__container-item {
   width: -moz-fit-content;
   width: fit-content;
   display: block;
@@ -300,7 +368,9 @@
 .admin-article-add__send-btn,
 .admin-article-edit__send-btn,
 .admin-layout-add__send-btn,
-.admin-layout-edit__send-btn {
+.admin-layout-edit__send-btn,
+.admin-member-add__send-btn,
+.admin-member-edit__send-btn {
   display: block;
   padding: 15px 20px;
   border-radius: 10px;
@@ -316,7 +386,9 @@
 .admin-article-add__panel,
 .admin-article-edit__panel,
 .admin-layout-add__panel,
-.admin-layout-edit__panel {
+.admin-layout-edit__panel,
+.admin-member-add__panel,
+.admin-member-edit__panel {
   padding-bottom: 30px;
   width: 100%;
   min-height: 1000px;
@@ -330,7 +402,9 @@
 .admin-article-add__panel-btns,
 .admin-article-edit__panel-btns,
 .admin-layout-add__panel-btns,
-.admin-layout-edit__panel-btns {
+.admin-layout-edit__panel-btns,
+.admin-member-add__panel-btns,
+.admin-member-edit__panel-btns {
   position: relative;
   top: 0;
   display: flex;
@@ -341,7 +415,9 @@
 .admin-article-add__panel-btns-box,
 .admin-article-edit__panel-btns-box,
 .admin-layout-add__panel-btns-box,
-.admin-layout-edit__panel-btns-box {
+.admin-layout-edit__panel-btns-box,
+.admin-member-add__panel-btns-box,
+.admin-member-edit__panel-btns-box {
   width: 100%;
   position: sticky; /* Делаем позицию sticky */
   top: 0; /* Привязываем к верху экрана */
@@ -353,7 +429,9 @@
 .admin-article-add__panel-btn,
 .admin-article-edit__panel-btn,
 .admin-layout-add__panel-btn,
-.admin-layout-edit__panel-btn {
+.admin-layout-edit__panel-btn,
+.admin-member-add__panel-btn,
+.admin-member-edit__panel-btn {
   width: 100%;
   display: block;
   padding: 10px 15px;
@@ -370,7 +448,9 @@
 .admin-article-add__panel-code,
 .admin-article-edit__panel-code,
 .admin-layout-add__panel-code,
-.admin-layout-edit__panel-code {
+.admin-layout-edit__panel-code,
+.admin-member-add__panel-code,
+.admin-member-edit__panel-code {
   width: 100%;
   height: 100%;
   padding: 10px 15px;
@@ -382,21 +462,25 @@
   font-weight: 400;
   line-height: normal;
 }
-.admin-article-add__panel-code::-moz-placeholder, .admin-article-edit__panel-code::-moz-placeholder, .admin-layout-add__panel-code::-moz-placeholder, .admin-layout-edit__panel-code::-moz-placeholder {
+.admin-article-add__panel-code::-moz-placeholder, .admin-article-edit__panel-code::-moz-placeholder, .admin-layout-add__panel-code::-moz-placeholder, .admin-layout-edit__panel-code::-moz-placeholder, .admin-member-add__panel-code::-moz-placeholder, .admin-member-edit__panel-code::-moz-placeholder {
   width: 100%;
   color: var(--white);
 }
 .admin-article-add__panel-code::placeholder,
 .admin-article-edit__panel-code::placeholder,
 .admin-layout-add__panel-code::placeholder,
-.admin-layout-edit__panel-code::placeholder {
+.admin-layout-edit__panel-code::placeholder,
+.admin-member-add__panel-code::placeholder,
+.admin-member-edit__panel-code::placeholder {
   width: 100%;
   color: var(--white);
 }
 .admin-article-add__panel-viewing,
 .admin-article-edit__panel-viewing,
 .admin-layout-add__panel-viewing,
-.admin-layout-edit__panel-viewing {
+.admin-layout-edit__panel-viewing,
+.admin-member-add__panel-viewing,
+.admin-member-edit__panel-viewing {
   font-size: 10px;
   padding: 15px;
   border-radius: 5px;

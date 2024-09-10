@@ -1,3 +1,4 @@
+// -------------------------------------
 // Article Items
 export const articleItemsLinkArray = [
   {
@@ -13,14 +14,12 @@ export const articleItemsLinkArray = [
     link: "https://www.all-about-layout.ru/admin-content.html",
   },
 ];
-
 // Article Add - Edit
 export const articleLabelArray = [
   { lableSpanTextContent: "Имя", id: "name" },
   { lableSpanTextContent: "Автор", id: "author" },
   { lableSpanTextContent: "Дата - формат(дд.мм.гггг)", id: "date" },
 ];
-
 export const articleLinksArray = [
   {
     textContent: "Перейти к Article",
@@ -35,7 +34,6 @@ export const articleLinksArray = [
     link: "https://www.all-about-layout.ru/admin-content.html",
   },
 ];
-
 export const articleSelectorArray = [
   {
     selectorId: "selector-tags",
@@ -60,8 +58,8 @@ export const articleSelectorArray = [
     ],
   },
 ];
-
 // -------------------------------------
+// Layout Items
 export const layoutItemsLinkArray = [
   {
     textContent: "Добавить запись",
@@ -85,7 +83,6 @@ export const layoutLabelArray = [
   { lableSpanTextContent: "Ссылка на живую версию", id: "linkToLive" },
   { lableSpanTextContent: "Автор", id: "author" },
 ];
-
 export const layoutLinksArray = [
   {
     textContent: "Перейти к Layouts",
@@ -176,6 +173,61 @@ export const layoutSelectorArray = [
         parentContainerId: "selector-skills",
         containerDescription: "Формы:",
         containerItemsArray: ["Не выбрано", "Формы"],
+      },
+    ],
+  },
+];
+// -------------------------------------
+// Member Items
+export const memberItemsLinkArray = [
+  {
+    textContent: "Добавить запись",
+    link: "https://www.all-about-layout.ru/admin-member-add.html",
+  },
+  {
+    textContent: "Перейти к Members",
+    link: "https://www.all-about-layout.ru/members.html",
+  },
+  {
+    textContent: "Перейти к admin-content",
+    link: "https://www.all-about-layout.ru/admin-content.html",
+  },
+];
+// Member Add - Edit
+export const memberLabelArray = [
+  { lableSpanTextContent: "Имя", id: "name" },
+  { lableSpanTextContent: "Описание", id: "description" },
+  { lableSpanTextContent: "Ссылка на изображение", id: "imgLink" },
+];
+export const memberLinksArray = [
+  {
+    textContent: "Перейти к Members",
+    link: "https://www.all-about-layout.ru/members.html",
+  },
+  {
+    textContent: "Перейти к admin-members",
+    link: "https://www.all-about-layout.ru/admin-members.html",
+  },
+  {
+    textContent: "Перейти к admin-content",
+    link: "https://www.all-about-layout.ru/admin-content.html",
+  },
+];
+export const memberSelectorArray = [
+  {
+    selectorId: "selector-tags",
+    selectorTitle: "Поле тегов",
+    idInput: "tags",
+    containersArray: [
+      {
+        parentContainerId: "selector-tags",
+        containerDescription: "Уровень навыков:",
+        containerItemsArray: ["Не выбрано", "Эксперт"],
+      },
+      {
+        parentContainerId: "selector-tags",
+        containerDescription: "Кем является:",
+        containerItemsArray: ["Не выбрано", "Автор"],
       },
     ],
   },

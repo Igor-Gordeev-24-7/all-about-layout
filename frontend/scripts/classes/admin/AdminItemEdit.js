@@ -63,18 +63,12 @@ class AdminItemEdit {
       if (this.itemArray) {
         // Получаем id
         const id = this.getId();
-        console.log(id);
-
         // Фильтруем массив по id,
         // Получаем нужную карточку
         const foundCard = this.itemArray.find((el) => el._id == id);
-        console.log(foundCard);
-        console.log(this.itemArray);
 
         if (foundCard) {
           this.foundCard = foundCard;
-          console.log(this.foundCard);
-          console.log(this.foundCard.tags);
         } else {
           console.error("Карточка не найдена");
         }
@@ -216,7 +210,6 @@ class AdminItemEdit {
     this.inputEl.className = `${this.selector}__input`;
     this.inputEl.id = id;
     this.inputEl.value = this.foundCard[id];
-    console.log(`${parameter}.${id}`);
     this.inputEl.type = "text";
     this.wrapperEl.append(this.inputEl);
   }
