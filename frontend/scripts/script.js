@@ -1,31 +1,33 @@
 // ИМПОРТЫ
-
 import {
+  articleItemsLinkArray,
   articleLabelArray,
   articleLinksArray,
-  articleContainerArrayInfo,
+  articleSelectorArray,
+  layoutItemsLinkArray,
+  layoutLabelArray,
+  layoutLinksArray,
+  layoutSelectorArray,
 } from "./classes/admin/parametrs.js";
 
+// Admin-Items
+import AdminItems from "./classes/admin/AdminItems.js";
 // Admin-Add
-import AdminItemAdd from "./classes/admin/admin-add/AdminItemAdd.js";
+import AdminItemAdd from "./classes/admin/AdminItemAdd.js";
 // Admin-Edit
-import AdminItemEdit from "./classes/admin/admin-add/AdminItemEdit.js";
+import AdminItemEdit from "./classes/admin/AdminItemEdit.js";
 
 // Layout
 import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
 import LayoutContentRender from "./classes/LayoutContentRender.js";
 // Admin-Layout
-import AdminLayouts from "./classes/admin/admin-layouts/AdminLayouts.js";
+// import AdminLayouts from "./classes/admin/admin-layouts/AdminLayouts.js";
 import AdminLayoutEdit from "./classes/admin/admin-layouts/AdminLayoutEdit.js";
 import AdminLayoutAdd from "./classes/admin/admin-layouts/AdminLayoutAdd.js";
 
 // Article
 import ArticleContentRender from "./classes/ArticleContentRender.js";
 import ArticlesItemFilter from "./classes/ArticlesItemFilter.js";
-// Admin-Articles
-import AdminArticles from "./classes/admin/abmin-articles/AdminArticles.js";
-// import AdminArticleAdd from "./classes/admin/abmin-articles/AdminArticleAdd.js";
-import AdminArticleEdit from "./classes/admin/abmin-articles/AdminArticleEdit.js";
 
 // Member
 import MembersCardRender from "./classes/MembersCardRender.js";
@@ -45,6 +47,57 @@ const dbNameArticle = "/articles";
 // --------------------
 
 // ОБЪЯВЛЕНИЕ КЛАССОВ
+
+// -------------------------------------
+// Admin-Articles
+const adminArticles = new AdminItems(
+  "admin-articles",
+  dbRoutes,
+  port,
+  dbNameArticle,
+  articleItemsLinkArray,
+  "admin-article-edit"
+);
+// AdminArticleAdd
+const adminArticleAdd = new AdminItemAdd(
+  "admin-article-add",
+  dbRoutes,
+  port,
+  dbNameArticle,
+  articleLabelArray,
+  articleLinksArray,
+  articleSelectorArray
+);
+// AdminArticleEdit
+const adminArticleEdit = new AdminItemEdit(
+  "admin-article-edit",
+  dbRoutes,
+  port,
+  dbNameArticle,
+  articleLabelArray,
+  articleLinksArray,
+  articleSelectorArray
+);
+
+// -------------------------------------
+// AdminLayouts
+const adminLayouts = new AdminItems(
+  "admin-layouts",
+  dbRoutes,
+  port,
+  dbNameLayouts,
+  layoutItemsLinkArray,
+  "admin-layout-edit"
+);
+const adminLayoutAdd = new AdminItemAdd(
+  "admin-layout-add",
+  dbRoutes,
+  port,
+  dbNameLayouts,
+  layoutLabelArray,
+  layoutLinksArray,
+  layoutSelectorArray
+);
 
 // Layout
 const layoutsCardFilter = new LayoutsCardFilter(
@@ -67,18 +120,18 @@ const adminLayoutEdit = new AdminLayoutEdit(
   port,
   dbNameLayouts
 );
-const adminLayouts = new AdminLayouts(
-  "admin-layouts",
-  dbRoutes,
-  port,
-  dbNameLayouts
-);
-const adminLayoutAdd = new AdminLayoutAdd(
-  "admin-layout-add",
-  dbRoutes,
-  port,
-  dbNameLayouts
-);
+// const adminLayouts = new AdminLayouts(
+//   "admin-layouts",
+//   dbRoutes,
+//   port,
+//   dbNameLayouts
+// );
+// const adminLayoutAdd = new AdminLayoutAdd(
+//   "admin-layout-add",
+//   dbRoutes,
+//   port,
+//   dbNameLayouts
+// );
 
 // Article
 const articlesItemFilter = new ArticlesItemFilter(
@@ -93,42 +146,6 @@ const articleContentRender = new ArticleContentRender(
   port,
   dbNameArticle
 );
-// Admin-Articles
-const adminArticles = new AdminArticles(
-  "admin-articles",
-  dbRoutes,
-  port,
-  dbNameArticle
-);
-
-// AdminArticleAdd
-const adminItemAdd = new AdminItemAdd(
-  "admin-article-add",
-  dbRoutes,
-  port,
-  dbNameArticle,
-  articleLabelArray,
-  articleLinksArray,
-  articleContainerArrayInfo
-);
-
-// AdminArticleEdit
-const adminItemEdit = new AdminItemEdit(
-  "admin-article-edit",
-  dbRoutes,
-  port,
-  dbNameArticle,
-  articleLabelArray,
-  articleLinksArray,
-  articleContainerArrayInfo
-);
-
-// const adminArticleEdit = new AdminArticleEdit(
-//   "admin-article-edit",
-//   dbRoutes,
-//   port,
-//   dbNameArticle
-// );
 
 // Member
 const membersCardRender = new MembersCardRender(

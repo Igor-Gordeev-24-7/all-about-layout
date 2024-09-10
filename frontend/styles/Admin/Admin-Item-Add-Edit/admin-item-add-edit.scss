@@ -1,5 +1,8 @@
-// ADMIN-ARTICLE-EDIT
-.admin-article-edit {
+// ADMIN-ITEM-ADD-EDIT
+.admin-article-add,
+.admin-article-edit,
+.admin-layout-add,
+.admin-layout-edit {
   padding: 30px 0px;
   position: relative;
   &__popup {
@@ -104,15 +107,21 @@
   &__input:focus {
     outline: 2px dashed var(--white);
   }
-  //
-  &__filters {
+  &__selector {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: 20px;
   }
-  &__filters-heading {
+  &__selector {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+  }
+  &__selector-heading {
     display: block;
     color: var(--white);
     font-family: var(--inter);
@@ -122,6 +131,7 @@
     line-height: normal;
   }
   &__containers {
+    width: 100%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -134,7 +144,7 @@
     align-items: start;
     gap: 5px;
   }
-  &__description {
+  &__container-description {
     display: block;
     color: var(--white);
     font-family: var(--inter);
@@ -143,7 +153,7 @@
     font-weight: 700;
     line-height: normal;
   }
-  &__box {
+  &__container-btn {
     min-width: 200px;
     position: relative;
     width: fit-content;
@@ -151,7 +161,7 @@
     flex-direction: column;
     align-items: start;
   }
-  &__span {
+  &__container-span {
     width: 100%;
     padding: 10px 15px;
     background: var(--grey-btns);
@@ -165,7 +175,7 @@
     transition: all 0.33s;
     cursor: pointer;
   }
-  &__items {
+  &__container-items {
     width: 100%;
     position: absolute;
     top: 46px;
@@ -178,11 +188,11 @@
     opacity: 0;
     transition: all 0.33s linear;
   }
-  &__box.active &__items {
+  &__container-btn.active &__container-items {
     transform: rotateX(0deg);
     opacity: 1;
   }
-  &__item {
+  &__container-item {
     width: fit-content;
     display: block;
     padding: 15px 20px;
@@ -195,7 +205,7 @@
     transition: all 0.33s;
     cursor: pointer;
   }
-  &__btn {
+  &__send-btn {
     display: block;
     padding: 15px 20px;
     border-radius: 10px;

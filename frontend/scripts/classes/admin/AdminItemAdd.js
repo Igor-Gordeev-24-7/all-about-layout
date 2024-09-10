@@ -1,4 +1,4 @@
-class AdminItemEdit {
+class AdminItemAdd {
   constructor(
     selector,
     dbRoutes,
@@ -6,8 +6,7 @@ class AdminItemEdit {
     dbName,
     lableArray,
     linksArray,
-    containerArrayInfo,
-    inputIdObject
+    selectorsArray
   ) {
     this.mainEl = document.querySelector(`.${selector}`);
     this.selector = selector;
@@ -16,82 +15,13 @@ class AdminItemEdit {
     this.dbName = dbName;
     this.lableArray = lableArray;
     this.linksArray = linksArray;
-    this.inputIdObject = inputIdObject;
-    this.containerArrayInfo = containerArrayInfo;
-
-    this.foundCard = null;
-
-    this.itemArray = null;
-
-    if (!this.mainEl) {
-      console.warn(`Элемент с селектором "${this.selector}" не найден.`);
-    } else {
-      this.getItems().then(() => {
-        this.findItemById();
-        this.callingMethods();
-      });
-    }
+    this.selectorsArray = selectorsArray;
 
     // Проверка на наличие селектора
-    // if (!this.mainEl) {
-    //   console.warn(`Элемент с селектором ${this.selector} не найден.`);
-    // } else {
-    //   this.callingMethods();
-    // }
-  }
-
-  // Метод получения элементов
-  async getItems() {
-    try {
-      const response = await fetch(
-        `${this.dbRoutes}${this.port}${this.dbName}`
-      );
-      const itemArray = await response.json();
-      this.itemArray = itemArray;
-    } catch (error) {
-      console.log("Не удалось получить элементы:", error);
-    }
-  }
-  // Метод получения id
-  getId() {
-    // Получение текущего URL
-    const currentUrl = window.location.href;
-    // Создание объекта URL с текущим URL
-    const url = new URL(currentUrl);
-    // Получение параметров запроса
-    const searchParams = new URLSearchParams(url.search);
-    // Извлечение значения параметра 'id'
-    const id = searchParams.get("id");
-    // Метод возвращает id
-    return id;
-  }
-  // Получение карточки из массива по id
-  async findItemById() {
-    if (this.mainEl) {
-      // Проверка на наличие массива элементов
-      if (this.itemArray) {
-        // Получаем id
-        const id = this.getId();
-        console.log(id);
-
-        // Фильтруем массив по id,
-        // Получаем нужную карточку
-        const foundCard = this.itemArray.find((el) => el._id == id);
-        console.log(foundCard);
-        console.log(this.itemArray);
-
-        if (foundCard) {
-          this.foundCard = foundCard;
-          console.log(this.foundCard);
-          console.log(this.foundCard.tags);
-        } else {
-          console.error("Карточка не найдена");
-        }
-      } else {
-        console.error("Массив элементов не загружен");
-      }
+    if (!this.mainEl) {
+      console.warn(`Элемент с селектором ${this.selector} не найден.`);
     } else {
-      console.warn(`Элемент с селектором ${this.selector} не найден `);
+      this.callingMethods();
     }
   }
 
@@ -121,12 +51,17 @@ class AdminItemEdit {
     this.initMainElLabels(this.lableArray);
 
     // ----------------------------------
-    //    Метод добавления Selector - Теги
-    this.initSelector(this.selector, this.containerArrayInfo);
+    //    Метод добавления Selectors
+    this.initSelectors(this.selector, this.selectorsArray);
 
     // ----------------------------------
     //    Метод добавления ElementsPanel
-    this.initElementsPanel(this.selector, "element-panel", "content");
+    if (
+      this.selector == "admin-article-add" ||
+      this.selector == "admin-article-edit"
+    ) {
+      this.initElementsPanel(this.selector, "element-panel", "content");
+    }
 
     // ----------------------------------
     //    Кнопка добавления записи
@@ -220,25 +155,30 @@ class AdminItemEdit {
     this.inputEl = document.createElement("input");
     this.inputEl.className = `${this.selector}__input`;
     this.inputEl.id = id;
-    this.inputEl.value = this.foundCard[id];
-    console.log(`${parameter}.${id}`);
+    this.inputEl.textContent = `${parameter}.${id}`;
     this.inputEl.type = "text";
     this.wrapperEl.append(this.inputEl);
+  }
+
+  initSelectors(selector, selectorArray) {
+    selectorArray.forEach((container) => {
+      this.initSelector(selector, container);
+    });
   }
 
   //   Метод создает блок Selector
   //   id - id элемента
   //   title - описание элемента
-  initSelector(selector, containerArrayInfo) {
+  initSelector(selector, containerObject) {
     this.selectorEl = document.createElement("div");
-    this.selectorEl.className = `${selector}__first`;
-    this.selectorEl.id = containerArrayInfo.selectorId;
+    this.selectorEl.className = `${selector}__selector`;
+    this.selectorEl.id = containerObject.selectorId;
     this.wrapperEl.append(this.selectorEl);
 
     // Создание selectionHeadingEl
     this.selectionHeadingEl = document.createElement("span");
     this.selectionHeadingEl.className = `${selector}__selector-heading`;
-    this.selectionHeadingEl.textContent = containerArrayInfo.selectorTitle;
+    this.selectionHeadingEl.textContent = containerObject.selectorTitle;
     this.selectorEl.append(this.selectionHeadingEl);
 
     // Создание Containers
@@ -250,11 +190,11 @@ class AdminItemEdit {
     this.initContainerEls(
       selector,
       this.containers,
-      containerArrayInfo.containersArray,
-      containerArrayInfo
+      containerObject.containersArray,
+      containerObject
     );
 
-    this.initSelectorInput(selector, containerArrayInfo.idInput);
+    this.initSelectorInput(selector, containerObject.idInput);
   }
 
   //  Метод создания ContainerEls
@@ -263,7 +203,7 @@ class AdminItemEdit {
     selector,
     parentContainer,
     containersArray,
-    containerArrayInfo
+    containerObject
   ) {
     containersArray.forEach((container) => {
       this.initContainer(
@@ -274,11 +214,11 @@ class AdminItemEdit {
       );
     });
     setTimeout(() => {
-      this.makeContainerSpanActive(selector, containerArrayInfo.selectorId);
+      this.makeContainerSpanActive(selector, containerObject.selectorId);
       this.makeTextContainerSpanChange(
         selector,
-        containerArrayInfo.selectorId,
-        containerArrayInfo.idInput
+        containerObject.selectorId,
+        containerObject.idInput
       );
     }, 500);
   }
@@ -334,7 +274,6 @@ class AdminItemEdit {
       (`${selector}__selector-input`, `${selector}__input`);
     this.selectorInputEl.id = idInput;
     this.selectorInputEl.type = "text";
-    this.selectorInputEl.value = this.foundCard[idInput];
     this.selectorEl.append(this.selectorInputEl);
   }
 
@@ -379,7 +318,7 @@ class AdminItemEdit {
   }
 
   // Метод добавления ElementsPanel
-  initElementsPanel(selector, idElementPanel, textAreaId) {
+  initElementsPanel(selector, idElementPanel) {
     this.panelEl = document.createElement("div");
     this.panelEl.className = `${selector}__panel`;
     this.panelEl.id = idElementPanel;
@@ -395,8 +334,7 @@ class AdminItemEdit {
 
     this.panelCodeEl = document.createElement("textarea");
     this.panelCodeEl.className = `${selector}__panel-code`;
-    this.panelCodeEl.id = textAreaId;
-    this.panelCodeEl.value = this.foundCard[textAreaId];
+    this.panelCodeEl.id = "content";
     this.panelCodeEl.addEventListener("input", () => {
       this.panelViewingEl.innerHTML = this.panelCodeEl.value;
     });
@@ -406,10 +344,10 @@ class AdminItemEdit {
       this.selector,
       "Добавить текст p",
       `<p class="article__text">
-      ТЕКСТ
-    </p>
-    
-    `,
+    ТЕКСТ
+  </p>
+  
+  `,
       this.panelCodeEl,
       this.panelBtnsBoxEl
     );
@@ -424,12 +362,12 @@ class AdminItemEdit {
       this.selector,
       "Добавить код pre",
       `<pre class="article__code">
-      <code class="language-javascript">
-        КОД
-      </code>
-    </pre>
-    
-    `,
+    <code class="language-javascript">
+      КОД
+    </code>
+  </pre>
+  
+  `,
       this.panelCodeEl,
       this.panelBtnsBoxEl
     );
@@ -449,7 +387,7 @@ class AdminItemEdit {
     // Добавление обработчика события на кнопку
     this.sendBtnEl.addEventListener("click", (event) => {
       event.preventDefault();
-      this.handleSubmit(event);
+      this.handleSubmit();
     });
   }
 
@@ -511,13 +449,13 @@ class AdminItemEdit {
   // Метод предназначен для изменения текста внутри элементов span и обновления соответствующего массива на основе кликов по элементам в списке.
   // Этот метод позволяет пользователю выбрать элемент из списка, после чего текст span обновляется, а данные сохраняются в массиве и передаются в input элемент для дальнейшего использования.
   // id - id соответствующего Filters
-  // tagsArray - Массив куда добавляются элементы
+  // inputValueArray - Массив куда добавляются элементы
   // inputId - input Импульс в которой отображаются элементы переданы в массив и из него же передаются на бэк
   makeTextContainerSpanChange(selector, id, inputId) {
     // Получение родительского элемента по id
     const parentFilters = document.getElementById(id);
 
-    this.tagsArray = [];
+    const inputValueArray = [];
 
     // Проверка на налицие элемента
     if (!parentFilters) {
@@ -544,19 +482,19 @@ class AdminItemEdit {
 
       // Для каждого элемента item в списке containerItems добавляется обработчик события click.
       // Когда пользователь кликает по элементу, происходит следующее:
-      // Если индекс элемента itemIndex равен 0 (предположительно, это "сброс" или "выбор по умолчанию"), текст внутри span меняется на текст элемента, а соответствующее значение в массиве tagsArray очищается.
-      // В противном случае текст containerSpan обновляется на текст элемента, и массив tagsArray сохраняет текст выбранного элемента.
+      // Если индекс элемента itemIndex равен 0 (предположительно, это "сброс" или "выбор по умолчанию"), текст внутри span меняется на текст элемента, а соответствующее значение в массиве inputValueArray очищается.
+      // В противном случае текст containerSpan обновляется на текст элемента, и массив inputValueArray сохраняет текст выбранного элемента.
       // Обновленный массив передается в input элемент через метод this.passingArrayToInput.
       containerItems.forEach((item, itemIndex) => {
         item.addEventListener("click", () => {
           if (itemIndex === 0) {
             containerSpan.textContent = item.textContent;
-            this.tagsArray[containerIndex] = "";
-            this.passingArrayToInput(this.tagsArray, inputById);
+            inputValueArray[containerIndex] = "";
+            this.passingArrayToInput(inputValueArray, inputById);
           } else {
             containerSpan.textContent = item.textContent;
-            this.tagsArray[containerIndex] = item.textContent;
-            this.passingArrayToInput(this.tagsArray, inputById);
+            inputValueArray[containerIndex] = item.textContent;
+            this.passingArrayToInput(inputValueArray, inputById);
           }
         });
       });
@@ -585,9 +523,6 @@ class AdminItemEdit {
 
   //   Метод сбора и отправки Item на сервер
   handleSubmit() {
-    const id = this.getId(); // Получение id для обновления
-    console.log(id);
-
     const data = {};
 
     // Получаем все input и textarea элементы внутри основного элемента
@@ -607,14 +542,10 @@ class AdminItemEdit {
       }
     });
 
-    console.log("Отправляемые данные:", data);
+    console.log(data); // Проверка формата данных
 
-    // Генерация корректного URL для PUT-запроса (например, с использованием ID элемента)
-    const url = `${this.dbRoutes}${this.port}${this.dbName}/${id}`;
-
-    // Отправка данных на сервер через PUT-запрос
-    fetch(url, {
-      method: "PUT",
+    fetch(`${this.dbRoutes}${this.port}${this.dbName}`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -629,15 +560,14 @@ class AdminItemEdit {
         return response.json();
       })
       .then((data) => {
-        console.log("Успешный ответ от сервера:", data);
+        console.log("Success:", data);
         this.makeActivePopup("successful-submission");
         this.clearFormFields();
       })
       .catch((error) => {
-        console.error("Ошибка:", error);
         this.makeActivePopup("sending-error");
       });
   }
 }
 
-export default AdminItemEdit;
+export default AdminItemAdd;

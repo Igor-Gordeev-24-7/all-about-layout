@@ -1,12 +1,15 @@
-.admin-articles {
+.admin-articles,
+.admin-layouts {
   padding: 30px 0px;
 }
-.admin-articles__wrapper {
+.admin-articles__wrapper,
+.admin-layouts__wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.admin-articles__heading {
+.admin-articles__heading,
+.admin-layouts__heading {
   color: var(--white);
   font-family: var(--inter);
   font-size: clamp(1.25rem, 1rem + 1.25vw, 2.5rem);
@@ -14,13 +17,15 @@
   font-weight: 700;
   line-height: normal;
 }
-.admin-articles__link-box {
+.admin-articles__link-box,
+.admin-layouts__link-box {
   display: flex;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
 }
-.admin-articles__link {
+.admin-articles__link,
+.admin-layouts__link {
   padding: 15px 20px;
   display: flex;
   flex-direction: column;
@@ -35,7 +40,8 @@
   font-weight: 700;
   line-height: normal;
 }
-.admin-articles__input {
+.admin-articles__input,
+.admin-layouts__input {
   width: 100%;
   padding: 10px 15px;
   background-color: var(--dull-green);
@@ -46,28 +52,33 @@
   font-weight: 400;
   line-height: normal;
 }
-.admin-articles__input::-moz-placeholder {
+.admin-articles__input::-moz-placeholder, .admin-layouts__input::-moz-placeholder {
   width: 100%;
   color: var(--white);
 }
-.admin-articles__input::placeholder {
+.admin-articles__input::placeholder,
+.admin-layouts__input::placeholder {
   width: 100%;
   color: var(--white);
 }
-.admin-articles__input:focus {
+.admin-articles__input:focus,
+.admin-layouts__input:focus {
   outline: 2px dashed var(--white);
 }
-.admin-articles__list {
+.admin-articles__list,
+.admin-layouts__list {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.admin-articles__item {
+.admin-articles__item,
+.admin-layouts__item {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.admin-articles__span {
+.admin-articles__span,
+.admin-layouts__span {
   color: var(--white);
   font-family: var(--inter);
   font-size: 16px;
@@ -75,12 +86,14 @@
   font-weight: 700;
   line-height: normal;
 }
-.admin-articles__btn-box {
+.admin-articles__box,
+.admin-layouts__box {
   display: flex;
   align-items: center;
   gap: 15px;
 }
-.admin-articles__btn {
+.admin-articles__btn,
+.admin-layouts__btn {
   display: block;
   padding: 5px 10px;
   background-color: var(--dull-yellow);
@@ -93,11 +106,26 @@
   line-height: normal;
   cursor: pointer;
 }
-.admin-articles__empty-message {
+.admin-articles__box-link,
+.admin-layouts__box-link {
+  display: block;
+  padding: 5px 10px;
+  background-color: var(--dull-yellow);
+  border-radius: 20px;
+  color: var(--black);
+  font-family: var(--inter);
+  font-size: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
+.admin-articles__empty-message,
+.admin-layouts__empty-message {
   color: var(--white);
   font-family: var(--inter);
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-}/*# sourceMappingURL=admin-articles.css.map */
+}/*# sourceMappingURL=admin-items.css.map */

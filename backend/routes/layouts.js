@@ -38,7 +38,7 @@ layoutsRouter.post("/layouts", async (req, res) => {
       imgLink,
       tags,
       skills,
-      liveLink,
+      linkToLive,
       author,
     } = req.body;
 
@@ -48,7 +48,7 @@ layoutsRouter.post("/layouts", async (req, res) => {
       !description ||
       !layoutLink ||
       !imgLink ||
-      !liveLink ||
+      !linkToLive ||
       !author
     ) {
       return res
@@ -64,7 +64,7 @@ layoutsRouter.post("/layouts", async (req, res) => {
       imgLink,
       tags,
       skills,
-      linkToLive: liveLink,
+      linkToLive,
       author,
     });
 
@@ -86,7 +86,7 @@ layoutsRouter.put("/layouts/:id", async (req, res) => {
       imgLink,
       tags,
       skills,
-      liveLink,
+      linkToLive,
       author,
     } = req.body;
 
@@ -96,7 +96,7 @@ layoutsRouter.put("/layouts/:id", async (req, res) => {
       !description ||
       !layoutLink ||
       !imgLink ||
-      !liveLink ||
+      !linkToLive ||
       !author
     ) {
       return res
@@ -114,7 +114,7 @@ layoutsRouter.put("/layouts/:id", async (req, res) => {
         imgLink,
         tags,
         skills,
-        linkToLive: liveLink,
+        linkToLive,
         author,
       },
       { new: true } // Возвращает обновленный документ
