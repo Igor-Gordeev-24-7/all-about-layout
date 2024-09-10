@@ -125,7 +125,7 @@ class AdminItemEdit {
     }
     // ----------------------------------
     //    Кнопка добавления записи
-    this.initSendBtn(this.selector, "Загрузить Article");
+    this.initSendBtn(this.selector, "Загрузить изменения");
   }
 
   //   Метод добавления POPUP

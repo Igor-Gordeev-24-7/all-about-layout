@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>admin-article-edit</title>
+    <title>Редактирование Article</title>
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="icon" type="image/png" href="./accets/icons/favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css"
+    />
   </head>
   <body>
     <!-- MAIN -->
@@ -13,6 +17,27 @@
       <div class="admin-article-edit"></div>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script type="module" src="./scripts/highlight.js"></script>
+    <script type="module">
+      import { highlightCodeBlocks } from "./scripts/highlight.js";
+      document.addEventListener("DOMContentLoaded", () => {
+        const panelCode = document.querySelector(
+          ".admin-article-edit"
+        );
+
+        if (!panelCode) {
+          console.error(
+            "Element with class 'admin-article-edit__panel-code' not found."
+          );
+          return;
+        }
+
+        panelCode.addEventListener("input", () => {
+          highlightCodeBlocks("admin-article-edit__panel-viewing");
+        });
+      });
+    </script>
     <script type="module" src="./scripts/checkAuth.js"></script>
     <script type="module" src="./scripts/script.js"></script>
   </body>

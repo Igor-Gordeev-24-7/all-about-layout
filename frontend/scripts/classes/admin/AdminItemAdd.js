@@ -65,7 +65,7 @@ class AdminItemAdd {
 
     // ----------------------------------
     //    Кнопка добавления записи
-    this.initSendBtn(this.selector, "Загрузить Article");
+    this.initSendBtn(this.selector, "Загрузить элемент");
   }
 
   //   Метод добавления POPUP

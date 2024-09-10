@@ -98,6 +98,15 @@ const adminLayoutAdd = new AdminItemAdd(
   layoutLinksArray,
   layoutSelectorArray
 );
+const adminLayoutEdit = new AdminItemEdit(
+  "admin-layout-edit",
+  dbRoutes,
+  port,
+  dbNameLayouts,
+  layoutLabelArray,
+  layoutLinksArray,
+  layoutSelectorArray
+);
 
 // Layout
 const layoutsCardFilter = new LayoutsCardFilter(
@@ -114,12 +123,12 @@ const layoutContentRender = new LayoutContentRender(
 );
 
 // Admin-Layout
-const adminLayoutEdit = new AdminLayoutEdit(
-  "admin-layout-edit",
-  dbRoutes,
-  port,
-  dbNameLayouts
-);
+// const adminLayoutEdit = new AdminLayoutEdit(
+//   "admin-layout-edit",
+//   dbRoutes,
+//   port,
+//   dbNameLayouts
+// );
 // const adminLayouts = new AdminLayouts(
 //   "admin-layouts",
 //   dbRoutes,
