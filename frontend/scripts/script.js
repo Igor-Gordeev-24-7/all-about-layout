@@ -13,6 +13,7 @@ import {
   memberLinksArray,
   memberSelectorArray,
 } from "./classes/admin/parametrs.js";
+import { parametersArray } from "./classes/client/clientParameter.js";
 
 // Admin-Items
 import AdminItems from "./classes/admin/AdminItems.js";
@@ -22,8 +23,9 @@ import AdminItemAdd from "./classes/admin/AdminItemAdd.js";
 import AdminItemEdit from "./classes/admin/AdminItemEdit.js";
 
 // Layout
-import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
-import LayoutContentRender from "./classes/LayoutContentRender.js";
+import ClientItems from "./classes/client/ClientItems.js";
+// import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
+// import LayoutContentRender from "./classes/LayoutContentRender.js";
 
 // Article
 import ArticleContentRender from "./classes/ArticleContentRender.js";
@@ -99,7 +101,8 @@ const adminLayoutEdit = new AdminItemEdit(
   port,
   dbNameLayouts,
   layoutLabelArray,
-  layoutLinksArray
+  layoutLinksArray,
+  layoutSelectorArray
 );
 
 // -------------------------------------
@@ -132,18 +135,26 @@ const adminMembersEdit = new AdminItemEdit(
 );
 
 // Layout
-const layoutsCardFilter = new LayoutsCardFilter(
-  ".filter",
+const LayoutItems = new ClientItems(
+  "layouts",
   dbRoutes,
   port,
-  dbNameLayouts
+  dbNameLayouts,
+  "layout",
+  parametersArray
 );
-const layoutContentRender = new LayoutContentRender(
-  ".info__bottom",
-  dbRoutes,
-  port,
-  dbNameLayouts
-);
+// const layoutsCardFilter = new LayoutsCardFilter(
+//   ".filter",
+//   dbRoutes,
+//   port,
+//   dbNameLayouts
+// );
+// const layoutContentRender = new LayoutContentRender(
+//   ".info__bottom",
+//   dbRoutes,
+//   port,
+//   dbNameLayouts
+// );
 
 // Article
 const articlesItemFilter = new ArticlesItemFilter(

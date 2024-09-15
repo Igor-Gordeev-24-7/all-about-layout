@@ -105,6 +105,11 @@ export const layoutSelectorArray = [
     containersArray: [
       {
         parentContainerId: "selector-tags",
+        containerDescription: "Сложность:",
+        containerItemsArray: ["Не выбрано", "Легкий", "Средний", "Сложный"],
+      },
+      {
+        parentContainerId: "selector-tags",
         containerDescription: "Страницы:",
         containerItemsArray: [
           "Не выбрано",
