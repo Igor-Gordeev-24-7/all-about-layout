@@ -98,7 +98,7 @@ class ClientItems {
           }
 
           // Логирование массива для проверки
-          console.log("Updated filterTags:", this.filterTags);
+          // console.log("Updated filterTags:", this.filterTags);
 
           // Закрываем список после выбора
           parameterItemsEl.classList.remove("active");

@@ -4,7 +4,7 @@
 @import url(../accets/fonts/nextart/nextart.css);
 @import url(./Admin/Admin-Item-Add-Edit/admin-item-add-edit.css);
 @import url(./Admin/Admin-Items/admin-items.css);
-@import url(./Client/items.css);
+@import url(./Client/itemsLayout/itemsLayout.css);
 :root {
   --grey: #5d7279;
   --grey-fonts: #cfcfcf;

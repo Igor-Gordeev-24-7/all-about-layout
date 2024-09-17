@@ -23,7 +23,7 @@ import AdminItemAdd from "./classes/admin/AdminItemAdd.js";
 import AdminItemEdit from "./classes/admin/AdminItemEdit.js";
 
 // Layout
-import ClientItems from "./classes/client/ClientItems.js";
+import ClientItems from "./classes/client/ClientLayouts.js";
 // import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
 // import LayoutContentRender from "./classes/LayoutContentRender.js";
 

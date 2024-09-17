@@ -12,6 +12,13 @@
     gap: 40px;
   }
   &__items-message {
+    max-width: 350px;
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
   &__card {
     position: relative;

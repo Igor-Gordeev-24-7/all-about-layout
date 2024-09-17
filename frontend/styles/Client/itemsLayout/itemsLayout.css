@@ -11,6 +11,15 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
 }
+.layouts__items-message {
+  max-width: 350px;
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 .layouts__card {
   position: relative;
   display: flex;
@@ -219,4 +228,4 @@
   .gallery__cards {
     grid-template-columns: repeat(1, 1fr);
   }
-}/*# sourceMappingURL=items.css.map */
+}/*# sourceMappingURL=itemsLayout.css.map */
