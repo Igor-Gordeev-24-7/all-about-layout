@@ -36,6 +36,7 @@ class ClientItems {
   }
   initElements() {
     this.initWrapper();
+    this.initHeadingBox();
     this.initFilter();
     this.initItems();
     this.initItemCards(this.itemArray);
@@ -44,6 +45,21 @@ class ClientItems {
     this.wrapperEl = document.createElement("div");
     this.wrapperEl.classList.add(`${this.selector}__wrapper`, "wrapper");
     this.mainEl.append(this.wrapperEl);
+  }
+  initHeadingBox() {
+    this.headingBoxEl = document.createElement("div");
+    this.headingBoxEl.className = `${this.selector}__heading-box`;
+    this.wrapperEl.append(this.headingBoxEl);
+
+    this.headingEl = document.createElement("h1");
+    this.headingEl.className = `${this.selector}__heading`;
+    this.headingEl.textContent = "Библиотека макетов";
+    this.headingBoxEl.append(this.headingEl);
+
+    this.headingSpanEl = document.createElement("span");
+    this.headingSpanEl.className = `${this.selector}__heading-span`;
+    this.headingSpanEl.textContent = "";
+    this.headingBoxEl.append(this.headingSpanEl);
   }
   initFilter() {
     this.filterEl = document.createElement("div");
@@ -189,6 +205,9 @@ class ClientItems {
       });
     }
 
+    // Обновляем количество отображенных карточек в headingSpanEl
+    this.headingSpanEl.textContent = `(${renderedItemsCount})`;
+
     // Если не было отрендерено ни одной карточки, выводим сообщение
     if (renderedItemsCount === 0) {
       this.itemsMessageEl = document.createElement("span");
@@ -197,6 +216,7 @@ class ClientItems {
       this.itemsEl.append(this.itemsMessageEl);
     }
   }
+
   initItemCard(id, name, imgLink, description, tags) {
     this.cardEl = document.createElement("a");
     this.cardEl.href = `https://www.all-about-layout.ru/${this.linkItemPage}.html?id=${id}`;

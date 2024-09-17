@@ -23,9 +23,8 @@ import AdminItemAdd from "./classes/admin/AdminItemAdd.js";
 import AdminItemEdit from "./classes/admin/AdminItemEdit.js";
 
 // Layout
-import ClientItems from "./classes/client/ClientLayouts.js";
-// import LayoutsCardFilter from "./classes/LayoutsCardFilter.js";
-// import LayoutContentRender from "./classes/LayoutContentRender.js";
+import ClientLayouts from "./classes/client/ClientLayouts.js";
+import ClientLayout from "./classes/client/ClientLayout.js"
 
 // Article
 import ArticleContentRender from "./classes/ArticleContentRender.js";
@@ -135,7 +134,7 @@ const adminMembersEdit = new AdminItemEdit(
 );
 
 // Layout
-const LayoutItems = new ClientItems(
+const LayoutItems = new ClientLayouts(
   "layouts",
   dbRoutes,
   port,
@@ -143,18 +142,12 @@ const LayoutItems = new ClientItems(
   "layout",
   parametersArray
 );
-// const layoutsCardFilter = new LayoutsCardFilter(
-//   ".filter",
-//   dbRoutes,
-//   port,
-//   dbNameLayouts
-// );
-// const layoutContentRender = new LayoutContentRender(
-//   ".info__bottom",
-//   dbRoutes,
-//   port,
-//   dbNameLayouts
-// );
+const clientLayout = new ClientLayout(
+  "layout",
+  dbRoutes,
+  port,
+  dbNameLayouts
+);
 
 // Article
 const articlesItemFilter = new ArticlesItemFilter(

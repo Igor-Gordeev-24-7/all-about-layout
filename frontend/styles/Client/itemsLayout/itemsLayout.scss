@@ -4,6 +4,23 @@
   &__wrapper {
     width: 100%;
   }
+  &__heading-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--nextart);
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    z-index: 10;
+  }
+  &__heading {
+    color: var(--white);
+  }
+  &__heading-span {
+    color: var(--grey-btns);
+  }
   &__items {
     width: 100%;
     height: 100%;
@@ -142,7 +159,7 @@
     font-family: var(--inter);
     font-size: 18px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 800;
     line-height: normal;
   }
   &__parameter-btn {
@@ -154,7 +171,7 @@
     font-family: var(--inter);
     font-size: 18px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: normal;
     cursor: pointer;
   }
@@ -195,7 +212,7 @@
     font-family: var(--inter);
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: normal;
     cursor: pointer;
     background-color: var(--grey-btns);
@@ -214,25 +231,68 @@
   }
 }
 
-// 1600
 @media (max-width: 1600px) {
-  .gallery {
-    &__cards {
+  .layouts {
+    &__items {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 }
+// @media (max-width: 1280px) {
+//   .gallery {
+//     &__items {
+//       grid-template-columns: repeat(2, 1fr);
+//     }
+//   }
+// }
 @media (max-width: 1024px) {
-  .gallery {
-    &__cards {
+  .layouts {
+    &__items {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 }
 @media (max-width: 768px) {
-  .gallery {
-    &__cards {
+  .layouts {
+    &__items {
       grid-template-columns: repeat(1, 1fr);
+    }
+    &__heading-box {
+      gap: 0;
+      font-size: 40px;
+      justify-content: space-between;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .layouts {
+    &__heading-box {
+      gap: 0;
+      font-size: 31px;
+      justify-content: space-between;
+    }
+    &__parameter-name {
+      font-size: 15px;
+    }
+    &__parameter-btn {
+      font-size: 15px;
+    }
+  }
+}
+@media (max-width: 320px) {
+  .layouts {
+    &__filter {
+      padding: 40px 0px 20px 0px;
+    }
+    &__heading-box {
+      font-size: 21px;
+    }
+    &__card-top {
+      height: 400px;
+    }
+    &__tag {
+      padding: 12px 16px;
+      font-size: 14px;
     }
   }
 }
