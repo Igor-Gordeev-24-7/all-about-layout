@@ -1,0 +1,218 @@
+// ARTICLES
+.articles {
+  &__wrapper {
+    width: 100%;
+    flex-direction: column;
+  }
+  &__heading-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: var(--nextart);
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    z-index: 10;
+  }
+  &__heading {
+    color: var(--white);
+  }
+  &__heading-span {
+    color: var(--grey-btns);
+  }
+  &__search-line {
+    width: 100%;
+    margin: 30px 0px;
+    padding: 10px 15px;
+    background-color: var(--dull-green);
+    border-radius: 5px;
+    color: var(--white);
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  &__search-line::placeholder {
+    width: 100%;
+    color: var(--white);
+  }
+  &__search-line:focus {
+    outline: 2px dashed var(--white);
+  }
+  &__filter {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &__parameters {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  &__parameter {
+    padding: 15px 20px;
+    background-color: var(--grey-btns);
+    border-radius: 25px;
+    color: var(--white);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.33s;
+  }
+  &__parameter:hover {
+    background-color: var(--dull-yellow);
+    color: var(--black);
+  }
+  &__parameter.active {
+    background-color: var(--dull-yellow);
+    color: var(--black);
+  }
+  &__parameter-btn {
+    color: var(--white);
+    font-family: var(--nextart);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  &__articles {
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+    font-family: var(--inter);
+    color: var(--white);
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.33s;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+  &__article {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: var(--white) 1px solid;
+  }
+  &__article:nth-child(1) {
+    border-top: var(--white) 1px solid;
+  }
+
+  &__article-heading {
+  }
+  &__article-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__article-date {
+  }
+  &__article-author {
+  }
+  &__article-tag {
+    display: block;
+    padding: 10px 15px;
+    background-color: var(--dull-yellow);
+    border-radius: 25px;
+    color: var(--black);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.33s;
+  }
+  &__items-message {
+    max-width: 350px;
+    color: var(--white);
+    font-family: var(--inter);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+}
+
+@media (max-width: 1024px) {
+  .articles {
+    &__heading-box {
+      gap: none;
+      justify-content: space-between;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .articles {
+    &__heading-box {
+      gap: 0;
+      font-size: 40px;
+      justify-content: space-between;
+    }
+    &__parameter {
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+    &__parameter-btn {
+      font-size: 15px;
+    }
+    &__article-date {
+      font-size: 16px;
+    }
+    &__article-author {
+      font-size: 16px;
+    }
+    &__article-tag {
+      padding: 5px 10px;
+      font-size: 16px;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .articles {
+    &__heading-box {
+      gap: 0;
+      font-size: 31px;
+      justify-content: space-between;
+    }
+    &__parameters {
+      margin-bottom: 15px;
+    }
+    &__article {
+      flex-direction: column;
+      align-items: start;
+      gap: 10px;
+    }
+    &__article-info {
+      width: 100%;
+    }
+    &__article-author {
+      margin-right: auto;
+    }
+  }
+}
+@media (max-width: 320px) {
+  .articles {
+    &__heading-box {
+      font-size: 21px;
+    }
+    &__parameters {
+      gap: 10px;
+    }
+    &__article-date {
+      font-size: 14px;
+    }
+    &__article-author {
+      font-size: 14px;
+    }
+    &__article-tag {
+      padding: 2px 5px;
+      font-size: 16px;
+    }
+  }
+}

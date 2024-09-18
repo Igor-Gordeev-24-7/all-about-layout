@@ -1,0 +1,204 @@
+.articles__wrapper {
+  width: 100%;
+  flex-direction: column;
+}
+.articles__heading-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: var(--nextart);
+  font-size: 65px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  z-index: 10;
+}
+.articles__heading {
+  color: var(--white);
+}
+.articles__heading-span {
+  color: var(--grey-btns);
+}
+.articles__search-line {
+  width: 100%;
+  margin: 30px 0px;
+  padding: 10px 15px;
+  background-color: var(--dull-green);
+  border-radius: 5px;
+  color: var(--white);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.articles__search-line::-moz-placeholder {
+  width: 100%;
+  color: var(--white);
+}
+.articles__search-line::placeholder {
+  width: 100%;
+  color: var(--white);
+}
+.articles__search-line:focus {
+  outline: 2px dashed var(--white);
+}
+.articles__filter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.articles__parameters {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.articles__parameter {
+  padding: 15px 20px;
+  background-color: var(--grey-btns);
+  border-radius: 25px;
+  color: var(--white);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  transition: all 0.33s;
+}
+.articles__parameter:hover {
+  background-color: var(--dull-yellow);
+  color: var(--black);
+}
+.articles__parameter.active {
+  background-color: var(--dull-yellow);
+  color: var(--black);
+}
+.articles__parameter-btn {
+  color: var(--white);
+  font-family: var(--nextart);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.articles__articles {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  font-family: var(--inter);
+  color: var(--white);
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  transition: all 0.33s;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+.articles__article {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: var(--white) 1px solid;
+}
+.articles__article:nth-child(1) {
+  border-top: var(--white) 1px solid;
+}
+.articles__article-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.articles__article-tag {
+  display: block;
+  padding: 10px 15px;
+  background-color: var(--dull-yellow);
+  border-radius: 25px;
+  color: var(--black);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  transition: all 0.33s;
+}
+.articles__items-message {
+  max-width: 350px;
+  color: var(--white);
+  font-family: var(--inter);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+@media (max-width: 1024px) {
+  .articles__heading-box {
+    gap: none;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 768px) {
+  .articles__heading-box {
+    gap: 0;
+    font-size: 40px;
+    justify-content: space-between;
+  }
+  .articles__parameter {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  .articles__parameter-btn {
+    font-size: 15px;
+  }
+  .articles__article-date {
+    font-size: 16px;
+  }
+  .articles__article-author {
+    font-size: 16px;
+  }
+  .articles__article-tag {
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .articles__heading-box {
+    gap: 0;
+    font-size: 31px;
+    justify-content: space-between;
+  }
+  .articles__parameters {
+    margin-bottom: 15px;
+  }
+  .articles__article {
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+  .articles__article-info {
+    width: 100%;
+  }
+  .articles__article-author {
+    margin-right: auto;
+  }
+}
+@media (max-width: 320px) {
+  .articles__heading-box {
+    font-size: 21px;
+  }
+  .articles__parameters {
+    gap: 10px;
+  }
+  .articles__article-date {
+    font-size: 14px;
+  }
+  .articles__article-author {
+    font-size: 14px;
+  }
+  .articles__article-tag {
+    padding: 2px 5px;
+    font-size: 16px;
+  }
+}/*# sourceMappingURL=itemsArticle.css.map */

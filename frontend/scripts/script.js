@@ -13,7 +13,10 @@ import {
   memberLinksArray,
   memberSelectorArray,
 } from "./classes/admin/parametrs.js";
-import { parametersArray } from "./classes/client/clientParameter.js";
+import {
+  parametersArray,
+  articleTagArray,
+} from "./classes/client/clientParameter.js";
 
 // Admin-Items
 import AdminItems from "./classes/admin/AdminItems.js";
@@ -24,11 +27,12 @@ import AdminItemEdit from "./classes/admin/AdminItemEdit.js";
 
 // Layout
 import ClientLayouts from "./classes/client/ClientLayouts.js";
-import ClientLayout from "./classes/client/ClientLayout.js"
+import ClientLayout from "./classes/client/ClientLayout.js";
 
 // Article
-import ArticleContentRender from "./classes/ArticleContentRender.js";
-import ArticlesItemFilter from "./classes/ArticlesItemFilter.js";
+import ClientArticles from "./classes/client/ClientArticles.js";
+// import ArticleContentRender from "./classes/ArticleContentRender.js";
+// import ArticlesItemFilter from "./classes/ArticlesItemFilter.js";
 
 // Member
 import MembersCardRender from "./classes/MembersCardRender.js";
@@ -142,26 +146,28 @@ const LayoutItems = new ClientLayouts(
   "layout",
   parametersArray
 );
-const clientLayout = new ClientLayout(
-  "layout",
-  dbRoutes,
-  port,
-  dbNameLayouts
-);
+const clientLayout = new ClientLayout("layout", dbRoutes, port, dbNameLayouts);
 
 // Article
-const articlesItemFilter = new ArticlesItemFilter(
-  ".blog__filter",
+const clientArticles = new ClientArticles(
+  "articles",
   dbRoutes,
   port,
-  dbNameArticle
+  dbNameArticle,
+  articleTagArray
 );
-const articleContentRender = new ArticleContentRender(
-  ".article__wrapper",
-  dbRoutes,
-  port,
-  dbNameArticle
-);
+// const articlesItemFilter = new ArticlesItemFilter(
+//   ".blog__filter",
+//   dbRoutes,
+//   port,
+//   dbNameArticle
+// );
+// const articleContentRender = new ArticleContentRender(
+//   ".article__wrapper",
+//   dbRoutes,
+//   port,
+//   dbNameArticle
+// );
 
 // Member
 const membersCardRender = new MembersCardRender(

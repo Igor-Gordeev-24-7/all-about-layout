@@ -24,3 +24,13 @@ export const parametersArray = [
     parametersItems: ["Не выбрано", "Макет сайта", "Макет письма"],
   },
 ];
+
+export const articleTagArray = [
+  "HTML",
+  "CSS",
+  "JS",
+  "Инфориация",
+  "Статьи",
+  "Уроки",
+  "React",
+];
